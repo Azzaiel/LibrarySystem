@@ -2,27 +2,27 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmStudents 
    Caption         =   "Student Information"
-   ClientHeight    =   9570
-   ClientLeft      =   4170
-   ClientTop       =   2475
-   ClientWidth     =   21315
+   ClientHeight    =   6405
+   ClientLeft      =   525
+   ClientTop       =   660
+   ClientWidth     =   19200
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9570
-   ScaleWidth      =   21315
+   ScaleHeight     =   6405
+   ScaleWidth      =   19200
    Begin VB.Frame Frame2 
       Caption         =   "Search Panel"
       Height          =   855
-      Left            =   6720
+      Left            =   5640
       TabIndex        =   31
-      Top             =   360
-      Width           =   13335
+      Top             =   240
+      Width           =   13215
       Begin VB.CommandButton cmbClearSearch 
-         Caption         =   "C"
+         Caption         =   "Clear"
          Height          =   495
-         Left            =   12600
+         Left            =   12240
          TabIndex        =   36
          Top             =   240
-         Width           =   495
+         Width           =   855
       End
       Begin VB.CommandButton cmbSearch 
          Caption         =   "Search"
@@ -30,7 +30,7 @@ Begin VB.Form frmStudents
          Left            =   11280
          TabIndex        =   35
          Top             =   240
-         Width           =   1095
+         Width           =   855
       End
       Begin VB.TextBox txtSearchLrn 
          Height          =   285
@@ -85,49 +85,49 @@ Begin VB.Form frmStudents
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
       Height          =   495
-      Left            =   4200
+      Left            =   4080
       TabIndex        =   30
-      Top             =   7440
+      Top             =   5040
       Width           =   1095
    End
    Begin VB.CommandButton cmbClose 
       Caption         =   "Close"
       Height          =   495
-      Left            =   2160
+      Left            =   2040
       TabIndex        =   29
-      Top             =   8040
+      Top             =   5640
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
       Height          =   495
-      Left            =   2880
+      Left            =   2760
       TabIndex        =   28
-      Top             =   7440
+      Top             =   5040
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
       Height          =   495
-      Left            =   1560
+      Left            =   1440
       TabIndex        =   27
-      Top             =   7440
+      Top             =   5040
       Width           =   1095
    End
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Add"
       Height          =   495
-      Left            =   240
+      Left            =   120
       TabIndex        =   26
-      Top             =   7440
+      Top             =   5040
       Width           =   1095
    End
    Begin VB.Frame Frame1 
       Caption         =   "Detail Form"
       Height          =   4575
-      Left            =   480
+      Left            =   240
       TabIndex        =   9
-      Top             =   2160
+      Top             =   240
       Width           =   4695
       Begin VB.ComboBox cmSections 
          Height          =   315
@@ -302,13 +302,13 @@ Begin VB.Form frmStudents
       End
    End
    Begin MSDataGridLib.DataGrid dgStudents 
-      Height          =   7695
-      Left            =   5880
+      Height          =   4935
+      Left            =   5640
       TabIndex        =   0
-      Top             =   1440
-      Width           =   14775
-      _ExtentX        =   26061
-      _ExtentY        =   13573
+      Top             =   1200
+      Width           =   13215
+      _ExtentX        =   23310
+      _ExtentY        =   8705
       _Version        =   393216
       HeadLines       =   1
       RowHeight       =   15

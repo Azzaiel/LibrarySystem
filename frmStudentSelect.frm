@@ -3,8 +3,8 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmStudentSelect 
    Caption         =   "Student Selection"
    ClientHeight    =   6180
-   ClientLeft      =   10920
-   ClientTop       =   1710
+   ClientLeft      =   4425
+   ClientTop       =   1890
    ClientWidth     =   8685
    LinkTopic       =   "Form1"
    ScaleHeight     =   6180

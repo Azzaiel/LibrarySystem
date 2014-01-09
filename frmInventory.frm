@@ -2,27 +2,27 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmInventory 
    Caption         =   "Inventory"
-   ClientHeight    =   11970
-   ClientLeft      =   3765
+   ClientHeight    =   9735
+   ClientLeft      =   330
    ClientTop       =   450
-   ClientWidth     =   20655
+   ClientWidth     =   18915
    LinkTopic       =   "Form1"
-   ScaleHeight     =   11970
-   ScaleWidth      =   20655
+   ScaleHeight     =   9735
+   ScaleWidth      =   18915
    Begin VB.Frame Frame2 
       Caption         =   "Search Form"
       Height          =   1215
-      Left            =   7560
+      Left            =   7320
       TabIndex        =   35
-      Top             =   240
-      Width           =   12855
+      Top             =   120
+      Width           =   11415
       Begin VB.CommandButton cmdClearSearch 
          Caption         =   "Clear"
          Height          =   435
-         Left            =   9840
+         Left            =   9000
          TabIndex        =   47
          Top             =   600
-         Width           =   2655
+         Width           =   1935
       End
       Begin VB.CommandButton cmdSearch 
          Caption         =   "Search"
@@ -30,14 +30,14 @@ Begin VB.Form frmInventory
          Left            =   6840
          TabIndex        =   46
          Top             =   600
-         Width           =   2775
+         Width           =   1935
       End
       Begin VB.TextBox txtSearchAuthor 
          Height          =   285
-         Left            =   7920
+         Left            =   8040
          TabIndex        =   44
          Top             =   240
-         Width           =   4815
+         Width           =   3135
       End
       Begin VB.ComboBox cmSearchCategory 
          Height          =   315
@@ -73,7 +73,7 @@ Begin VB.Form frmInventory
          BackColor       =   &H0080FF80&
          Caption         =   "Author"
          Height          =   255
-         Left            =   6720
+         Left            =   6840
          TabIndex        =   45
          Top             =   240
          Width           =   855
@@ -157,10 +157,10 @@ Begin VB.Form frmInventory
    End
    Begin VB.Frame Frame1 
       Caption         =   "Item"
-      Height          =   10695
-      Left            =   360
+      Height          =   9495
+      Left            =   240
       TabIndex        =   1
-      Top             =   240
+      Top             =   120
       Width           =   6975
       Begin VB.ComboBox cmStatus 
          Height          =   315
@@ -169,28 +169,28 @@ Begin VB.Form frmInventory
          List            =   "frmInventory.frx":0010
          TabIndex        =   48
          Text            =   "cmStatus"
-         Top             =   8760
+         Top             =   7680
          Width           =   1935
       End
       Begin VB.TextBox txtDonatedBy 
          Height          =   285
          Left            =   1560
          TabIndex        =   19
-         Top             =   8400
+         Top             =   7320
          Width           =   4815
       End
       Begin VB.TextBox txtAuthor 
          Height          =   285
          Left            =   1560
          TabIndex        =   17
-         Top             =   7920
+         Top             =   6960
          Width           =   4815
       End
       Begin VB.TextBox txtDescription 
-         Height          =   1005
+         Height          =   645
          Left            =   1560
          TabIndex        =   16
-         Top             =   6720
+         Top             =   6240
          Width           =   4815
       End
       Begin VB.ComboBox cmCategory 
@@ -198,7 +198,7 @@ Begin VB.Form frmInventory
          Left            =   1560
          Style           =   2  'Dropdown List
          TabIndex        =   13
-         Top             =   6240
+         Top             =   5880
          Width           =   1935
       End
       Begin VB.PictureBox imgLoc 
@@ -208,7 +208,7 @@ Begin VB.Form frmInventory
          ScaleHeight     =   3675
          ScaleWidth      =   6195
          TabIndex        =   12
-         Top             =   2400
+         Top             =   2040
          Width           =   6255
       End
       Begin VB.ComboBox cmLocation 
@@ -216,14 +216,14 @@ Begin VB.Form frmInventory
          Left            =   1560
          Style           =   2  'Dropdown List
          TabIndex        =   10
-         Top             =   2040
+         Top             =   1680
          Width           =   1935
       End
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1560
          TabIndex        =   8
-         Top             =   1680
+         Top             =   1320
          Width           =   1935
       End
       Begin VB.ComboBox cmItemType 
@@ -231,14 +231,14 @@ Begin VB.Form frmInventory
          Left            =   1560
          Style           =   2  'Dropdown List
          TabIndex        =   6
-         Top             =   1200
+         Top             =   960
          Width           =   1935
       End
       Begin VB.TextBox txtItemCode 
          Height          =   285
          Left            =   1560
          TabIndex        =   4
-         Top             =   840
+         Top             =   600
          Width           =   1935
       End
       Begin VB.Label lblLastModDate 
@@ -247,7 +247,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   29
-         Top             =   10200
+         Top             =   9120
          Width           =   1935
       End
       Begin VB.Label lblLatModBy 
@@ -256,7 +256,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   28
-         Top             =   9840
+         Top             =   8760
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
@@ -265,7 +265,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   27
-         Top             =   9480
+         Top             =   8400
          Width           =   1935
       End
       Begin VB.Label lblCreatedBy 
@@ -274,7 +274,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   26
-         Top             =   9120
+         Top             =   8040
          Width           =   1935
       End
       Begin VB.Label Label13 
@@ -283,7 +283,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   25
-         Top             =   10200
+         Top             =   9120
          Width           =   1095
       End
       Begin VB.Label Label12 
@@ -292,7 +292,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   24
-         Top             =   9840
+         Top             =   8760
          Width           =   975
       End
       Begin VB.Label Label11 
@@ -301,7 +301,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   23
-         Top             =   9480
+         Top             =   8400
          Width           =   975
       End
       Begin VB.Label Label10 
@@ -310,7 +310,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   22
-         Top             =   9120
+         Top             =   8040
          Width           =   855
       End
       Begin VB.Label Label9 
@@ -319,7 +319,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   21
-         Top             =   8760
+         Top             =   7680
          Width           =   495
       End
       Begin VB.Label Label7 
@@ -328,7 +328,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   20
-         Top             =   8400
+         Top             =   7320
          Width           =   855
       End
       Begin VB.Label Label6 
@@ -337,7 +337,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   18
-         Top             =   7920
+         Top             =   6960
          Width           =   855
       End
       Begin VB.Label Label4 
@@ -346,7 +346,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   15
-         Top             =   6720
+         Top             =   6240
          Width           =   855
       End
       Begin VB.Label Label3 
@@ -355,7 +355,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   14
-         Top             =   6240
+         Top             =   5880
          Width           =   975
       End
       Begin VB.Label lbl 
@@ -364,7 +364,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   11
-         Top             =   2040
+         Top             =   1680
          Width           =   975
       End
       Begin VB.Label Label2 
@@ -373,7 +373,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   9
-         Top             =   1680
+         Top             =   1320
          Width           =   615
       End
       Begin VB.Label Label5 
@@ -382,7 +382,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   7
-         Top             =   1200
+         Top             =   960
          Width           =   975
       End
       Begin VB.Label lblName 
@@ -391,7 +391,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   5
-         Top             =   840
+         Top             =   600
          Width           =   855
       End
       Begin VB.Label lblID 
@@ -400,7 +400,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   3
-         Top             =   480
+         Top             =   240
          Width           =   375
       End
       Begin VB.Label Label1 
@@ -409,18 +409,18 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   2
-         Top             =   480
+         Top             =   240
          Width           =   255
       End
    End
    Begin MSDataGridLib.DataGrid dgItems 
-      Height          =   9375
-      Left            =   7560
+      Height          =   8175
+      Left            =   7320
       TabIndex        =   0
-      Top             =   1560
-      Width           =   12855
-      _ExtentX        =   22675
-      _ExtentY        =   16536
+      Top             =   1440
+      Width           =   11415
+      _ExtentX        =   20135
+      _ExtentY        =   14420
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True

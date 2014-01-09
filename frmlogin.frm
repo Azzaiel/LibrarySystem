@@ -2,8 +2,8 @@ VERSION 5.00
 Begin VB.Form frmlogin 
    Caption         =   "Form1"
    ClientHeight    =   2460
-   ClientLeft      =   11070
-   ClientTop       =   5115
+   ClientLeft      =   6675
+   ClientTop       =   2715
    ClientWidth     =   7140
    LinkTopic       =   "Form1"
    ScaleHeight     =   2460

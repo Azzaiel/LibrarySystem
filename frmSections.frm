@@ -3,8 +3,8 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmSections 
    Caption         =   "Form1"
    ClientHeight    =   5850
-   ClientLeft      =   5190
-   ClientTop       =   3285
+   ClientLeft      =   330
+   ClientTop       =   2295
    ClientWidth     =   19605
    LinkTopic       =   "Form1"
    ScaleHeight     =   5850
@@ -279,7 +279,7 @@ Private rs As ADODB.Recordset
 Private Sub showSelectedItemInForm()
 
   lblID.Caption = rs!ID
-  txtName.Text = rs!Name
+  txtName.Text = rs!name
   txtLevel.Text = CommonHelper.extractStringValue(rs!Level)
   txtAdviser.Text = CommonHelper.extractStringValue(rs!Adviser)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
@@ -317,7 +317,7 @@ End Sub
 
 Private Sub cmbEdit_Click()
   If (isFormDetailValid) Then
-    rs!Name = txtName.Text
+    rs!name = txtName.Text
     rs!Level = txtLevel.Text
     rs!Adviser = txtAdviser.Text
     rs!LAST_MOD_BY = UserSession.getLoginUser
@@ -331,7 +331,7 @@ End Sub
 Private Sub cmbNewRec_Click()
    rs.AddNew
    rs!Level = txtLevel.Text
-   rs!Name = txtName.Text
+   rs!name = txtName.Text
    rs!Adviser = txtAdviser.Text
    rs!CREATED_BY = UserSession.getLoginUser
    rs!CREATED_DATE = Now

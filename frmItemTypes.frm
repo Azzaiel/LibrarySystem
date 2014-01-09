@@ -3,8 +3,8 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmItemTypes 
    Caption         =   "Item Types"
    ClientHeight    =   6030
-   ClientLeft      =   6210
-   ClientTop       =   2880
+   ClientLeft      =   735
+   ClientTop       =   1485
    ClientWidth     =   18015
    LinkTopic       =   "Form1"
    ScaleHeight     =   6030
@@ -284,7 +284,7 @@ End Sub
 Private Sub cmbNewRec_Click()
   If (isFormDetailValid = True) Then
     rs.AddNew
-    rs!Name = txtName
+    rs!name = txtName
     rs!Description = txtDescription
     rs!CREATED_BY = UserSession.getLoginUser
     rs!CREATED_DATE = Now
@@ -314,7 +314,7 @@ Private Sub Command4_Click()
 End Sub
 Private Sub showSelectedRow()
   lblID.Caption = rs!ID
-  txtName.Text = rs!Name
+  txtName.Text = rs!name
   txtDescription.Text = CommonHelper.extractStringValue(rs!Description)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
   lblCreatedDate.Caption = CommonHelper.extractDateValue(rs!CREATED_DATE)

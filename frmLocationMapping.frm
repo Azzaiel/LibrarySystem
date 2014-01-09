@@ -1,15 +1,15 @@
 VERSION 5.00
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmLocationMapping 
    Caption         =   "Form1"
    ClientHeight    =   9705
-   ClientLeft      =   4575
-   ClientTop       =   2280
-   ClientWidth     =   20670
+   ClientLeft      =   -90
+   ClientTop       =   450
+   ClientWidth     =   20250
    LinkTopic       =   "Form1"
    ScaleHeight     =   9705
-   ScaleWidth      =   20670
+   ScaleWidth      =   20250
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Add"
       Height          =   495
@@ -320,7 +320,7 @@ End Function
 Private Sub cmbEdit_Click()
   Call restoreFormDefaultSkin
   If (isFormValid) Then
-    rs!Name = txtName.Text
+    rs!name = txtName.Text
     rs!FILE_NAME = txtFileName.Caption
     rs!LAST_MOD_BY = UserSession.getLoginUser
     rs!LAST_MOD_DATE = Now
@@ -337,7 +337,7 @@ Private Sub cmbNewRec_Click()
   Call restoreFormDefaultSkin
   If (isFormValid) Then
     rs.AddNew
-    rs!Name = txtName.Text
+    rs!name = txtName.Text
     rs!FILE_NAME = txtFileName.Caption
     rs!CREATED_BY = UserSession.getLoginUser
     rs!CREATED_DATE = Now
@@ -370,7 +370,7 @@ Private Sub cmdLoadImg_Click()
 End Sub
 Private Sub showSelectedData()
   lblID.Caption = rs!ID
-  txtName.Text = rs!Name
+  txtName.Text = rs!name
   txtFileName.Caption = CommonHelper.extractStringValue(rs!FILE_NAME)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
   lblCreatedDate.Caption = CommonHelper.extractDateValue(rs!CREATED_DATE)

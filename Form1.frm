@@ -2,46 +2,46 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmMain 
    Caption         =   "Library System"
-   ClientHeight    =   12000
-   ClientLeft      =   4995
+   ClientHeight    =   9990
+   ClientLeft      =   330
    ClientTop       =   750
    ClientWidth     =   19335
    LinkTopic       =   "Form1"
-   ScaleHeight     =   12000
+   ScaleHeight     =   9990
    ScaleWidth      =   19335
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
       TabIndex        =   0
-      Top             =   0
+      Top             =   -120
       Width           =   19335
       Begin VB.Frame Frame1 
          Caption         =   "Quick Search"
-         Height          =   2535
+         Height          =   2175
          Left            =   120
          TabIndex        =   1
-         Top             =   240
+         Top             =   120
          Width           =   6495
          Begin VB.ComboBox cmSearchType 
             Height          =   315
             Left            =   1200
             Style           =   2  'Dropdown List
             TabIndex        =   16
-            Top             =   840
+            Top             =   600
             Width           =   1935
          End
          Begin VB.TextBox txtSearchItemCode 
             Height          =   285
             Left            =   1200
             TabIndex        =   12
-            Top             =   480
+            Top             =   240
             Width           =   1935
          End
          Begin VB.TextBox txtSearchName 
             Height          =   285
             Left            =   1200
             TabIndex        =   11
-            Top             =   1320
+            Top             =   1080
             Width           =   1935
          End
          Begin VB.ComboBox cmSearchCategory 
@@ -49,14 +49,14 @@ Begin VB.Form frmMain
             Left            =   4200
             Style           =   2  'Dropdown List
             TabIndex        =   10
-            Top             =   480
+            Top             =   240
             Width           =   1935
          End
          Begin VB.TextBox txtSearchAuthor 
             Height          =   285
             Left            =   4200
             TabIndex        =   9
-            Top             =   840
+            Top             =   600
             Width           =   1935
          End
          Begin VB.CommandButton cmItemsQuickSearch 
@@ -64,7 +64,7 @@ Begin VB.Form frmMain
             Height          =   435
             Left            =   240
             TabIndex        =   8
-            Top             =   1800
+            Top             =   1440
             Width           =   2895
          End
          Begin VB.CommandButton cmdClearSearch 
@@ -72,7 +72,7 @@ Begin VB.Form frmMain
             Height          =   435
             Left            =   3360
             TabIndex        =   7
-            Top             =   1800
+            Top             =   1440
             Width           =   2895
          End
          Begin VB.Label Label15 
@@ -81,7 +81,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   18
-            Top             =   1320
+            Top             =   1080
             Width           =   615
          End
          Begin VB.Label Label14 
@@ -90,7 +90,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   17
-            Top             =   840
+            Top             =   600
             Width           =   495
          End
          Begin VB.Label Label8 
@@ -99,7 +99,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   15
-            Top             =   480
+            Top             =   240
             Width           =   855
          End
          Begin VB.Label Label16 
@@ -108,7 +108,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   3240
             TabIndex        =   14
-            Top             =   480
+            Top             =   240
             Width           =   735
          End
          Begin VB.Label Label17 
@@ -117,31 +117,40 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   3240
             TabIndex        =   13
-            Top             =   840
+            Top             =   600
             Width           =   615
          End
       End
       Begin VB.Frame Frame5 
          Caption         =   "Detail"
-         Height          =   7335
+         Height          =   5775
          Left            =   6840
          TabIndex        =   5
-         Top             =   240
+         Top             =   120
          Width           =   6495
          Begin VB.CommandButton Command1 
             Caption         =   "Check Out Item"
-            Height          =   495
-            Left            =   1800
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Left            =   2160
             TabIndex        =   42
-            Top             =   6720
+            Top             =   5400
             Width           =   2535
          End
          Begin VB.Frame fmStudentInfo 
             Caption         =   "Student info"
-            Height          =   1815
+            Height          =   1575
             Left            =   480
             TabIndex        =   38
-            Top             =   4800
+            Top             =   3720
             Width           =   5415
             Begin VB.Label txtAdviser 
                BackColor       =   &H00FFFFFF&
@@ -212,7 +221,7 @@ Begin VB.Form frmMain
                Height          =   255
                Left            =   2160
                TabIndex        =   43
-               Top             =   1320
+               Top             =   1200
                Width           =   1335
             End
             Begin VB.Label Label11 
@@ -248,28 +257,28 @@ Begin VB.Form frmMain
             Left            =   1440
             Style           =   2  'Dropdown List
             TabIndex        =   32
-            Top             =   2160
+            Top             =   1680
             Width           =   1935
          End
          Begin VB.TextBox txtDescription 
-            Height          =   1005
+            Height          =   525
             Left            =   1440
             TabIndex        =   31
-            Top             =   2640
+            Top             =   2040
             Width           =   4815
          End
          Begin VB.TextBox txtAuthor 
             Height          =   285
             Left            =   1440
             TabIndex        =   30
-            Top             =   3720
+            Top             =   2640
             Width           =   4815
          End
          Begin VB.TextBox txtDonatedBy 
             Height          =   285
             Left            =   1440
             TabIndex        =   29
-            Top             =   4080
+            Top             =   3000
             Width           =   4815
          End
          Begin VB.ComboBox cmStatus 
@@ -278,7 +287,7 @@ Begin VB.Form frmMain
             Left            =   1440
             List            =   "Form1.frx":0010
             TabIndex        =   28
-            Top             =   4440
+            Top             =   3360
             Width           =   1935
          End
          Begin VB.TextBox txtItemCode 
@@ -295,7 +304,7 @@ Begin VB.Form frmMain
             Left            =   1440
             Locked          =   -1  'True
             TabIndex        =   23
-            Top             =   360
+            Top             =   240
             Width           =   1935
          End
          Begin VB.ComboBox cmItemType 
@@ -314,7 +323,7 @@ Begin VB.Form frmMain
             Style           =   1  'Simple Combo
             TabIndex        =   22
             Text            =   "cmItemType"
-            Top             =   840
+            Top             =   600
             Width           =   1935
          End
          Begin VB.TextBox txtName 
@@ -331,7 +340,7 @@ Begin VB.Form frmMain
             Left            =   1440
             Locked          =   -1  'True
             TabIndex        =   21
-            Top             =   1320
+            Top             =   960
             Width           =   1935
          End
          Begin VB.ComboBox cmLocation 
@@ -339,7 +348,7 @@ Begin VB.Form frmMain
             Left            =   1440
             Style           =   2  'Dropdown List
             TabIndex        =   20
-            Top             =   1800
+            Top             =   1320
             Width           =   1935
          End
          Begin VB.Label Label3 
@@ -348,7 +357,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   37
-            Top             =   2160
+            Top             =   1680
             Width           =   975
          End
          Begin VB.Label Label4 
@@ -357,7 +366,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   36
-            Top             =   2640
+            Top             =   2040
             Width           =   855
          End
          Begin VB.Label Label6 
@@ -366,7 +375,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   35
-            Top             =   3720
+            Top             =   2640
             Width           =   855
          End
          Begin VB.Label Label7 
@@ -375,7 +384,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   34
-            Top             =   4080
+            Top             =   3000
             Width           =   855
          End
          Begin VB.Label Label9 
@@ -384,7 +393,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   33
-            Top             =   4440
+            Top             =   3360
             Width           =   495
          End
          Begin VB.Label lblName 
@@ -393,7 +402,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   27
-            Top             =   360
+            Top             =   240
             Width           =   855
          End
          Begin VB.Label Label5 
@@ -402,7 +411,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   26
-            Top             =   840
+            Top             =   600
             Width           =   975
          End
          Begin VB.Label Label2 
@@ -411,7 +420,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   25
-            Top             =   1320
+            Top             =   960
             Width           =   855
          End
          Begin VB.Label lbl 
@@ -420,7 +429,7 @@ Begin VB.Form frmMain
             Height          =   255
             Left            =   240
             TabIndex        =   24
-            Top             =   1800
+            Top             =   1320
             Width           =   975
          End
       End
@@ -429,7 +438,7 @@ Begin VB.Form frmMain
          Height          =   4095
          Left            =   6840
          TabIndex        =   4
-         Top             =   7560
+         Top             =   5880
          Width           =   6495
          Begin VB.PictureBox imgLoc 
             Height          =   3735
@@ -445,19 +454,19 @@ Begin VB.Form frmMain
       Begin VB.Frame Frame3 
          Caption         =   "Dashboard"
          ClipControls    =   0   'False
-         Height          =   11415
+         Height          =   9855
          Left            =   13440
          TabIndex        =   3
-         Top             =   240
+         Top             =   120
          Width           =   5775
          Begin MSDataGridLib.DataGrid DataGrid1 
-            Height          =   11055
+            Height          =   9495
             Left            =   120
             TabIndex        =   47
             Top             =   240
             Width           =   5535
             _ExtentX        =   9763
-            _ExtentY        =   19500
+            _ExtentY        =   16748
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
@@ -524,19 +533,19 @@ Begin VB.Form frmMain
       End
       Begin VB.Frame Frame2 
          Caption         =   "Result"
-         Height          =   8895
+         Height          =   7695
          Left            =   120
          TabIndex        =   2
-         Top             =   2760
+         Top             =   2280
          Width           =   6495
          Begin MSDataGridLib.DataGrid dgItems 
-            Height          =   8535
+            Height          =   7335
             Left            =   120
             TabIndex        =   19
             Top             =   240
             Width           =   6255
             _ExtentX        =   11033
-            _ExtentY        =   15055
+            _ExtentY        =   12938
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
