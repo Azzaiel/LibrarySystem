@@ -3,8 +3,8 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmStudentSelect 
    Caption         =   "Student Selection"
    ClientHeight    =   6180
-   ClientLeft      =   4425
-   ClientTop       =   1890
+   ClientLeft      =   6705
+   ClientTop       =   1395
    ClientWidth     =   8610
    LinkTopic       =   "Form1"
    ScaleHeight     =   6180
@@ -191,6 +191,7 @@ Private Sub dgStudents_DblClick()
     frmMain.txtSection = rs!Section
     frmMain.txtAdviser = rs!Adviser
     frmMain.selectedStudentID = rs!ID
+    frmMain.txtLrn = rs!lrn
   End If
   Unload Me
 End Sub

@@ -144,7 +144,7 @@ Begin VB.Form frmMain
                Top             =   240
                Width           =   1095
             End
-            Begin VB.Label Label12 
+            Begin VB.Label txtLRN 
                BackColor       =   &H00FFFFFF&
                BorderStyle     =   1  'Fixed Single
                BeginProperty Font 
@@ -547,7 +547,7 @@ Begin VB.Form frmMain
          TabIndex        =   3
          Top             =   120
          Width           =   6135
-         Begin MSDataGridLib.DataGrid DataGrid1 
+         Begin MSDataGridLib.DataGrid dgTransactionDash 
             Height          =   9255
             Left            =   120
             TabIndex        =   46
@@ -735,10 +735,14 @@ Attribute VB_Exposed = False
 Option Explicit
 Private itemsRs As ADODB.Recordset
 Private tempRs As ADODB.Recordset
+Private transactionRS As ADODB.Recordset
+
 Private itemTypeItemList() As Variant
 Private locationItemList() As Variant
 Private categoriesItemList() As Variant
+
 Public selectedStudentID As Integer
+Public selectedReturnDate As Date
 Private Sub Categuries_Click()
   frmCategories.Show vbModal
 End Sub
@@ -785,13 +789,6 @@ Private Sub cmSearchType_KeyPress(KeyAscii As Integer)
     Call cmItemsQuickSearch_Click
   End If
 End Sub
-
-
-
-Private Sub Command1_Click()
-
-  
-End Sub
 Private Sub clearDetailForm()
 
    txtName.Text = ""
@@ -805,22 +802,22 @@ Private Sub clearDetailForm()
    cmLocation.ListIndex = -1
    cmCategory.ListIndex = -1
    
-   txtStudentName = ""
-   txtAdviser = ""
-   txtSection = ""
-   
-   
 End Sub
 Private Sub dgItems_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-  Call clearDetailForm
   Call showSelectedItem
 End Sub
 
 Private Sub dgItems_SelChange(Cancel As Integer)
-  Call clearDetailForm
   Call showSelectedItem
 End Sub
 Private Sub showSelectedItem()
+
+    Call clearStudentInfo
+    Call clearDetailForm
+
+    If (itemsRs.RecordCount = 0) Then
+      Exit Sub
+    End If
  
     txtName.Text = CommonHelper.extractStringValue(itemsRs!name)
     txtItemCode.Text = CommonHelper.extractStringValue(itemsRs!ITEM_CODE)
@@ -859,6 +856,15 @@ Private Sub showSelectedItem()
      Call toogelItemCheckOutUI(False)
    End If
    
+   If (cmStatus = "Borrowed") Then
+      Set tempRs = InventoryDao.getStudentBorrower(itemsRs!ID)
+      txtLRN = tempRs!lrn
+      txtStudentName = tempRs!Student_Name
+      txtAdviser = tempRs!Adviser
+      txtSection = tempRs!Section
+      Call DbInstance.closeRecordSet(tempRs)
+   End If
+   
 End Sub
 
 Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
@@ -866,13 +872,29 @@ Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
   lblChekOut.Enabled = isAvailable
   lblSelectStudent.Enabled = isAvailable
   If (isAvailable) Then
+  
     txtStudentName.BackColor = vbWhite
     txtAdviser.BackColor = vbWhite
     txtSection.BackColor = vbWhite
+    txtLRN.BackColor = vbWhite
+    
+    txtStudentName.ForeColor = vbBlack
+    txtAdviser.ForeColor = vbBlack
+    txtSection.ForeColor = vbBlack
+    txtLRN.ForeColor = vbBlack
+    
   Else
+  
     txtStudentName.BackColor = vbGrayText
     txtAdviser.BackColor = vbGrayText
     txtSection.BackColor = vbGrayText
+    txtLRN.BackColor = vbGrayText
+    
+    txtStudentName.ForeColor = vbWhite
+    txtAdviser.ForeColor = vbWhite
+    txtSection.ForeColor = vbWhite
+    txtLRN.ForeColor = vbWhite
+    
   End If
 End Sub
 
@@ -884,6 +906,27 @@ End Sub
 Private Sub Form_Load()
   Call populateDropDown
   Call initiateItemsRs
+  Call populateTransactionDatagrid
+End Sub
+Private Sub populateTransactionDatagrid()
+  Set transactionRS = InventoryDao.getTransactionDashboardRs
+  Set dgTransactionDash.DataSource = transactionRS
+  dgTransactionDash.Refresh
+  Call formatTransactionDashDatagrid
+End Sub
+Private Sub formatTransactionDashDatagrid()
+    With dgTransactionDash
+     'ID - 0
+    .Columns(0).Width = 1500
+    .Columns(0).Alignment = dbgCenter
+
+     'CREATED DATE - 11
+    .Columns(5).Width = 1500
+    .Columns(5).NumberFormat = Constants.DEFAULT_FORMAT
+    .Columns(5).Alignment = dbgCenter
+    
+    
+  End With
 End Sub
 Private Sub populateDropDown()
   Dim index As Integer
@@ -989,6 +1032,7 @@ Private Sub clearStudentInfo()
     txtSection = ""
     txtAdviser = ""
     selectedStudentID = 0
+    txtLRN = ""
 End Sub
 
 Private Sub Frame5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -997,21 +1041,28 @@ End Sub
 
 Private Sub lblChekOut_Click()
   If (selectedStudentID > 0) Then
-    Set tempRs = InventoryDao.getFakeTransactionRS
-    tempRs.AddNew
-    tempRs!ITEM_ID = itemsRs!ID
-    tempRs!STUDENT_ID = selectedStudentID
-    tempRs!LEND_DATE = Now
-    tempRs!LEND_BY = UserSession.getLoginUser
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
-    tempRs!Status = "Borrowed"
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Transaction Successful"
-    Call cmItemsQuickSearch_Click
-    Call clearDetailForm
+    selectedReturnDate = vbNull
+    frmReturnDate.Show vbModal
+    If (selectedReturnDate <> vbNull) Then
+      Set tempRs = InventoryDao.getFakeTransactionRS
+      tempRs.AddNew
+      tempRs!ITEM_ID = itemsRs!ID
+      tempRs!STUDENT_ID = selectedStudentID
+      tempRs!LEND_DATE = Now
+      tempRs!LEND_BY = UserSession.getLoginUser
+      tempRs!REQUESTED_RETURN_DATE = selectedReturnDate
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+      tempRs!Status = "Borrowed"
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      MsgBox "Transaction Successful"
+      Call cmItemsQuickSearch_Click
+      Call clearDetailForm
+    Else
+      MsgBox "System cannot procced without retrun date", vbCritical
+    End If
   Else
     MsgBox "Please select a Student", vbCritical
   End If

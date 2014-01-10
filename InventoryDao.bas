@@ -175,4 +175,52 @@ Public Function getFakeTransactionRS() As ADODB.Recordset
    Set getFakeTransactionRS = rs
 
 End Function
+Public Function getTransactionDashboardRs() As ADODB.Recordset
+
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select  WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') as REMAINING_DAYS, item.Name as ITEM_NAME,  itype.NAME as Type, stud.LRN " & _
+              "       , CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
+              "       , REQUESTED_RETURN_DATE as DUE_DATE " & _
+              "From transactions tran, items item " & _
+              "     , item_types as itype, STUDENTS stud " & _
+              "Where tran.ITEM_ID = item.ID " & _
+              "      And itype.ID = item.ITEM_TYPE_ID " & _
+              "      And tran.STUDENT_ID = stud.ID " & _
+              "ORDER BY REMAINING_DAYS "
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getTransactionDashboardRs = rs
+
+End Function
+Public Function getStudentBorrower(itemID As Integer) As ADODB.Recordset
+
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
+              "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section " & _
+              "from transactions tran, STUDENTS stud " & _
+              "     , sections sec " & _
+              "where tran.ITEM_ID = " & itemID & _
+              "      and tran.STUDENT_ID = stud.ID " & _
+              "      and stud.SECTION_ID = sec.ID "
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getStudentBorrower = rs
+
+End Function
 

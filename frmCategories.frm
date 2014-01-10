@@ -2,141 +2,141 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmCategories 
    Caption         =   "Categories"
-   ClientHeight    =   4935
+   ClientHeight    =   3975
    ClientLeft      =   735
    ClientTop       =   1485
    ClientWidth     =   18930
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4935
+   ScaleHeight     =   3975
    ScaleWidth      =   18930
    Begin VB.Frame Frame1 
       Caption         =   "Created By"
-      Height          =   3735
+      Height          =   3015
       Left            =   240
       TabIndex        =   6
       Top             =   120
       Width           =   5895
       Begin VB.TextBox txtDescription 
          Height          =   285
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   20
-         Top             =   1320
-         Width           =   1935
+         Top             =   960
+         Width           =   3735
       End
       Begin VB.TextBox txtName 
          Height          =   285
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   7
-         Top             =   960
-         Width           =   1935
+         Top             =   600
+         Width           =   3735
       End
       Begin VB.Label Label1 
          BackColor       =   &H0080FF80&
          Caption         =   "ID"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   19
-         Top             =   600
+         Top             =   240
          Width           =   255
       End
       Begin VB.Label lblID 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   18
-         Top             =   600
+         Top             =   240
          Width           =   375
       End
       Begin VB.Label lblName 
          BackColor       =   &H0080FF80&
          Caption         =   "* Name"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   17
-         Top             =   960
+         Top             =   600
          Width           =   615
       End
       Begin VB.Label Label3 
          BackColor       =   &H0080FF80&
          Caption         =   "Description"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   16
-         Top             =   1320
+         Top             =   960
          Width           =   855
       End
       Begin VB.Label Label4 
          BackColor       =   &H0080FF80&
          Caption         =   "Created By"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   15
-         Top             =   1680
+         Top             =   1320
          Width           =   855
       End
       Begin VB.Label Label5 
          BackColor       =   &H0080FF80&
          Caption         =   "Created Date"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   14
-         Top             =   2040
+         Top             =   1680
          Width           =   975
       End
       Begin VB.Label Label6 
          BackColor       =   &H0080FF80&
          Caption         =   "Last Mod By"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   13
-         Top             =   2400
+         Top             =   2040
          Width           =   975
       End
       Begin VB.Label Label7 
          BackColor       =   &H0080FF80&
          Caption         =   "Last Mod Date"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   12
-         Top             =   2760
+         Top             =   2400
          Width           =   1095
       End
       Begin VB.Label lblCreatedBy 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   11
-         Top             =   1680
-         Width           =   1935
+         Top             =   1320
+         Width           =   2535
       End
       Begin VB.Label lblCreatedDate 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   10
-         Top             =   2040
-         Width           =   1935
+         Top             =   1680
+         Width           =   2535
       End
       Begin VB.Label lblLatModBy 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   9
-         Top             =   2400
-         Width           =   1935
+         Top             =   2040
+         Width           =   2535
       End
       Begin VB.Label lblLastModDate 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   8
-         Top             =   2760
-         Width           =   1935
+         Top             =   2400
+         Width           =   2535
       End
    End
    Begin VB.CommandButton cmbNewRec 
@@ -144,7 +144,7 @@ Begin VB.Form frmCategories
       Height          =   495
       Left            =   240
       TabIndex        =   5
-      Top             =   3960
+      Top             =   3240
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
@@ -152,7 +152,7 @@ Begin VB.Form frmCategories
       Height          =   495
       Left            =   1440
       TabIndex        =   4
-      Top             =   3960
+      Top             =   3240
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
@@ -160,7 +160,7 @@ Begin VB.Form frmCategories
       Height          =   495
       Left            =   2640
       TabIndex        =   3
-      Top             =   3960
+      Top             =   3240
       Width           =   1095
    End
    Begin VB.CommandButton Command4 
@@ -168,7 +168,7 @@ Begin VB.Form frmCategories
       Height          =   495
       Left            =   5040
       TabIndex        =   2
-      Top             =   3960
+      Top             =   3240
       Width           =   1095
    End
    Begin VB.CommandButton cmbClear 
@@ -176,7 +176,7 @@ Begin VB.Form frmCategories
       Height          =   495
       Left            =   3840
       TabIndex        =   0
-      Top             =   3960
+      Top             =   3240
       Width           =   1095
    End
    Begin MSDataGridLib.DataGrid dgCategories 
