@@ -5,10 +5,10 @@ Begin VB.Form frmStudentSelect
    ClientHeight    =   6180
    ClientLeft      =   4425
    ClientTop       =   1890
-   ClientWidth     =   8685
+   ClientWidth     =   8610
    LinkTopic       =   "Form1"
    ScaleHeight     =   6180
-   ScaleWidth      =   8685
+   ScaleWidth      =   8610
    Begin VB.Frame Frame2 
       Caption         =   "Search Panel"
       Height          =   1455
@@ -178,6 +178,9 @@ Private Sub cmbSearch_Click()
   Set dgStudents.DataSource = Nothing
   Call DbInstance.closeRecordSet(rs)
   Set rs = StudentDao.qucikSearchRs(Val(txtSearchLrn.Text), getSearchSectionID, txtSearchLastName.Text)
+  If (rs.RecordCount = 0) Then
+    MsgBox "No Record Found", vbInformation
+  End If
   Set dgStudents.DataSource = rs
   dgStudents.Refresh
   Call formatDataGrid

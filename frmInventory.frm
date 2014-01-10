@@ -2,19 +2,19 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmInventory 
    Caption         =   "Inventory"
-   ClientHeight    =   9735
+   ClientHeight    =   10245
    ClientLeft      =   330
    ClientTop       =   450
-   ClientWidth     =   18915
+   ClientWidth     =   18765
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9735
-   ScaleWidth      =   18915
+   ScaleHeight     =   10245
+   ScaleWidth      =   18765
    Begin VB.Frame Frame2 
       Caption         =   "Search Form"
       Height          =   1215
-      Left            =   7320
+      Left            =   7200
       TabIndex        =   35
-      Top             =   120
+      Top             =   0
       Width           =   11415
       Begin VB.CommandButton cmdClearSearch 
          Caption         =   "Clear"
@@ -118,17 +118,17 @@ Begin VB.Form frmInventory
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Add"
       Height          =   495
-      Left            =   480
+      Left            =   720
       TabIndex        =   34
-      Top             =   11160
+      Top             =   9600
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
       Height          =   495
-      Left            =   1800
+      Left            =   1920
       TabIndex        =   33
-      Top             =   11160
+      Top             =   9600
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
@@ -136,31 +136,31 @@ Begin VB.Form frmInventory
       Height          =   495
       Left            =   3120
       TabIndex        =   32
-      Top             =   11160
+      Top             =   9600
       Width           =   1095
    End
    Begin VB.CommandButton cmbClose 
       Caption         =   "Close"
       Height          =   495
-      Left            =   5760
+      Left            =   5520
       TabIndex        =   31
-      Top             =   11160
+      Top             =   9600
       Width           =   1095
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
       Height          =   495
-      Left            =   4440
+      Left            =   4320
       TabIndex        =   30
-      Top             =   11160
+      Top             =   9600
       Width           =   1095
    End
    Begin VB.Frame Frame1 
       Caption         =   "Item"
       Height          =   9495
-      Left            =   240
+      Left            =   120
       TabIndex        =   1
-      Top             =   120
+      Top             =   0
       Width           =   6975
       Begin VB.ComboBox cmStatus 
          Height          =   315
@@ -414,13 +414,13 @@ Begin VB.Form frmInventory
       End
    End
    Begin MSDataGridLib.DataGrid dgItems 
-      Height          =   8175
-      Left            =   7320
+      Height          =   8775
+      Left            =   7200
       TabIndex        =   0
-      Top             =   1440
+      Top             =   1320
       Width           =   11415
       _ExtentX        =   20135
-      _ExtentY        =   14420
+      _ExtentY        =   15478
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True

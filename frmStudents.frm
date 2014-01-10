@@ -2,19 +2,19 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmStudents 
    Caption         =   "Student Information"
-   ClientHeight    =   6405
+   ClientHeight    =   6180
    ClientLeft      =   525
    ClientTop       =   660
-   ClientWidth     =   19200
+   ClientWidth     =   18855
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6405
-   ScaleWidth      =   19200
+   ScaleHeight     =   6180
+   ScaleWidth      =   18855
    Begin VB.Frame Frame2 
       Caption         =   "Search Panel"
       Height          =   855
-      Left            =   5640
+      Left            =   5400
       TabIndex        =   31
-      Top             =   240
+      Top             =   120
       Width           =   13215
       Begin VB.CommandButton cmbClearSearch 
          Caption         =   "Clear"
@@ -87,7 +87,7 @@ Begin VB.Form frmStudents
       Height          =   495
       Left            =   4080
       TabIndex        =   30
-      Top             =   5040
+      Top             =   4680
       Width           =   1095
    End
    Begin VB.CommandButton cmbClose 
@@ -95,7 +95,7 @@ Begin VB.Form frmStudents
       Height          =   495
       Left            =   2040
       TabIndex        =   29
-      Top             =   5640
+      Top             =   5280
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
@@ -103,7 +103,7 @@ Begin VB.Form frmStudents
       Height          =   495
       Left            =   2760
       TabIndex        =   28
-      Top             =   5040
+      Top             =   4680
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
@@ -111,7 +111,7 @@ Begin VB.Form frmStudents
       Height          =   495
       Left            =   1440
       TabIndex        =   27
-      Top             =   5040
+      Top             =   4680
       Width           =   1095
    End
    Begin VB.CommandButton cmbNewRec 
@@ -119,193 +119,193 @@ Begin VB.Form frmStudents
       Height          =   495
       Left            =   120
       TabIndex        =   26
-      Top             =   5040
+      Top             =   4680
       Width           =   1095
    End
    Begin VB.Frame Frame1 
       Caption         =   "Detail Form"
-      Height          =   4575
-      Left            =   240
+      Height          =   4335
+      Left            =   480
       TabIndex        =   9
-      Top             =   240
-      Width           =   4695
+      Top             =   120
+      Width           =   4215
       Begin VB.ComboBox cmSections 
          Height          =   315
-         Left            =   1680
+         Left            =   1440
          Style           =   2  'Dropdown List
          TabIndex        =   5
-         Top             =   2520
+         Top             =   2160
          Width           =   1935
       End
       Begin VB.TextBox TxtLAST_NAME 
          Height          =   285
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   4
-         Top             =   2160
+         Top             =   1800
          Width           =   1935
       End
       Begin VB.TextBox txtLrn 
          Height          =   285
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   1
-         Top             =   960
+         Top             =   600
          Width           =   1935
       End
       Begin VB.TextBox txtFirstName 
          Height          =   285
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   2
-         Top             =   1320
+         Top             =   960
          Width           =   1935
       End
       Begin VB.TextBox txtMIDDLE_NAME 
          Height          =   285
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   3
-         Top             =   1680
+         Top             =   1320
          Width           =   1935
       End
       Begin VB.Label Label5 
          BackColor       =   &H0080FF80&
          Caption         =   "*SECTION"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   25
-         Top             =   2520
+         Top             =   2160
          Width           =   975
       End
       Begin VB.Label Label2 
          BackColor       =   &H0080FF80&
          Caption         =   "*LAST_NAME"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   23
-         Top             =   2160
+         Top             =   1800
          Width           =   1095
       End
       Begin VB.Label lblLastModBy 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   22
-         Top             =   3600
+         Top             =   3240
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   21
-         Top             =   3240
+         Top             =   2880
          Width           =   1935
       End
       Begin VB.Label lblCreatedBy 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   20
-         Top             =   2880
+         Top             =   2520
          Width           =   1935
       End
       Begin VB.Label Label7 
          BackColor       =   &H0080FF80&
          Caption         =   "Last Mod by"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   19
-         Top             =   3600
+         Top             =   3240
          Width           =   1095
       End
       Begin VB.Label Label6 
          BackColor       =   &H0080FF80&
          Caption         =   "Created date"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   18
-         Top             =   3240
+         Top             =   2880
          Width           =   975
       End
       Begin VB.Label LA 
          BackColor       =   &H0080FF80&
          Caption         =   "Created by"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   17
-         Top             =   2880
+         Top             =   2520
          Width           =   975
       End
       Begin VB.Label Label4 
          BackColor       =   &H0080FF80&
          Caption         =   "*MIDDLE_NAME"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   16
-         Top             =   1680
+         Top             =   1320
          Width           =   1215
       End
       Begin VB.Label LBFIRST_NAME 
          BackColor       =   &H0080FF80&
          Caption         =   "*FIRST_NAME"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   15
-         Top             =   1320
+         Top             =   960
          Width           =   1095
       End
       Begin VB.Label lblName 
          BackColor       =   &H0080FF80&
          Caption         =   "* LRN"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   14
-         Top             =   960
+         Top             =   600
          Width           =   615
       End
       Begin VB.Label lblID 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   13
-         Top             =   600
+         Top             =   240
          Width           =   375
       End
       Begin VB.Label Label1 
          BackColor       =   &H0080FF80&
          Caption         =   "ID"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   12
-         Top             =   600
+         Top             =   240
          Width           =   255
       End
       Begin VB.Label lblLastModDate 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1680
+         Left            =   1440
          TabIndex        =   11
-         Top             =   3960
+         Top             =   3600
          Width           =   1935
       End
       Begin VB.Label Label8 
          BackColor       =   &H0080FF80&
          Caption         =   "Last Mod Date"
          Height          =   255
-         Left            =   360
+         Left            =   120
          TabIndex        =   10
-         Top             =   3960
+         Top             =   3600
          Width           =   1095
       End
    End
    Begin MSDataGridLib.DataGrid dgStudents 
       Height          =   4935
-      Left            =   5640
+      Left            =   5400
       TabIndex        =   0
-      Top             =   1200
+      Top             =   1080
       Width           =   13215
       _ExtentX        =   23310
       _ExtentY        =   8705

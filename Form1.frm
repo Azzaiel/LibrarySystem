@@ -2,19 +2,19 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmMain 
    Caption         =   "Library System"
-   ClientHeight    =   9990
-   ClientLeft      =   330
+   ClientHeight    =   9765
+   ClientLeft      =   120
    ClientTop       =   750
-   ClientWidth     =   19335
+   ClientWidth     =   20040
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9990
-   ScaleWidth      =   19335
+   ScaleHeight     =   9765
+   ScaleWidth      =   20040
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
       TabIndex        =   0
       Top             =   -120
-      Width           =   19335
+      Width           =   20175
       Begin VB.Frame Frame1 
          Caption         =   "Quick Search"
          Height          =   2175
@@ -123,35 +123,45 @@ Begin VB.Form frmMain
       End
       Begin VB.Frame Frame5 
          Caption         =   "Detail"
-         Height          =   5775
-         Left            =   6840
+         Height          =   5535
+         Left            =   6720
          TabIndex        =   5
          Top             =   120
-         Width           =   6495
-         Begin VB.CommandButton Command1 
-            Caption         =   "Check Out Item"
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   315
-            Left            =   2160
-            TabIndex        =   42
-            Top             =   5400
-            Width           =   2535
-         End
+         Width           =   6975
          Begin VB.Frame fmStudentInfo 
             Caption         =   "Student info"
-            Height          =   1575
-            Left            =   480
+            Height          =   1335
+            Left            =   120
             TabIndex        =   38
             Top             =   3720
-            Width           =   5415
+            Width           =   6735
+            Begin VB.Label Label13 
+               BackColor       =   &H0080FF80&
+               Caption         =   "LRN"
+               Height          =   255
+               Left            =   120
+               TabIndex        =   49
+               Top             =   240
+               Width           =   1095
+            End
+            Begin VB.Label Label12 
+               BackColor       =   &H00FFFFFF&
+               BorderStyle     =   1  'Fixed Single
+               BeginProperty Font 
+                  Name            =   "MS Sans Serif"
+                  Size            =   8.25
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   255
+               Left            =   1320
+               TabIndex        =   48
+               Top             =   240
+               Width           =   2295
+            End
             Begin VB.Label txtAdviser 
                BackColor       =   &H00FFFFFF&
                BorderStyle     =   1  'Fixed Single
@@ -165,10 +175,10 @@ Begin VB.Form frmMain
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   255
-               Left            =   1800
-               TabIndex        =   46
-               Top             =   960
-               Width           =   2895
+               Left            =   4440
+               TabIndex        =   45
+               Top             =   600
+               Width           =   2175
             End
             Begin VB.Label txtSection 
                BackColor       =   &H00FFFFFF&
@@ -183,10 +193,10 @@ Begin VB.Form frmMain
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   255
-               Left            =   1800
-               TabIndex        =   45
-               Top             =   600
-               Width           =   2895
+               Left            =   4440
+               TabIndex        =   44
+               Top             =   240
+               Width           =   2175
             End
             Begin VB.Label txtStudentName 
                BackColor       =   &H00FFFFFF&
@@ -201,10 +211,10 @@ Begin VB.Form frmMain
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   255
-               Left            =   1800
-               TabIndex        =   44
-               Top             =   240
-               Width           =   2895
+               Left            =   1320
+               TabIndex        =   43
+               Top             =   600
+               Width           =   2295
             End
             Begin VB.Label lblSelectStudent 
                Caption         =   "Select Student"
@@ -219,73 +229,124 @@ Begin VB.Form frmMain
                EndProperty
                ForeColor       =   &H00FF0000&
                Height          =   255
-               Left            =   2160
-               TabIndex        =   43
-               Top             =   1200
-               Width           =   1335
+               Left            =   2520
+               TabIndex        =   42
+               Top             =   960
+               Width           =   1455
             End
             Begin VB.Label Label11 
                BackColor       =   &H0080FF80&
                Caption         =   "Adviser"
                Height          =   255
-               Left            =   480
+               Left            =   3720
                TabIndex        =   41
-               Top             =   960
+               Top             =   600
                Width           =   615
             End
             Begin VB.Label Label10 
                BackColor       =   &H0080FF80&
                Caption         =   "Section"
                Height          =   255
-               Left            =   480
+               Left            =   3720
                TabIndex        =   40
-               Top             =   600
+               Top             =   240
                Width           =   615
             End
             Begin VB.Label Label1 
                BackColor       =   &H0080FF80&
                Caption         =   "Student Name"
                Height          =   255
-               Left            =   480
+               Left            =   120
                TabIndex        =   39
-               Top             =   240
+               Top             =   600
                Width           =   1095
             End
          End
          Begin VB.ComboBox cmCategory 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   315
             Left            =   1440
-            Style           =   2  'Dropdown List
+            Locked          =   -1  'True
+            Style           =   1  'Simple Combo
             TabIndex        =   32
             Top             =   1680
             Width           =   1935
          End
          Begin VB.TextBox txtDescription 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   525
             Left            =   1440
+            Locked          =   -1  'True
             TabIndex        =   31
             Top             =   2040
-            Width           =   4815
+            Width           =   5055
          End
          Begin VB.TextBox txtAuthor 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Left            =   1440
+            Locked          =   -1  'True
             TabIndex        =   30
             Top             =   2640
-            Width           =   4815
+            Width           =   5055
          End
          Begin VB.TextBox txtDonatedBy 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Left            =   1440
+            Locked          =   -1  'True
             TabIndex        =   29
             Top             =   3000
-            Width           =   4815
+            Width           =   5055
          End
          Begin VB.ComboBox cmStatus 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   315
             ItemData        =   "Form1.frx":0000
             Left            =   1440
             List            =   "Form1.frx":0010
+            Locked          =   -1  'True
+            Style           =   1  'Simple Combo
             TabIndex        =   28
             Top             =   3360
             Width           =   1935
@@ -322,7 +383,6 @@ Begin VB.Form frmMain
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
             TabIndex        =   22
-            Text            =   "cmItemType"
             Top             =   600
             Width           =   1935
          End
@@ -344,12 +404,40 @@ Begin VB.Form frmMain
             Width           =   1935
          End
          Begin VB.ComboBox cmLocation 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   315
             Left            =   1440
-            Style           =   2  'Dropdown List
+            Locked          =   -1  'True
+            Style           =   1  'Simple Combo
             TabIndex        =   20
             Top             =   1320
             Width           =   1935
+         End
+         Begin VB.Label lblChekOut 
+            Caption         =   "Check out Item"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   -1  'True
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FF0000&
+            Height          =   255
+            Left            =   2640
+            TabIndex        =   47
+            Top             =   5160
+            Width           =   1575
          End
          Begin VB.Label Label3 
             BackColor       =   &H0080FF80&
@@ -436,15 +524,15 @@ Begin VB.Form frmMain
       Begin VB.Frame Frame4 
          Caption         =   "Location Map"
          Height          =   4095
-         Left            =   6840
+         Left            =   6960
          TabIndex        =   4
-         Top             =   5880
+         Top             =   5640
          Width           =   6495
          Begin VB.PictureBox imgLoc 
-            Height          =   3735
+            Height          =   3690
             Left            =   120
             Picture         =   "Form1.frx":0038
-            ScaleHeight     =   3675
+            ScaleHeight     =   3630
             ScaleWidth      =   6195
             TabIndex        =   6
             Top             =   240
@@ -454,19 +542,19 @@ Begin VB.Form frmMain
       Begin VB.Frame Frame3 
          Caption         =   "Dashboard"
          ClipControls    =   0   'False
-         Height          =   9855
-         Left            =   13440
+         Height          =   9615
+         Left            =   13800
          TabIndex        =   3
          Top             =   120
-         Width           =   5775
+         Width           =   6135
          Begin MSDataGridLib.DataGrid DataGrid1 
-            Height          =   9495
+            Height          =   9255
             Left            =   120
-            TabIndex        =   47
+            TabIndex        =   46
             Top             =   240
-            Width           =   5535
-            _ExtentX        =   9763
-            _ExtentY        =   16748
+            Width           =   5895
+            _ExtentX        =   10398
+            _ExtentY        =   16325
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
@@ -533,19 +621,19 @@ Begin VB.Form frmMain
       End
       Begin VB.Frame Frame2 
          Caption         =   "Result"
-         Height          =   7695
+         Height          =   7455
          Left            =   120
          TabIndex        =   2
          Top             =   2280
          Width           =   6495
          Begin MSDataGridLib.DataGrid dgItems 
-            Height          =   7335
+            Height          =   7095
             Left            =   120
             TabIndex        =   19
             Top             =   240
             Width           =   6255
             _ExtentX        =   11033
-            _ExtentY        =   12938
+            _ExtentY        =   12515
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
@@ -646,6 +734,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Private itemsRs As ADODB.Recordset
+Private tempRs As ADODB.Recordset
 Private itemTypeItemList() As Variant
 Private locationItemList() As Variant
 Private categoriesItemList() As Variant
@@ -700,17 +789,38 @@ End Sub
 
 
 Private Sub Command1_Click()
-  If (selectedStudentID > 0) Then
-  Else
-    MsgBox "Please select a Student", vbCritical
-  End If
+
   
+End Sub
+Private Sub clearDetailForm()
+
+   txtName.Text = ""
+   txtItemCode.Text = ""
+   txtDescription.Text = ""
+   txtDonatedBy.Text = ""
+   txtAuthor.Text = ""
+   cmStatus.Text = ""
+    
+   cmItemType.ListIndex = -1
+   cmLocation.ListIndex = -1
+   cmCategory.ListIndex = -1
+   
+   txtStudentName = ""
+   txtAdviser = ""
+   txtSection = ""
+   
+   
+End Sub
+Private Sub dgItems_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
+  Call clearDetailForm
+  Call showSelectedItem
 End Sub
 
 Private Sub dgItems_SelChange(Cancel As Integer)
-  Call showSelectedData
+  Call clearDetailForm
+  Call showSelectedItem
 End Sub
-Private Sub showSelectedData()
+Private Sub showSelectedItem()
  
     txtName.Text = CommonHelper.extractStringValue(itemsRs!name)
     txtItemCode.Text = CommonHelper.extractStringValue(itemsRs!ITEM_CODE)
@@ -743,7 +853,29 @@ Private Sub showSelectedData()
      End If
    Next index
    
+   If (cmStatus = "Available") Then
+     Call toogelItemCheckOutUI(True)
+   Else
+     Call toogelItemCheckOutUI(False)
+   End If
+   
 End Sub
+
+Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
+  fmStudentInfo.Enabled = isAvailable
+  lblChekOut.Enabled = isAvailable
+  lblSelectStudent.Enabled = isAvailable
+  If (isAvailable) Then
+    txtStudentName.BackColor = vbWhite
+    txtAdviser.BackColor = vbWhite
+    txtSection.BackColor = vbWhite
+  Else
+    txtStudentName.BackColor = vbGrayText
+    txtAdviser.BackColor = vbGrayText
+    txtSection.BackColor = vbGrayText
+  End If
+End Sub
+
 
 Private Sub fmStudentInfo_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
       lblSelectStudent.ForeColor = vbBlue
@@ -807,7 +939,7 @@ End Function
 Private Sub formatIemsDataGrid()
   If (itemsRs.RecordCount > 0) Then
     itemsRs.MoveFirst
-    'Call showSelectedData
+    'Call showSelectedItem
   Else
     'Call clearForm
   End If
@@ -858,6 +990,37 @@ Private Sub clearStudentInfo()
     txtAdviser = ""
     selectedStudentID = 0
 End Sub
+
+Private Sub Frame5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  lblChekOut.ForeColor = vbBlue
+End Sub
+
+Private Sub lblChekOut_Click()
+  If (selectedStudentID > 0) Then
+    Set tempRs = InventoryDao.getFakeTransactionRS
+    tempRs.AddNew
+    tempRs!ITEM_ID = itemsRs!ID
+    tempRs!STUDENT_ID = selectedStudentID
+    tempRs!LEND_DATE = Now
+    tempRs!LEND_BY = UserSession.getLoginUser
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    tempRs!Status = "Borrowed"
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Transaction Successful"
+    Call cmItemsQuickSearch_Click
+    Call clearDetailForm
+  Else
+    MsgBox "Please select a Student", vbCritical
+  End If
+End Sub
+
+Private Sub lblChekOut_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  lblChekOut.ForeColor = vbRed
+End Sub
+
 Private Sub lblSelectStudent_Click()
  Call clearStudentInfo
  frmStudentSelect.Show vbModal

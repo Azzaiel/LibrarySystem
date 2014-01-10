@@ -117,6 +117,7 @@ Public Function getFakeRs() As ADODB.Recordset
    Set getFakeRs = rs
 
 End Function
+
 Public Function getRsByID(itemID As Integer) As ADODB.Recordset
 
    Dim con As ADODB.Connection
@@ -136,6 +137,42 @@ Public Function getRsByID(itemID As Integer) As ADODB.Recordset
    Set getRsByID = rs
 
 End Function
+Public Function getTransactionsRS() As ADODB.Recordset
 
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "from ITEMS " & _
+              "Where 1 = 2 "
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getTransactionsRS = rs
 
+End Function
+Public Function getFakeTransactionRS() As ADODB.Recordset
+
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "from transactions " & _
+              "Where 1 = 2 "
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getFakeTransactionRS = rs
+
+End Function
 

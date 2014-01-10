@@ -3,63 +3,63 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmLocationMapping 
    Caption         =   "Form1"
-   ClientHeight    =   9705
+   ClientHeight    =   8280
    ClientLeft      =   -90
    ClientTop       =   450
-   ClientWidth     =   20250
+   ClientWidth     =   19785
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9705
-   ScaleWidth      =   20250
+   ScaleHeight     =   8280
+   ScaleWidth      =   19785
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Add"
       Height          =   495
-      Left            =   1560
+      Left            =   480
       TabIndex        =   19
-      Top             =   8400
+      Top             =   7560
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
       Height          =   495
-      Left            =   2880
+      Left            =   1800
       TabIndex        =   18
-      Top             =   8400
+      Top             =   7560
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
       Height          =   495
-      Left            =   4200
+      Left            =   3120
       TabIndex        =   17
-      Top             =   8400
+      Top             =   7560
       Width           =   1095
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Close"
       Height          =   495
-      Left            =   3480
+      Left            =   5640
       TabIndex        =   16
-      Top             =   9000
+      Top             =   7560
       Width           =   1095
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
       Height          =   495
-      Left            =   5520
+      Left            =   4440
       TabIndex        =   15
-      Top             =   8400
+      Top             =   7560
       Width           =   1095
    End
    Begin VB.Frame Frame1 
       Caption         =   "Loc Form"
-      Height          =   7575
-      Left            =   360
+      Height          =   7335
+      Left            =   120
       TabIndex        =   0
-      Top             =   480
-      Width           =   7455
+      Top             =   120
+      Width           =   6975
       Begin VB.TextBox txtName 
          Height          =   285
-         Left            =   2040
+         Left            =   1320
          TabIndex        =   3
          Top             =   840
          Width           =   1935
@@ -67,13 +67,13 @@ Begin VB.Form frmLocationMapping
       Begin VB.CommandButton cmdLoadImg 
          Caption         =   "Load Image"
          Height          =   255
-         Left            =   3960
+         Left            =   3240
          TabIndex        =   2
          Top             =   1440
          Width           =   1335
       End
       Begin MSComDlg.CommonDialog cdJpegBrowser 
-         Left            =   5400
+         Left            =   4680
          Top             =   1320
          _ExtentX        =   847
          _ExtentY        =   847
@@ -81,7 +81,7 @@ Begin VB.Form frmLocationMapping
       End
       Begin VB.PictureBox imgLoc 
          Height          =   3735
-         Left            =   720
+         Left            =   240
          Picture         =   "frmLocationMapping.frx":0000
          ScaleHeight     =   3675
          ScaleWidth      =   6195
@@ -93,7 +93,7 @@ Begin VB.Form frmLocationMapping
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   2040
+         Left            =   1320
          TabIndex        =   22
          Top             =   1440
          Width           =   1815
@@ -102,7 +102,7 @@ Begin VB.Form frmLocationMapping
          BackColor       =   &H0080FF80&
          Caption         =   "File Name"
          Height          =   255
-         Left            =   960
+         Left            =   240
          TabIndex        =   21
          Top             =   1440
          Width           =   735
@@ -111,79 +111,79 @@ Begin VB.Form frmLocationMapping
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1800
+         Left            =   1440
          TabIndex        =   14
-         Top             =   7080
+         Top             =   6840
          Width           =   1935
       End
       Begin VB.Label Label4 
          BackColor       =   &H0080FF80&
          Caption         =   "Created By"
          Height          =   255
-         Left            =   600
+         Left            =   240
          TabIndex        =   13
-         Top             =   6000
+         Top             =   5760
          Width           =   855
       End
       Begin VB.Label Label5 
          BackColor       =   &H0080FF80&
          Caption         =   "Created Date"
          Height          =   255
-         Left            =   600
+         Left            =   240
          TabIndex        =   12
-         Top             =   6360
+         Top             =   6120
          Width           =   975
       End
       Begin VB.Label Label6 
          BackColor       =   &H0080FF80&
          Caption         =   "Last Mod By"
          Height          =   255
-         Left            =   600
+         Left            =   240
          TabIndex        =   11
-         Top             =   6720
+         Top             =   6480
          Width           =   975
       End
       Begin VB.Label Label7 
          BackColor       =   &H0080FF80&
          Caption         =   "Last Mod Date"
          Height          =   255
-         Left            =   600
+         Left            =   240
          TabIndex        =   10
-         Top             =   7080
+         Top             =   6840
          Width           =   1095
       End
       Begin VB.Label lblCreatedBy 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1800
+         Left            =   1440
          TabIndex        =   9
-         Top             =   6000
+         Top             =   5760
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1800
+         Left            =   1440
          TabIndex        =   8
-         Top             =   6360
+         Top             =   6120
          Width           =   1935
       End
       Begin VB.Label lblLatModBy 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1800
+         Left            =   1440
          TabIndex        =   7
-         Top             =   6720
+         Top             =   6480
          Width           =   1935
       End
       Begin VB.Label Label1 
          BackColor       =   &H0080FF80&
          Caption         =   "ID"
          Height          =   255
-         Left            =   960
+         Left            =   240
          TabIndex        =   6
          Top             =   360
          Width           =   255
@@ -192,7 +192,7 @@ Begin VB.Form frmLocationMapping
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   2040
+         Left            =   840
          TabIndex        =   5
          Top             =   360
          Width           =   375
@@ -201,20 +201,20 @@ Begin VB.Form frmLocationMapping
          BackColor       =   &H0080FF80&
          Caption         =   "* Name"
          Height          =   255
-         Left            =   960
+         Left            =   240
          TabIndex        =   4
          Top             =   840
          Width           =   615
       End
    End
    Begin MSDataGridLib.DataGrid dgLocationMapping 
-      Height          =   5655
-      Left            =   8040
+      Height          =   7815
+      Left            =   7200
       TabIndex        =   20
-      Top             =   1320
+      Top             =   240
       Width           =   12375
       _ExtentX        =   21828
-      _ExtentY        =   9975
+      _ExtentY        =   13785
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True
@@ -402,3 +402,4 @@ Public Sub populateDataGrid()
   Set dgLocationMapping.DataSource = rs
   dgLocationMapping.Refresh
 End Sub
+
