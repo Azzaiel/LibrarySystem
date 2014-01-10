@@ -2,20 +2,20 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmCategories 
    Caption         =   "Categories"
-   ClientHeight    =   5790
-   ClientLeft      =   1350
-   ClientTop       =   2295
-   ClientWidth     =   17745
+   ClientHeight    =   4935
+   ClientLeft      =   735
+   ClientTop       =   1485
+   ClientWidth     =   18930
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5790
-   ScaleWidth      =   17745
+   ScaleHeight     =   4935
+   ScaleWidth      =   18930
    Begin VB.Frame Frame1 
       Caption         =   "Created By"
       Height          =   3735
       Left            =   240
       TabIndex        =   6
-      Top             =   360
-      Width           =   4815
+      Top             =   120
+      Width           =   5895
       Begin VB.TextBox txtDescription 
          Height          =   285
          Left            =   1560
@@ -142,17 +142,17 @@ Begin VB.Form frmCategories
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Add"
       Height          =   495
-      Left            =   0
+      Left            =   240
       TabIndex        =   5
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
       Height          =   495
-      Left            =   1320
+      Left            =   1440
       TabIndex        =   4
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
@@ -160,33 +160,33 @@ Begin VB.Form frmCategories
       Height          =   495
       Left            =   2640
       TabIndex        =   3
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Close"
       Height          =   495
-      Left            =   1920
+      Left            =   5040
       TabIndex        =   2
-      Top             =   5040
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
       Height          =   495
-      Left            =   3960
+      Left            =   3840
       TabIndex        =   0
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin MSDataGridLib.DataGrid dgCategories 
-      Height          =   5655
-      Left            =   5280
+      Height          =   3615
+      Left            =   6360
       TabIndex        =   1
-      Top             =   0
+      Top             =   120
       Width           =   12375
       _ExtentX        =   21828
-      _ExtentY        =   9975
+      _ExtentY        =   6376
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True
