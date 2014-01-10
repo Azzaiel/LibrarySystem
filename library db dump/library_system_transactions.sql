@@ -18,33 +18,33 @@ USE `library_system`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `item_types`
+-- Table structure for table `transactions`
 --
 
-DROP TABLE IF EXISTS `item_types`;
+DROP TABLE IF EXISTS `transactions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `item_types` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(255) DEFAULT NULL,
-  `DESCRIPTION` varchar(255) DEFAULT NULL,
-  `CREATED_BY` varchar(50) DEFAULT NULL,
-  `CREATED_DATE` datetime DEFAULT NULL,
-  `LAST_MOD_BY` varchar(50) DEFAULT NULL,
-  `LAST_MOD_DATE` datetime DEFAULT NULL,
+CREATE TABLE `transactions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ITEM_ID` int(11) NOT NULL,
+  `STUDENT_ID` int(11) NOT NULL,
+  `LEND_DATE` datetime NOT NULL,
+  `LEND_BY` varchar(50) DEFAULT NULL,
+  `RETURN_DATE` datetime DEFAULT NULL,
+  `RECEIVED_BY` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `item_types`
+-- Dumping data for table `transactions`
 --
 
-LOCK TABLES `item_types` WRITE;
-/*!40000 ALTER TABLE `item_types` DISABLE KEYS */;
-INSERT INTO `item_types` VALUES (1,'Book','Liblart book','Icha','2013-12-22 09:29:28','System','2013-12-22 21:03:14'),(2,'CD','CDCDCDCDCDCDCDCDCCDDCD','Icha','2013-12-22 09:30:07','System','2013-12-22 21:23:34'),(3,'Visual Novel','ddrtrtrt','Icha','2013-12-22 09:30:21','System','2013-12-26 14:21:54'),(5,'sdasdas','dsdsd','System','2013-12-22 16:12:54',NULL,NULL),(6,'Visual Novel','gajkds','Icha','2013-12-22 20:33:20',NULL,NULL);
-/*!40000 ALTER TABLE `item_types` ENABLE KEYS */;
+LOCK TABLES `transactions` WRITE;
+/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+INSERT INTO `transactions` VALUES (2,3,12,'2014-01-10 11:05:08','System',NULL,NULL),(3,6,7,'2014-01-10 11:10:59','System',NULL,NULL);
+/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-08 22:04:09
+-- Dump completed on 2014-01-10 16:45:04

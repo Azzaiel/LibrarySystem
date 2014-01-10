@@ -50,7 +50,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'0','Book About Trolling.... TROLOLOLOLOLO!!!!','System','2014-01-05 10:09:28','System','2014-01-05 13:22:02','asdasdas1222',10,1,2,'Richard Reyles','Richard Reyles',''),(3,'Clannad','CRY CRY CRY','System','2014-01-05 10:14:12','System','2014-01-05 10:14:12','adasj;d1232',7,3,3,'ME','KEY',''),(6,'eweeeeeee','adasdbout Trolling.... TROLOLOLOLOLO!!!!','System','2014-01-05 11:42:15','System','2014-01-05 11:42:15','asdasdasdasdasd',10,1,2,'Richard Reyles','Richard Reyles',''),(7,'0','Book About Trolling.... TROLOLOLOLOLO!!!!','System','2014-01-05 13:21:55','System','2014-01-05 13:21:55','swr3123',10,1,2,'Richard Reyles','Richard Reyles','');
+INSERT INTO `items` VALUES (1,'0','Book About Trolling.... TROLOLOLOLOLO!!!!','System','2014-01-05 10:09:28','System','2014-01-08 13:50:26','asdasdas1222',10,1,2,'Richard Reyles','Richard Reyles','Available'),(3,'Clannad','CRY CRY CRY','System','2014-01-05 10:14:12','System','2014-01-08 13:50:47','adasj;d1232',7,3,3,'ME','KEY','Borrowed'),(6,'eweeeeeee','adasdbout Trolling.... TROLOLOLOLOLO!!!!','System','2014-01-05 11:42:15','System','2014-01-08 13:50:41','asdasdasdasdasd',10,1,2,'Richard Reyles','Richard Reyles','Borrowed'),(7,'0','Book About Trolling.... TROLOLOLOLOLO!!!!','System','2014-01-05 13:21:55','System','2014-01-08 13:50:34','swr3123',10,1,2,'Richard Reyles','Richard Reyles','Available');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -63,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-05 15:40:01
+-- Dump completed on 2014-01-10 16:45:04

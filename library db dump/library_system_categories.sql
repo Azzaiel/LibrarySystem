@@ -43,7 +43,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'MATH','SAKIT NAN+65465','Icha','2013-12-26 16:05:34','System','2013-12-28 11:09:02'),(2,'Religon','H!!%$@$','System','2013-12-26 16:48:21','System','2013-12-26 16:50:49'),(3,'MATH','SAKIT NANG ULO','System','2013-12-26 17:56:48',NULL,NULL),(5,'Oculus','Horror','System','2014-01-05 14:45:54',NULL,NULL);
+INSERT INTO `categories` VALUES (1,'MATH','SAKIT NAN+65465','Icha','2013-12-26 16:05:34','System','2013-12-28 11:09:02'),(2,'Religon','H!!%$@$','System','2013-12-26 16:48:21','System','2013-12-26 16:50:49'),(3,'MATH','SAKIT NANG ULO','System','2013-12-26 17:56:48',NULL,NULL),(5,'Oculus','Horror','System','2014-01-05 14:45:54','System','2014-01-08 00:21:22');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-05 15:40:01
+-- Dump completed on 2014-01-10 16:45:05
