@@ -17,7 +17,7 @@ Begin VB.Form frmMain
       Width           =   20175
       Begin VB.Frame Frame1 
          Caption         =   "Quick Search"
-         Height          =   2175
+         Height          =   2055
          Left            =   120
          TabIndex        =   1
          Top             =   120
@@ -621,19 +621,19 @@ Begin VB.Form frmMain
       End
       Begin VB.Frame Frame2 
          Caption         =   "Result"
-         Height          =   7455
+         Height          =   7575
          Left            =   120
          TabIndex        =   2
-         Top             =   2280
+         Top             =   2160
          Width           =   6495
          Begin MSDataGridLib.DataGrid dgItems 
-            Height          =   7095
+            Height          =   7215
             Left            =   120
             TabIndex        =   19
             Top             =   240
             Width           =   6255
             _ExtentX        =   11033
-            _ExtentY        =   12515
+            _ExtentY        =   12726
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
