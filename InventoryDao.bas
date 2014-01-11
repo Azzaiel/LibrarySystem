@@ -184,7 +184,7 @@ Public Function getTransactionDashboardRs() As ADODB.Recordset
    
    sqlQuery = "Select  WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') as REMAINING_DAYS, item.Name as ITEM_NAME,  itype.NAME as Type, stud.LRN " & _
               "       , CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
-              "       , REQUESTED_RETURN_DATE as DUE_DATE " & _
+              "       , REQUESTED_RETURN_DATE as DUE_DATE, tran.ID as TRANSACTION_ID " & _
               "From transactions tran, items item " & _
               "     , item_types as itype, STUDENTS stud " & _
               "Where tran.ITEM_ID = item.ID " & _
@@ -223,4 +223,31 @@ Public Function getStudentBorrower(itemID As Integer) As ADODB.Recordset
    Set getStudentBorrower = rs
 
 End Function
-
+Public Function getTransactionInfo(transactionID As Integer)
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select item.ITEM_CODE, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as ITEM_NAME, item.AUTHOR " & _
+              "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
+              "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_DATE as BORROWED_DATE " & _
+              "       ,REQUESTED_RETURN_DATE as DUE_DATE, WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') as REMAINING_DAYS " & _
+              "from transactions tran, STUDENTS stud " & _
+              "     , sections sec, items item " & _
+              "     , item_types as itype " & _
+              "     , categories cat " & _
+              "where tran.ID = " & transactionID & _
+              "      and tran.STUDENT_ID = stud.ID " & _
+              "      and tran.ITEM_ID = item.ID " & _
+              "      and stud.SECTION_ID = sec.ID " & _
+              "      and itype.ID = item.ITEM_TYPE_ID " & _
+              "      and cat.ID = item.CATEGORY_ID "
+           
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getTransactionInfo = rs
+End Function

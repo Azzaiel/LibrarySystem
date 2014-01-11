@@ -897,7 +897,12 @@ Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
     
   End If
 End Sub
-
+Private Sub dgTransactionDash_DblClick()
+   If (transactionRS.RecordCount > 0) Then
+     frmItemReturn.transactionID = transactionRS!Transaction_ID
+     frmItemReturn.Show vbModal
+   End If
+End Sub
 
 Private Sub fmStudentInfo_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
       lblSelectStudent.ForeColor = vbBlue
@@ -916,15 +921,17 @@ Private Sub populateTransactionDatagrid()
 End Sub
 Private Sub formatTransactionDashDatagrid()
     With dgTransactionDash
-     'ID - 0
+     'LRN - 0
     .Columns(0).Width = 1500
     .Columns(0).Alignment = dbgCenter
 
-     'CREATED DATE - 11
+     'DUE DATE - 5
     .Columns(5).Width = 1500
     .Columns(5).NumberFormat = Constants.DEFAULT_FORMAT
     .Columns(5).Alignment = dbgCenter
     
+    'TRANSACTION_ID
+    .Columns(6).Visible = False
     
   End With
 End Sub

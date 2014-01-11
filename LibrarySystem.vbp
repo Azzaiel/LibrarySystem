@@ -24,6 +24,7 @@ Module=MainModule; MainModule.bas
 Form=frmStudentSelect.frm
 Form=frmReturnDate.frm
 Object={86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0; MSCOMCT2.OCX
+Form=frmItemReturn.frm
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""
