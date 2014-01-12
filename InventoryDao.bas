@@ -25,16 +25,16 @@ Public Function getAllRs() As ADODB.Recordset
    Set getAllRs = rs
 
 End Function
-Public Function getEmptyRs() As ADODB.Recordset
+Public Function getDashboardEmptyRs() As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
    
    Dim sqlQuery As String
    
-   sqlQuery = "Select a.ID, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
-              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.STATUS, a.CREATED_BY, a.CREATED_DATE " & _
-              "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID " & _
+   sqlQuery = "Select a.STATUS, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.CREATED_BY, a.CREATED_DATE " & _
+              "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID, a.ID " & _
               "From ITEMS a, ITEM_TYPES b " & _
               "     , LOCATION_MAPPINGS c, CATEGORIES d " & _
               "Where a.ITEM_TYPE_ID = b.ID " & _
@@ -48,7 +48,53 @@ Public Function getEmptyRs() As ADODB.Recordset
    
    rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
    
-   Set getEmptyRs = rs
+   Set getDashboardEmptyRs = rs
+
+End Function
+Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, author As String, name As String, categoryID As Integer) As ADODB.Recordset
+
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select a.STATUS, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.CREATED_BY, a.CREATED_DATE " & _
+              "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID, a.ID " & _
+              "From ITEMS a, ITEM_TYPES b " & _
+              "     , LOCATION_MAPPINGS c, CATEGORIES d " & _
+              "Where a.ITEM_TYPE_ID = b.ID " & _
+              "      And a.LOCATION_ID = c.ID " & _
+              "      AND a.CATEGORY_ID = d.ID "
+              
+   If (CommonHelper.hasValidValue(CStr(categoryID))) Then
+      sqlQuery = sqlQuery & " And a.CATEGORY_ID = " & categoryID
+   End If
+          
+   If (CommonHelper.hasValidValue(itemCode)) Then
+     sqlQuery = sqlQuery & " And a.ITEM_CODE Like '" & itemCode & "%'"
+   End If
+   
+   If (CommonHelper.hasValidValue(CStr(itemTypeID))) Then
+      sqlQuery = sqlQuery & " And a.ITEM_TYPE_ID = " & itemTypeID
+   End If
+   
+   If (CommonHelper.hasValidValue(author)) Then
+     sqlQuery = sqlQuery & " And a.AUTHOR Like '" & author & "%'"
+   End If
+   
+   If (CommonHelper.hasValidValue(name)) Then
+     sqlQuery = sqlQuery & " And a.name Like '" & name & "%'"
+   End If
+   
+   sqlQuery = sqlQuery & " Order by a.LAST_MOD_DATE Desc "
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set dashboardSearch = rs
 
 End Function
 
@@ -190,6 +236,7 @@ Public Function getTransactionDashboardRs() As ADODB.Recordset
               "Where tran.ITEM_ID = item.ID " & _
               "      And itype.ID = item.ITEM_TYPE_ID " & _
               "      And tran.STUDENT_ID = stud.ID " & _
+              "      And tran.RETURN_DATE is null " & _
               "ORDER BY REMAINING_DAYS "
               
    Dim rs As ADODB.Recordset
@@ -223,6 +270,23 @@ Public Function getStudentBorrower(itemID As Integer) As ADODB.Recordset
    Set getStudentBorrower = rs
 
 End Function
+Public Function getTransaction(transactionID As Integer)
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "from transactions " & _
+              "Where ID = " & transactionID
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getTransaction = rs
+End Function
 Public Function getTransactionInfo(transactionID As Integer)
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -250,4 +314,32 @@ Public Function getTransactionInfo(transactionID As Integer)
    rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
    
    Set getTransactionInfo = rs
+End Function
+Public Function getTransactionReport(startDate As Date, endDate As Date)
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select item.ITEM_CODE, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as ITEM_NAME, item.AUTHOR " & _
+              "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
+              "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_BY as RELEASED_BY " & _
+              "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _
+              "from transactions tran, STUDENTS stud " & _
+              "     , sections sec, items item " & _
+              "     , item_types as itype " & _
+              "     , categories cat " & _
+              "where tran.STUDENT_ID = stud.ID " & _
+              "      and tran.ITEM_ID = item.ID " & _
+              "      and stud.SECTION_ID = sec.ID " & _
+              "      and itype.ID = item.ITEM_TYPE_ID " & _
+              "      and cat.ID = item.CATEGORY_ID " & _
+              "Order By  BORROWED_DATE "
+           
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getTransactionReport = rs
 End Function

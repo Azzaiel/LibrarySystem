@@ -399,7 +399,7 @@ Private Sub cmbClear_Click()
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLrn.Text = ""
+   txtLRN.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -441,7 +441,7 @@ Private Sub cmbEdit_Click()
   Call resetFromSkin
   If (isFormValid) Then
     Set tempRs = StudentDao.getRsByID(rs!ID)
-    tempRs!lrn = Val(txtLrn.Text)
+    tempRs!lrn = Val(txtLRN.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -461,7 +461,7 @@ Private Sub cmbNewRec_Click()
   If (isFormValid) Then
     Set tempRs = StudentDao.getFakeRs
     tempRs.AddNew
-    tempRs!lrn = Val(txtLrn.Text)
+    tempRs!lrn = Val(txtLRN.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -520,7 +520,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!ID
-   txtLrn.Text = rs!lrn
+   txtLRN.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -588,8 +588,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
-     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
+     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
      isValid = False
   End If
   If (Not CommonHelper.hasValidValue(txtFirstName.Text)) Then
@@ -612,7 +612,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLrn)
+ Call CommonHelper.toDefaultSkin(txtLRN)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(txtMIDDLE_NAME)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)

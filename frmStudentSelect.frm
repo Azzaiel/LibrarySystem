@@ -191,7 +191,7 @@ Private Sub dgStudents_DblClick()
     frmMain.txtSection = rs!Section
     frmMain.txtAdviser = rs!Adviser
     frmMain.selectedStudentID = rs!ID
-    frmMain.txtLrn = rs!lrn
+    frmMain.txtLRN = rs!lrn
   End If
   Unload Me
 End Sub

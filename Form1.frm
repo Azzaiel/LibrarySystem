@@ -5,16 +5,16 @@ Begin VB.Form frmMain
    ClientHeight    =   9765
    ClientLeft      =   120
    ClientTop       =   750
-   ClientWidth     =   20040
+   ClientWidth     =   20010
    LinkTopic       =   "Form1"
    ScaleHeight     =   9765
-   ScaleWidth      =   20040
+   ScaleWidth      =   20010
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
       TabIndex        =   0
       Top             =   -120
-      Width           =   20175
+      Width           =   20055
       Begin VB.Frame Frame1 
          Caption         =   "Quick Search"
          Height          =   2055
@@ -556,12 +556,13 @@ Begin VB.Form frmMain
             _ExtentX        =   10398
             _ExtentY        =   16325
             _Version        =   393216
-            AllowUpdate     =   0   'False
+            AllowUpdate     =   -1  'True
             AllowArrows     =   -1  'True
             HeadLines       =   1
             RowHeight       =   15
             TabAction       =   2
             RowDividerStyle =   3
+            AllowDelete     =   -1  'True
             BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "MS Sans Serif"
                Size            =   8.25
@@ -720,6 +721,9 @@ Begin VB.Form frmMain
    Begin VB.Menu mnInvetory 
       Caption         =   "Inventory"
    End
+   Begin VB.Menu mnTransaction 
+      Caption         =   "Transaction Report"
+   End
    Begin VB.Menu Account 
       Caption         =   "Account"
    End
@@ -758,7 +762,7 @@ End Sub
 Private Sub cmItemsQuickSearch_Click()
   Set dgItems.DataSource = Nothing
   Call DbInstance.closeRecordSet(itemsRs)
-  Set itemsRs = InventoryDao.search(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID)
+  Set itemsRs = InventoryDao.dashboardSearch(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID)
   Set dgItems.DataSource = itemsRs
   If (itemsRs.RecordCount = 0) Then
     MsgBox "No record found", vbInformation
@@ -859,7 +863,7 @@ Private Sub showSelectedItem()
    If (cmStatus = "Borrowed") Then
       Set tempRs = InventoryDao.getStudentBorrower(itemsRs!ID)
       txtLRN = tempRs!lrn
-      txtStudentName = tempRs!Student_Name
+      txtStudentName = tempRs!STUDENT_NAME
       txtAdviser = tempRs!Adviser
       txtSection = tempRs!Section
       Call DbInstance.closeRecordSet(tempRs)
@@ -901,6 +905,8 @@ Private Sub dgTransactionDash_DblClick()
    If (transactionRS.RecordCount > 0) Then
      frmItemReturn.transactionID = transactionRS!Transaction_ID
      frmItemReturn.Show vbModal
+     Call populateTransactionDatagrid
+     Call cmItemsQuickSearch_Click
    End If
 End Sub
 
@@ -962,7 +968,7 @@ Private Sub populateDropDown()
   
 End Sub
 Private Sub initiateItemsRs()
-  Set itemsRs = InventoryDao.getEmptyRs
+  Set itemsRs = InventoryDao.getDashboardEmptyRs
   Set dgItems.DataSource = itemsRs
   dgItems.Refresh
   Call formatIemsDataGrid
@@ -995,9 +1001,6 @@ Private Sub formatIemsDataGrid()
   End If
   
   With dgItems
-     'ID - 0
-    .Columns(0).Width = 400
-    .Columns(0).Alignment = dbgCenter
 
      'CREATED DATE - 11
     .Columns(11).Width = 1500
@@ -1009,6 +1012,7 @@ Private Sub formatIemsDataGrid()
     .Columns(13).NumberFormat = Constants.DEFAULT_FORMAT
     .Columns(13).Alignment = dbgCenter
     
+    .Columns(13).Visible = False
     .Columns(14).Visible = False
     .Columns(15).Visible = False
     .Columns(16).Visible = False
@@ -1067,6 +1071,7 @@ Private Sub lblChekOut_Click()
       MsgBox "Transaction Successful"
       Call cmItemsQuickSearch_Click
       Call clearDetailForm
+      Call populateTransactionDatagrid
     Else
       MsgBox "System cannot procced without retrun date", vbCritical
     End If
@@ -1103,6 +1108,10 @@ End Sub
 
 Private Sub mnStudents_Click()
   frmStudents.Show vbModal
+End Sub
+
+Private Sub mnTransaction_Click()
+  frmTransactionReport.Show vbModal
 End Sub
 
 Private Sub sections_Click()

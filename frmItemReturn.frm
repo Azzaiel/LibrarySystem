@@ -366,7 +366,31 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
+Private tempRs As ADODB.Recordset
 Public transactionID As Integer
+Private itemID As Integer
+
+Private Sub cmbNewRec_Click()
+  Dim response As String
+  response = MsgBox("Are your sure you want to proceed?", vbOKCancel, "Question")
+  If (response = vbOK) Then
+      Set tempRs = InventoryDao.getTransaction(transactionID)
+      itemID = tempRs!ITEM_ID
+      tempRs!RETURN_DATE = Now
+      tempRs!RECEIVED_BY = UserSession.getLoginUser
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      
+      Set tempRs = InventoryDao.getRsByID(itemID)
+      tempRs!Status = "Available"
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      
+      MsgBox "Update Compalte"
+      Unload Me
+      
+  End If
+End Sub
 
 Private Sub cmdClosed_Click()
   Unload Me
