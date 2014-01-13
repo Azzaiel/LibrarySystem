@@ -2,25 +2,25 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmStudents 
    Caption         =   "Student Information"
-   ClientHeight    =   6180
+   ClientHeight    =   5895
    ClientLeft      =   525
    ClientTop       =   660
    ClientWidth     =   18855
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6180
+   ScaleHeight     =   5895
    ScaleWidth      =   18855
    Begin VB.Frame Frame2 
       Caption         =   "Search Panel"
       Height          =   855
-      Left            =   5400
-      TabIndex        =   31
+      Left            =   5280
+      TabIndex        =   30
       Top             =   120
-      Width           =   13215
+      Width           =   13335
       Begin VB.CommandButton cmbClearSearch 
          Caption         =   "Clear"
          Height          =   495
          Left            =   12240
-         TabIndex        =   36
+         TabIndex        =   35
          Top             =   240
          Width           =   855
       End
@@ -28,7 +28,7 @@ Begin VB.Form frmStudents
          Caption         =   "Search"
          Height          =   495
          Left            =   11280
-         TabIndex        =   35
+         TabIndex        =   34
          Top             =   240
          Width           =   855
       End
@@ -59,7 +59,7 @@ Begin VB.Form frmStudents
          Caption         =   "LRN"
          Height          =   255
          Left            =   480
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   360
          Width           =   615
       End
@@ -68,7 +68,7 @@ Begin VB.Form frmStudents
          Caption         =   "SECTION"
          Height          =   255
          Left            =   3840
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   360
          Width           =   975
       End
@@ -77,58 +77,103 @@ Begin VB.Form frmStudents
          Caption         =   "LAST_NAME"
          Height          =   255
          Left            =   7800
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   360
          Width           =   1095
       End
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   4080
-      TabIndex        =   30
-      Top             =   4680
+      Left            =   3960
+      TabIndex        =   29
+      Top             =   4560
       Width           =   1095
    End
    Begin VB.CommandButton cmbClose 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2040
-      TabIndex        =   29
-      Top             =   5280
+      TabIndex        =   28
+      Top             =   5160
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2760
-      TabIndex        =   28
-      Top             =   4680
+      TabIndex        =   27
+      Top             =   4560
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   1440
-      TabIndex        =   27
-      Top             =   4680
+      Left            =   1560
+      TabIndex        =   26
+      Top             =   4560
       Width           =   1095
    End
    Begin VB.CommandButton cmbNewRec 
-      Caption         =   "Add"
+      Caption         =   "New"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   120
-      TabIndex        =   26
-      Top             =   4680
-      Width           =   1095
+      Left            =   240
+      TabIndex        =   25
+      Top             =   4560
+      Width           =   1215
    End
    Begin VB.Frame Frame1 
       Caption         =   "Detail Form"
       Height          =   4335
-      Left            =   480
+      Left            =   240
       TabIndex        =   9
-      Top             =   120
-      Width           =   4215
+      Top             =   0
+      Width           =   4815
       Begin VB.ComboBox cmSections 
          Height          =   315
          Left            =   1440
@@ -170,7 +215,7 @@ Begin VB.Form frmStudents
          Caption         =   "*SECTION"
          Height          =   255
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   2160
          Width           =   975
       End
@@ -302,13 +347,13 @@ Begin VB.Form frmStudents
       End
    End
    Begin MSDataGridLib.DataGrid dgStudents 
-      Height          =   4935
-      Left            =   5400
+      Height          =   4575
+      Left            =   5280
       TabIndex        =   0
       Top             =   1080
-      Width           =   13215
-      _ExtentX        =   23310
-      _ExtentY        =   8705
+      Width           =   13335
+      _ExtentX        =   23521
+      _ExtentY        =   8070
       _Version        =   393216
       HeadLines       =   1
       RowHeight       =   15
@@ -365,15 +410,6 @@ Begin VB.Form frmStudents
          EndProperty
       EndProperty
    End
-   Begin VB.Label Label3 
-      BackColor       =   &H0080FF80&
-      Caption         =   "LAST_NAME"
-      Height          =   255
-      Left            =   480
-      TabIndex        =   24
-      Top             =   3840
-      Width           =   855
-   End
 End
 Attribute VB_Name = "frmStudents"
 Attribute VB_GlobalNameSpace = False
@@ -394,12 +430,13 @@ Private Sub Command4_Click()
 End Sub
 
 Private Sub cmbClear_Click()
+  Call toogelInsertMode(False)
   Call resetFromSkin
   Call clearForm
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLRN.Text = ""
+   txtLrn.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -441,7 +478,7 @@ Private Sub cmbEdit_Click()
   Call resetFromSkin
   If (isFormValid) Then
     Set tempRs = StudentDao.getRsByID(rs!ID)
-    tempRs!lrn = Val(txtLRN.Text)
+    tempRs!lrn = Val(txtLrn.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -458,31 +495,46 @@ End Sub
 
 Private Sub cmbNewRec_Click()
   Call resetFromSkin
-  If (isFormValid) Then
-    Set tempRs = StudentDao.getFakeRs
-    tempRs.AddNew
-    tempRs!lrn = Val(txtLRN.Text)
-    tempRs!FIRST_NAME = txtFirstName.Text
-    tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
-    tempRs!LAST_NAME = TxtLAST_NAME.Text
-    tempRs!SECTION_ID = getSectionID
-    tempRs!CREATED_BY = UserSession.getLoginUser
-    tempRs!CREATED_DATE = Now
-    tempRs!LAST_MOD_BY = UserSession.getLoginUser
-    tempRs!LAST_MOD_DATE = Now
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Record Created!!", vbInformation
+  If (cmbNewRec.Caption = "New") Then
+    Call toogelInsertMode(True)
+  Else
+    If (isFormValid) Then
+      Set tempRs = StudentDao.getFakeRs
+      tempRs.AddNew
+      tempRs!lrn = Val(txtLrn.Text)
+      tempRs!FIRST_NAME = txtFirstName.Text
+      tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
+      tempRs!LAST_NAME = TxtLAST_NAME.Text
+      tempRs!SECTION_ID = getSectionID
+      tempRs!CREATED_BY = UserSession.getLoginUser
+      tempRs!CREATED_DATE = Now
+      tempRs!LAST_MOD_BY = UserSession.getLoginUser
+      tempRs!LAST_MOD_DATE = Now
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      MsgBox "Record Created!!", vbInformation
+      Call toogelInsertMode(False)
+      Call clearForm
+      Call populateDataGrid
+    End If
+  End If
+End Sub
+Private Sub toogelInsertMode(isInisilization As Boolean)
+  If (isInisilization) Then
     Call clearForm
-    Call populateDataGrid
+    cmbNewRec.Caption = "Add"
+    cmbEdit.Enabled = False
+    cmbDelete.Enabled = False
+  Else
+    cmbNewRec.Caption = "New"
+    cmbEdit.Enabled = True
+    cmbDelete.Enabled = True
   End If
 End Sub
 Private Function getSectionID() As Integer
-
   Dim index As Integer
   index = cmSections.ListIndex
   getSectionID = identifySectionID(index)
-
 End Function
 
 Private Function getSearchSectionID() As Integer
@@ -520,7 +572,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!ID
-   txtLRN.Text = rs!lrn
+   txtLrn.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -588,8 +640,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
-     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
+     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
      isValid = False
   End If
   If (Not CommonHelper.hasValidValue(txtFirstName.Text)) Then
@@ -612,7 +664,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLRN)
+ Call CommonHelper.toDefaultSkin(txtLrn)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(txtMIDDLE_NAME)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)
