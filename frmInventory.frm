@@ -116,7 +116,16 @@ Begin VB.Form frmInventory
       End
    End
    Begin VB.CommandButton cmbNewRec 
-      Caption         =   "Add"
+      Caption         =   "New"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   720
       TabIndex        =   34
@@ -125,6 +134,15 @@ Begin VB.Form frmInventory
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1920
       TabIndex        =   33
@@ -133,6 +151,15 @@ Begin VB.Form frmInventory
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3120
       TabIndex        =   32
@@ -141,6 +168,15 @@ Begin VB.Form frmInventory
    End
    Begin VB.CommandButton cmbClose 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5520
       TabIndex        =   31
@@ -149,6 +185,15 @@ Begin VB.Form frmInventory
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   4320
       TabIndex        =   30
@@ -167,6 +212,8 @@ Begin VB.Form frmInventory
          ItemData        =   "frmInventory.frx":0000
          Left            =   1560
          List            =   "frmInventory.frx":0010
+         Locked          =   -1  'True
+         Style           =   1  'Simple Combo
          TabIndex        =   48
          Text            =   "cmStatus"
          Top             =   7680
@@ -526,6 +573,7 @@ End Function
 
 Private Sub cmbClear_Click()
   Call clearForm
+  Call toogelInsertMode(False)
 End Sub
 
 Private Sub cmbClose_Click()
@@ -587,6 +635,9 @@ End Sub
 
 Private Sub cmbNewRec_Click()
 
+  If (cmbNewRec.Caption = "New") Then
+    Call toogelInsertMode(True)
+  Else
     Set tempRs = InventoryDao.getFakeRs
     tempRs.AddNew
     tempRs!name = txtName.Text
@@ -606,9 +657,23 @@ Private Sub cmbNewRec_Click()
     Call DbInstance.closeRecordSet(tempRs)
     MsgBox "Record Created!!", vbInformation
     Call populateDataGrid
+    Call toogelInsertMode(False)
+  End If
 
 End Sub
-
+Private Sub toogelInsertMode(isInisilization As Boolean)
+  If (isInisilization) Then
+    Call clearForm
+    cmbNewRec.Caption = "Add"
+    cmbEdit.Enabled = False
+    cmbDelete.Enabled = False
+    cmStatus.Text = "Available"
+  Else
+    cmbNewRec.Caption = "New"
+    cmbEdit.Enabled = True
+    cmbDelete.Enabled = True
+  End If
+End Sub
 Private Sub cmdClearSearch_Click()
   txtSearchItemCode.Text = ""
   cmSearchType.ListIndex = -1

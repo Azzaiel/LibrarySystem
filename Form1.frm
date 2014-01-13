@@ -421,6 +421,60 @@ Begin VB.Form frmMain
             Top             =   1320
             Width           =   1935
          End
+         Begin VB.Label lblMarkAvailable 
+            Caption         =   "Mark as Available"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   -1  'True
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FF0000&
+            Height          =   255
+            Left            =   3960
+            TabIndex        =   52
+            Top             =   1080
+            Width           =   1695
+         End
+         Begin VB.Label lblMarkLost 
+            Caption         =   "Mark as Lost"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   -1  'True
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FF0000&
+            Height          =   255
+            Left            =   3960
+            TabIndex        =   51
+            Top             =   720
+            Width           =   1335
+         End
+         Begin VB.Label lblMarkDamage 
+            Caption         =   "Mark as Damanged"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   -1  'True
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00FF0000&
+            Height          =   255
+            Left            =   3960
+            TabIndex        =   50
+            Top             =   360
+            Width           =   1935
+         End
          Begin VB.Label lblChekOut 
             Caption         =   "Check out Item"
             BeginProperty Font 
@@ -540,7 +594,7 @@ Begin VB.Form frmMain
          End
       End
       Begin VB.Frame Frame3 
-         Caption         =   "Dashboard"
+         Caption         =   "Dashboard - (Double click to open detail form)"
          ClipControls    =   0   'False
          Height          =   9615
          Left            =   13800
@@ -766,6 +820,9 @@ Private Sub cmItemsQuickSearch_Click()
   Set dgItems.DataSource = itemsRs
   If (itemsRs.RecordCount = 0) Then
     MsgBox "No record found", vbInformation
+  Else
+    itemsRs.MoveFirst
+    Call showSelectedItem
   End If
   dgItems.Refresh
   'Call clearForm
@@ -854,20 +911,31 @@ Private Sub showSelectedItem()
      End If
    Next index
    
-   If (cmStatus = "Available") Then
-     Call toogelItemCheckOutUI(True)
-   Else
-     Call toogelItemCheckOutUI(False)
-   End If
+   Call toogelItemCheckOutUI(False)
+   lblMarkAvailable.Enabled = False
+   lblMarkDamage.Enabled = False
+   lblMarkLost.Enabled = False
    
-   If (cmStatus = "Borrowed") Then
+   If (cmStatus = "Available") Then
+      Call toogelItemCheckOutUI(True)
+      lblMarkDamage.Enabled = True
+      lblMarkLost.Enabled = True
+   ElseIf (cmStatus = "Borrowed") Then
       Set tempRs = InventoryDao.getStudentBorrower(itemsRs!ID)
       txtLRN = tempRs!lrn
       txtStudentName = tempRs!STUDENT_NAME
       txtAdviser = tempRs!Adviser
       txtSection = tempRs!Section
       Call DbInstance.closeRecordSet(tempRs)
+   ElseIf (cmStatus = "Damaged") Then
+      lblMarkAvailable.Enabled = True
+      lblMarkLost.Enabled = True
+   ElseIf (cmStatus = "Loss") Then
+      lblMarkDamage.Enabled = True
+      lblMarkAvailable.Enabled = True
    End If
+   
+   
    
 End Sub
 
@@ -1048,9 +1116,16 @@ End Sub
 
 Private Sub Frame5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
   lblChekOut.ForeColor = vbBlue
+  lblMarkDamage.ForeColor = vbBlue
+  lblMarkLost.ForeColor = vbBlue
+  lblMarkAvailable.ForeColor = vbBlue
 End Sub
 
 Private Sub lblChekOut_Click()
+  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
+    MsgBox "Please select an Item", vbCritical
+    Exit Sub
+  End If
   If (selectedStudentID > 0) Then
     selectedReturnDate = vbNull
     frmReturnDate.Show vbModal
@@ -1066,6 +1141,8 @@ Private Sub lblChekOut_Click()
       Call DbInstance.closeRecordSet(tempRs)
       Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
       tempRs!Status = "Borrowed"
+      tempRs!LAST_MOD_BY = UserSession.getLoginUser
+      tempRs!LAST_MOD_DATE = Now
       tempRs.Update
       Call DbInstance.closeRecordSet(tempRs)
       MsgBox "Transaction Successful"
@@ -1082,6 +1159,73 @@ End Sub
 
 Private Sub lblChekOut_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
   lblChekOut.ForeColor = vbRed
+End Sub
+
+Private Sub lblLost_Click()
+
+End Sub
+
+Private Sub lblMarkAvailable_Click()
+  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
+    MsgBox "Please select an Item", vbCritical
+    Exit Sub
+  Else
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    tempRs!Status = "Available"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+  End If
+End Sub
+
+Private Sub lblMarkAvailable_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  lblMarkAvailable.ForeColor = vbRed
+End Sub
+
+Private Sub lblMarkDamage_Click()
+  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
+    MsgBox "Please select an Item", vbCritical
+    Exit Sub
+  Else
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    tempRs!Status = "Damaged"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+  End If
+End Sub
+
+Private Sub lblMarkDamage_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  lblMarkDamage.ForeColor = vbRed
+End Sub
+
+Private Sub lblMarkLost_Click()
+  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
+    MsgBox "Please select an Item", vbCritical
+    Exit Sub
+  Else
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    tempRs!Status = "Loss"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+  End If
+End Sub
+
+Private Sub lblMarkLost_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  lblMarkLost.ForeColor = vbRed
 End Sub
 
 Private Sub lblSelectStudent_Click()
