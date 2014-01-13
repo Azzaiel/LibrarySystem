@@ -334,7 +334,9 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
               "      and stud.SECTION_ID = sec.ID " & _
               "      and itype.ID = item.ITEM_TYPE_ID " & _
               "      and cat.ID = item.CATEGORY_ID " & _
+              "      and tran.LEND_DATE between STR_TO_DATE('" & Format(startDate, "mm/dd/yyyy") & "','%m/%d/%Y') and STR_TO_DATE('" & Format(endDate, "mm/dd/yyyy") & "','%m/%d/%Y') " & _
               "Order By  BORROWED_DATE "
+       
            
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset

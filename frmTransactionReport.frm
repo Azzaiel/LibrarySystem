@@ -52,7 +52,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   107741185
+         Format          =   108658689
          CurrentDate     =   41650
       End
       Begin MSComCtl2.DTPicker dpEndDate 
@@ -73,7 +73,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   107741185
+         Format          =   108658689
          CurrentDate     =   41650
       End
       Begin VB.Label Label1 
@@ -196,10 +196,14 @@ Private rs As ADODB.Recordset
 Private Sub cmdSearch_Click()
   Set dgReport.DataSource = Nothing
   Call DbInstance.closeRecordSet(rs)
-  Set rs = InventoryDao.getTransactionReport(Now, Now)
+  Set rs = InventoryDao.getTransactionReport(dpStartDate.value, DateAdd("d", 1, dpEndDate.value))
   Set dgReport.DataSource = rs
   dgReport.Refresh
   Call formatDataGrid
+  If (rs.RecordCount = 0) Then
+    MsgBox "No Record found", vbInformation
+  End If
+  
 End Sub
 Private Sub formatDataGrid()
   With dgReport
@@ -224,5 +228,6 @@ Private Sub formatDataGrid()
 End Sub
 
 Private Sub Form_Load()
+  dpStartDate = DateAdd("m", -1, Now)
   dpEndDate = Now
 End Sub
