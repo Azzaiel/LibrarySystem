@@ -62,3 +62,11 @@ End Function
 Public Function getImgPath() As String
   getImgPath = App.Path & "\" & Constants.IMG_FOLDER
 End Function
+
+Public Function getTemplatesPath() As String
+  getTemplatesPath = App.Path & "\" & Constants.TEMPLATE_FOLDER
+End Function
+Public Function getTempPath() As String
+  getTempPath = App.Path & "\" & Constants.TEMP_FOLDER
+End Function
+

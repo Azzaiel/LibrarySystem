@@ -13,10 +13,27 @@ Begin VB.Form frmTransactionReport
    Begin VB.Frame Frame1 
       Caption         =   "Select Date Range by Borrow Date"
       Height          =   975
-      Left            =   4920
+      Left            =   3960
       TabIndex        =   0
       Top             =   0
-      Width           =   8295
+      Width           =   10455
+      Begin VB.CommandButton cmdExport 
+         Caption         =   "Export"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   8520
+         TabIndex        =   7
+         Top             =   360
+         Width           =   1695
+      End
       Begin VB.CommandButton cmdSearch 
          Caption         =   "Search"
          BeginProperty Font 
@@ -52,7 +69,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108658689
+         Format          =   110034945
          CurrentDate     =   41650
       End
       Begin MSComCtl2.DTPicker dpEndDate 
@@ -73,7 +90,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108658689
+         Format          =   110034945
          CurrentDate     =   41650
       End
       Begin VB.Label Label1 
@@ -192,6 +209,26 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
+
+Private Sub cmdExport_Click()
+  Dim excelApp As New Excel.Application
+  Dim oBook As New Excel.Workbook
+  Dim oSheet As New Excel.Worksheet
+  
+  Set excelApp = CreateObject("Excel.Application")
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.TRANSACTION_REPORT_TEMPLATE)
+  Set oSheet = excelApp.Worksheets(1)
+  
+  oSheet.name = "Transaction Report"
+  
+  oSheet.Range("A2").CopyFromRecordset dgReport.DataSource
+  oSheet.Columns.AutoFit
+
+  excelApp.DisplayAlerts = False
+  oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
+  excelApp.Visible = True
+
+End Sub
 
 Private Sub cmdSearch_Click()
   Set dgReport.DataSource = Nothing
