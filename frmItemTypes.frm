@@ -11,6 +11,15 @@ Begin VB.Form frmItemTypes
    ScaleWidth      =   18930
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3720
       TabIndex        =   19
@@ -90,6 +99,15 @@ Begin VB.Form frmItemTypes
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5040
       TabIndex        =   5
@@ -98,6 +116,15 @@ Begin VB.Form frmItemTypes
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2520
       TabIndex        =   4
@@ -106,6 +133,15 @@ Begin VB.Form frmItemTypes
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1320
       TabIndex        =   3
@@ -113,7 +149,16 @@ Begin VB.Form frmItemTypes
       Width           =   1095
    End
    Begin VB.CommandButton cmbNewRec 
-      Caption         =   "Add"
+      Caption         =   "New"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   120
       TabIndex        =   2
@@ -289,14 +334,33 @@ Private Sub formatDataGrid()
   End With
 End Sub
 Private Sub cmbNewRec_Click()
-  If (isFormDetailValid = True) Then
-    rs.AddNew
-    rs!name = txtName
-    rs!Description = txtDescription
-    rs!CREATED_BY = UserSession.getLoginUser
-    rs!CREATED_DATE = Now
-    rs.Update
-    MsgBox "Record Added", vbInformation
+  If cmbNewRec.Caption = "New" Then
+    txtName.SetFocus
+    Call toogelInsertMode(True)
+  Else
+    If (isFormDetailValid = True) Then
+      rs.AddNew
+      rs!name = txtName
+      rs!Description = txtDescription
+      rs!CREATED_BY = UserSession.getLoginUser
+      rs!CREATED_DATE = Now
+      rs.Update
+      MsgBox "Record Added", vbInformation
+      Call toogelInsertMode(False)
+      Call populateDataGrid
+    End If
+  End If
+End Sub
+Private Sub toogelInsertMode(isInisilization As Boolean)
+  If (isInisilization) Then
+    Call clearForm
+    cmbNewRec.Caption = "Add"
+    cmbEdit.Enabled = False
+    cmbDelete.Enabled = False
+  Else
+    cmbNewRec.Caption = "New"
+    cmbEdit.Enabled = True
+    cmbDelete.Enabled = True
   End If
 End Sub
 Private Function isFormDetailValid() As Boolean
@@ -340,6 +404,10 @@ End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getItemTypesRs()
   Set dgItemTypes.DataSource = rs
+  If (rs.RecordCount > 0) Then
+    rs.MoveFirst
+    Call showSelectedRow
+  End If
   dgItemTypes.Refresh
 End Sub
 Private Sub Form_Unload(Cancel As Integer)

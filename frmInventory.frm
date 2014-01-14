@@ -637,6 +637,7 @@ Private Sub cmbNewRec_Click()
 
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
+    txtItemCode.SetFocus
   Else
     Set tempRs = InventoryDao.getFakeRs
     tempRs.AddNew

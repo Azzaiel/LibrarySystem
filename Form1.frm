@@ -5,10 +5,10 @@ Begin VB.Form frmMain
    ClientHeight    =   9765
    ClientLeft      =   120
    ClientTop       =   750
-   ClientWidth     =   20010
+   ClientWidth     =   20115
    LinkTopic       =   "Form1"
    ScaleHeight     =   9765
-   ScaleWidth      =   20010
+   ScaleWidth      =   20115
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
@@ -124,7 +124,7 @@ Begin VB.Form frmMain
       Begin VB.Frame Frame5 
          Caption         =   "Detail"
          Height          =   5535
-         Left            =   6720
+         Left            =   6840
          TabIndex        =   5
          Top             =   120
          Width           =   6975
@@ -756,17 +756,17 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu mnLookups 
       Caption         =   "Lookups"
-      Begin VB.Menu Categuries 
-         Caption         =   "Categories"
-      End
       Begin VB.Menu mnItemType 
          Caption         =   "Itemn Type"
       End
-      Begin VB.Menu sections 
-         Caption         =   "Sections"
+      Begin VB.Menu Categuries 
+         Caption         =   "Categories"
       End
       Begin VB.Menu mnLocationMapping 
          Caption         =   "Location Mapping"
+      End
+      Begin VB.Menu sections 
+         Caption         =   "Sections"
       End
    End
    Begin VB.Menu mnStudents 

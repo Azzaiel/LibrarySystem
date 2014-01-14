@@ -1,18 +1,18 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmSections 
-   Caption         =   "Form1"
-   ClientHeight    =   5850
+   Caption         =   "Sections"
+   ClientHeight    =   5340
    ClientLeft      =   330
    ClientTop       =   2295
    ClientWidth     =   19605
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5850
+   ScaleHeight     =   5340
    ScaleWidth      =   19605
    Begin VB.Frame Frame1 
       Caption         =   "Created By"
       Height          =   3735
-      Left            =   120
+      Left            =   240
       TabIndex        =   6
       Top             =   120
       Width           =   4815
@@ -156,53 +156,98 @@ Begin VB.Form frmSections
       End
    End
    Begin VB.CommandButton cmbNewRec 
-      Caption         =   "Add"
+      Caption         =   "New"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   0
+      Left            =   120
       TabIndex        =   5
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1320
       TabIndex        =   4
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2640
       TabIndex        =   3
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1920
       TabIndex        =   2
-      Top             =   5040
+      Top             =   4560
       Width           =   1095
    End
    Begin VB.CommandButton cmdClear 
       Caption         =   "Clear"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3960
       TabIndex        =   0
-      Top             =   4440
+      Top             =   3960
       Width           =   1095
    End
    Begin MSDataGridLib.DataGrid dbSections 
-      Height          =   5655
+      Height          =   5055
       Left            =   5280
       TabIndex        =   1
       Top             =   0
       Width           =   14175
       _ExtentX        =   25003
-      _ExtentY        =   9975
+      _ExtentY        =   8916
       _Version        =   393216
       AllowUpdate     =   0   'False
       AllowArrows     =   -1  'True
@@ -329,15 +374,38 @@ Private Sub cmbEdit_Click()
 End Sub
 
 Private Sub cmbNewRec_Click()
-   rs.AddNew
-   rs!Level = txtLevel.Text
-   rs!name = txtName.Text
-   rs!Adviser = txtAdviser.Text
-   rs!CREATED_BY = UserSession.getLoginUser
-   rs!CREATED_DATE = Now
-   rs.Update
-   MsgBox "Record Created!", vbInformation
-   Call clearForm
+   If cmbNewRec.Caption = "New" Then
+     Call toogelInsertMode(True)
+     txtName.SetFocus
+   Else
+     rs.AddNew
+     rs!Level = txtLevel.Text
+     rs!name = txtName.Text
+     rs!Adviser = txtAdviser.Text
+     rs!CREATED_BY = UserSession.getLoginUser
+     rs!CREATED_DATE = Now
+     rs.Update
+     MsgBox "Record Created!", vbInformation
+     Call toogelInsertMode(False)
+     Call populateDataGrid
+   End If
+End Sub
+Private Sub toogelInsertMode(isInisilization As Boolean)
+  If (isInisilization) Then
+    Call clearForm
+    cmbNewRec.Caption = "Add"
+    cmbEdit.Enabled = False
+    cmbDelete.Enabled = False
+  Else
+    cmbNewRec.Caption = "New"
+    cmbEdit.Enabled = True
+    cmbDelete.Enabled = True
+  End If
+End Sub
+
+Private Sub cmdClear_Click()
+  Call toogelInsertMode(False)
+  Call clearForm
 End Sub
 
 Private Sub Command4_Click()
@@ -354,6 +422,10 @@ End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getSections
   Set dbSections.DataSource = rs
+  If (rs.RecordCount > 0) Then
+    rs.MoveFirst
+    Call showSelectedItemInForm
+  End If
   dbSections.Refresh
 End Sub
 Private Sub formatDataGrid()

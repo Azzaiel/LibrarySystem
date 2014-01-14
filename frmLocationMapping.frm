@@ -11,7 +11,16 @@ Begin VB.Form frmLocationMapping
    ScaleHeight     =   8280
    ScaleWidth      =   19785
    Begin VB.CommandButton cmbNewRec 
-      Caption         =   "Add"
+      Caption         =   "New"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   480
       TabIndex        =   19
@@ -20,6 +29,15 @@ Begin VB.Form frmLocationMapping
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1800
       TabIndex        =   18
@@ -28,6 +46,15 @@ Begin VB.Form frmLocationMapping
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3120
       TabIndex        =   17
@@ -36,6 +63,15 @@ Begin VB.Form frmLocationMapping
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5640
       TabIndex        =   16
@@ -44,6 +80,15 @@ Begin VB.Form frmLocationMapping
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   4440
       TabIndex        =   15
@@ -287,6 +332,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
 Private Sub cmbClear_Click()
+  Call toogelInsertMode(False)
   Call restoreFormDefaultSkin
   Call clearForm
 End Sub
@@ -332,23 +378,39 @@ Private Sub cmbEdit_Click()
     Call showSelectedData
   End If
 End Sub
-
 Private Sub cmbNewRec_Click()
-  Call restoreFormDefaultSkin
-  If (isFormValid) Then
-    rs.AddNew
-    rs!name = txtName.Text
-    rs!FILE_NAME = txtFileName.Caption
-    rs!CREATED_BY = UserSession.getLoginUser
-    rs!CREATED_DATE = Now
-    rs.Update
-    If (cdJpegBrowser.fileName <> vbNullString) Then
-      Call FileCopy(cdJpegBrowser.fileName, CommonHelper.getImgPath & "\" & txtFileName.Caption)
+  If cmbNewRec.Caption = "New" Then
+    Call toogelInsertMode(True)
+    txtName.SetFocus
+  Else
+    Call restoreFormDefaultSkin
+    If (isFormValid) Then
+      rs.AddNew
+      rs!name = txtName.Text
+      rs!FILE_NAME = txtFileName.Caption
+      rs!CREATED_BY = UserSession.getLoginUser
+      rs!CREATED_DATE = Now
+      rs.Update
+      If (cdJpegBrowser.fileName <> vbNullString) Then
+        Call FileCopy(cdJpegBrowser.fileName, CommonHelper.getImgPath & "\" & txtFileName.Caption)
+      End If
+      MsgBox "Record Added!", vbInformation
+      Call toogelInsertMode(False)
+      Call populateDataGrid
     End If
-    MsgBox "Record Added!", vbInformation
-    Call showSelectedData
   End If
-  
+End Sub
+Private Sub toogelInsertMode(isInisilization As Boolean)
+  If (isInisilization) Then
+    Call clearForm
+    cmbNewRec.Caption = "Add"
+    cmbEdit.Enabled = False
+    cmbDelete.Enabled = False
+  Else
+    cmbNewRec.Caption = "New"
+    cmbEdit.Enabled = True
+    cmbDelete.Enabled = True
+  End If
 End Sub
 Private Sub clearForm()
   lblID.Caption = ""
@@ -383,6 +445,10 @@ Private Sub showSelectedData()
   End If
 End Sub
 
+Private Sub Command4_Click()
+  Unload Me
+End Sub
+
 Private Sub dgLocationMapping_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
   Call showSelectedData
 End Sub
@@ -400,6 +466,9 @@ End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getLocationMappingRS
   Set dgLocationMapping.DataSource = rs
+  If rs.RecordCount > 0 Then
+    rs.MoveFirst
+    Call showSelectedData
+  End If
   dgLocationMapping.Refresh
 End Sub
-

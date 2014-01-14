@@ -140,7 +140,16 @@ Begin VB.Form frmCategories
       End
    End
    Begin VB.CommandButton cmbNewRec 
-      Caption         =   "Add"
+      Caption         =   "New"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   240
       TabIndex        =   5
@@ -149,6 +158,15 @@ Begin VB.Form frmCategories
    End
    Begin VB.CommandButton cmbEdit 
       Caption         =   "Edit"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1440
       TabIndex        =   4
@@ -157,6 +175,15 @@ Begin VB.Form frmCategories
    End
    Begin VB.CommandButton cmbDelete 
       Caption         =   "Delete"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2640
       TabIndex        =   3
@@ -165,6 +192,15 @@ Begin VB.Form frmCategories
    End
    Begin VB.CommandButton Command4 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   5040
       TabIndex        =   2
@@ -173,6 +209,15 @@ Begin VB.Form frmCategories
    End
    Begin VB.CommandButton cmbClear 
       Caption         =   "Clear"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3840
       TabIndex        =   0
@@ -273,9 +318,8 @@ Private Sub showSelectedItemInForm()
 End Sub
 
 Private Sub cmbClear_Click()
- 
+ Call toogelInsertMode(False)
  Call clearForm
-  
 End Sub
 
 Private Sub clearForm()
@@ -308,17 +352,37 @@ Private Sub cmbEdit_Click()
 End Sub
 
 Private Sub cmbNewRec_Click()
-   If (isFormDetailValid) Then
-     rs.AddNew
-     rs!name = txtName.Text
-     rs!Description = txtDescription.Text
-     rs!CREATED_BY = UserSession.getLoginUser
-     rs!CREATED_DATE = Now
-     rs.Update
-     MsgBox "Record Created!", vbInformation
-   Call clearForm
-   End If
+  If cmbNewRec.Caption = "New" Then
+    Call toogelInsertMode(True)
+    txtName.SetFocus
+  Else
+    If (isFormDetailValid) Then
+       rs.AddNew
+       rs!name = txtName.Text
+       rs!Description = txtDescription.Text
+       rs!CREATED_BY = UserSession.getLoginUser
+       rs!CREATED_DATE = Now
+       rs.Update
+       MsgBox "Record Created!", vbInformation
+       Call toogelInsertMode(False)
+       Call populateDataGrid
+    End If
+
+  End If
 End Sub
+Private Sub toogelInsertMode(isInisilization As Boolean)
+  If (isInisilization) Then
+    Call clearForm
+    cmbNewRec.Caption = "Add"
+    cmbEdit.Enabled = False
+    cmbDelete.Enabled = False
+  Else
+    cmbNewRec.Caption = "New"
+    cmbEdit.Enabled = True
+    cmbDelete.Enabled = True
+  End If
+End Sub
+
 Private Function isFormDetailValid() As Boolean
   If (Me.txtName = vbNullString) Then
     isFormDetailValid = False
@@ -342,6 +406,10 @@ End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getCategoriesRs
   Set dgCategories.DataSource = rs
+  If (rs.RecordCount > 0) Then
+    rs.MoveFirst
+    Call showSelectedItemInForm
+  End If
   dgCategories.Refresh
 End Sub
 Private Sub formatDataGrid()
