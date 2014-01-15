@@ -16,21 +16,56 @@ Begin VB.Form frmInventory
       TabIndex        =   35
       Top             =   0
       Width           =   11415
+      Begin VB.CommandButton cmbExport 
+         Caption         =   "Export"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Left            =   9960
+         TabIndex        =   49
+         Top             =   720
+         Width           =   1335
+      End
       Begin VB.CommandButton cmdClearSearch 
          Caption         =   "Clear"
-         Height          =   435
-         Left            =   9000
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Left            =   8400
          TabIndex        =   47
-         Top             =   600
-         Width           =   1935
+         Top             =   720
+         Width           =   1335
       End
       Begin VB.CommandButton cmdSearch 
          Caption         =   "Search"
-         Height          =   435
-         Left            =   6840
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Left            =   6960
          TabIndex        =   46
-         Top             =   600
-         Width           =   1935
+         Top             =   720
+         Width           =   1335
       End
       Begin VB.TextBox txtSearchAuthor 
          Height          =   285
@@ -633,6 +668,26 @@ Private Sub cmbEdit_Click()
 
 End Sub
 
+Private Sub cmbExport_Click()
+  Dim excelApp As New Excel.Application
+  Dim oBook As New Excel.Workbook
+  Dim oSheet As New Excel.Worksheet
+  
+  Set excelApp = CreateObject("Excel.Application")
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.INVENTORY_TEMPLATE)
+  Set oSheet = excelApp.Worksheets(1)
+  
+  oSheet.name = "Transaction Report"
+  
+  oSheet.Range("A2").CopyFromRecordset dgItems.DataSource
+  oSheet.Columns.AutoFit
+  oSheet.Range("O1:Q1").EntireColumn.Hidden = True
+
+  excelApp.DisplayAlerts = False
+  oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
+  excelApp.Visible = True
+End Sub
+
 Private Sub cmbNewRec_Click()
 
   If (cmbNewRec.Caption = "New") Then
@@ -713,10 +768,10 @@ Private Function getSearchItemTypeID() As Integer
 End Function
 
 Private Sub cmLocation_Click()
-  Dim fileName As String
-  fileName = LookupDao.getLocationImgName(getLocationID)
-  If (fileName <> vbNullString) Then
-    imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & fileName)
+  Dim FileName As String
+  FileName = LookupDao.getLocationImgName(getLocationID)
+  If (FileName <> vbNullString) Then
+    imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & FileName)
   Else
      imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & Constants.MISSING_LOC_IMAGE_NAME)
   End If

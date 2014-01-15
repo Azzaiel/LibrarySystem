@@ -16,18 +16,53 @@ Begin VB.Form frmStudents
       TabIndex        =   30
       Top             =   120
       Width           =   13335
+      Begin VB.CommandButton cmbExport 
+         Caption         =   "Export"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   495
+         Left            =   12120
+         TabIndex        =   36
+         Top             =   240
+         Width           =   855
+      End
       Begin VB.CommandButton cmbClearSearch 
          Caption         =   "Clear"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   495
-         Left            =   12240
+         Left            =   11160
          TabIndex        =   35
          Top             =   240
          Width           =   855
       End
       Begin VB.CommandButton cmbSearch 
          Caption         =   "Search"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   495
-         Left            =   11280
+         Left            =   10200
          TabIndex        =   34
          Top             =   240
          Width           =   855
@@ -41,15 +76,15 @@ Begin VB.Form frmStudents
       End
       Begin VB.ComboBox cmSearchSection 
          Height          =   315
-         Left            =   5160
+         Left            =   4560
          Style           =   2  'Dropdown List
          TabIndex        =   7
          Top             =   360
-         Width           =   1935
+         Width           =   1815
       End
       Begin VB.TextBox txtSearchLastName 
          Height          =   285
-         Left            =   9120
+         Left            =   7800
          TabIndex        =   8
          Top             =   360
          Width           =   1935
@@ -67,7 +102,7 @@ Begin VB.Form frmStudents
          BackColor       =   &H0080FF80&
          Caption         =   "SECTION"
          Height          =   255
-         Left            =   3840
+         Left            =   3480
          TabIndex        =   32
          Top             =   360
          Width           =   975
@@ -76,10 +111,10 @@ Begin VB.Form frmStudents
          BackColor       =   &H0080FF80&
          Caption         =   "LAST_NAME"
          Height          =   255
-         Left            =   7800
+         Left            =   6720
          TabIndex        =   31
          Top             =   360
-         Width           =   1095
+         Width           =   975
       End
    End
    Begin VB.CommandButton cmbClear 
@@ -436,7 +471,7 @@ Private Sub cmbClear_Click()
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLRN.Text = ""
+   txtLrn.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -478,7 +513,7 @@ Private Sub cmbEdit_Click()
   Call resetFromSkin
   If (isFormValid) Then
     Set tempRs = StudentDao.getRsByID(rs!ID)
-    tempRs!lrn = Val(txtLRN.Text)
+    tempRs!lrn = Val(txtLrn.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -493,16 +528,36 @@ Private Sub cmbEdit_Click()
   End If
 End Sub
 
+Private Sub cmbExport_Click()
+ Dim excelApp As New Excel.Application
+  Dim oBook As New Excel.Workbook
+  Dim oSheet As New Excel.Worksheet
+  
+  Set excelApp = CreateObject("Excel.Application")
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.STUDENT_TEMPLATE)
+  Set oSheet = excelApp.Worksheets(1)
+  
+  oSheet.name = "Transaction Report"
+  
+  oSheet.Range("A2").CopyFromRecordset dgStudents.DataSource
+  oSheet.Columns.AutoFit
+  oSheet.Range("F1:F1").EntireColumn.Hidden = True
+
+  excelApp.DisplayAlerts = False
+  oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
+  excelApp.Visible = True
+End Sub
+
 Private Sub cmbNewRec_Click()
   Call resetFromSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
-    txtLRN.SetFocus
+    txtLrn.SetFocus
   Else
     If (isFormValid) Then
       Set tempRs = StudentDao.getFakeRs
       tempRs.AddNew
-      tempRs!lrn = Val(txtLRN.Text)
+      tempRs!lrn = Val(txtLrn.Text)
       tempRs!FIRST_NAME = txtFirstName.Text
       tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
       tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -564,6 +619,10 @@ Private Sub cmbSearch_Click()
   Call formatDataGrid
 End Sub
 
+Private Sub Command1_Click()
+
+End Sub
+
 Private Sub dgStudents_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
   Call showSelectedData
 End Sub
@@ -573,7 +632,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!ID
-   txtLRN.Text = rs!lrn
+   txtLrn.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -641,8 +700,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
-     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
+     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
      isFormValid = False
      Exit Function
   End If
@@ -670,7 +729,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLRN)
+ Call CommonHelper.toDefaultSkin(txtLrn)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(txtMIDDLE_NAME)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)
