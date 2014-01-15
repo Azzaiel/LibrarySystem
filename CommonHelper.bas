@@ -30,6 +30,7 @@ Public Sub sendWarning(txtBox As TextBox, errMsg As String)
   MsgBox errMsg, vbCritical
   txtBox.BackColor = vbRed
   txtBox.ForeColor = vbWhite
+  txtBox.SetFocus
 End Sub
 Public Sub sendComboBoxWarning(cmbBox As ComboBox, errMsg As String)
   MsgBox errMsg, vbCritical

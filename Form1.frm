@@ -5,10 +5,10 @@ Begin VB.Form frmMain
    ClientHeight    =   9765
    ClientLeft      =   120
    ClientTop       =   750
-   ClientWidth     =   20115
+   ClientWidth     =   20250
    LinkTopic       =   "Form1"
    ScaleHeight     =   9765
-   ScaleWidth      =   20115
+   ScaleWidth      =   20250
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
@@ -780,6 +780,12 @@ Begin VB.Form frmMain
    End
    Begin VB.Menu Account 
       Caption         =   "Account"
+      Begin VB.Menu mnUsers 
+         Caption         =   "Users"
+      End
+      Begin VB.Menu mnChangePassword 
+         Caption         =   "Changes Password"
+      End
    End
    Begin VB.Menu mnLogout 
       Caption         =   "Logout"
@@ -801,6 +807,7 @@ Private categoriesItemList() As Variant
 
 Public selectedStudentID As Integer
 Public selectedReturnDate As Date
+
 Private Sub Categuries_Click()
   frmCategories.Show vbModal
 End Sub
@@ -812,7 +819,6 @@ Private Sub cmdClearSearch_Click()
   cmSearchCategory.ListIndex = -1
   txtSearchAuthor = ""
 End Sub
-
 Private Sub cmItemsQuickSearch_Click()
   Set dgItems.DataSource = Nothing
   Call DbInstance.closeRecordSet(itemsRs)
@@ -830,10 +836,10 @@ Private Sub cmItemsQuickSearch_Click()
 End Sub
 
 Private Sub cmLocation_Click()
- Dim fileName As String
-  fileName = LookupDao.getLocationImgName(getLocationID)
-  If (fileName <> vbNullString) Then
-    imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & fileName)
+ Dim FileName As String
+  FileName = LookupDao.getLocationImgName(getLocationID)
+  If (FileName <> vbNullString) Then
+    imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & FileName)
   Else
      imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & Constants.MISSING_LOC_IMAGE_NAME)
   End If
@@ -981,7 +987,6 @@ End Sub
 Private Sub fmStudentInfo_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
       lblSelectStudent.ForeColor = vbBlue
 End Sub
-
 Private Sub Form_Load()
   Call populateDropDown
   Call initiateItemsRs
@@ -1238,6 +1243,10 @@ Private Sub lblSelectStudent_MouseMove(Button As Integer, Shift As Integer, X As
   lblSelectStudent.ForeColor = vbRed
 End Sub
 
+Private Sub mnChangePassword_Click()
+  frmChagePass.Show vbModal
+End Sub
+
 Private Sub mnInvetory_Click()
   frmInventory.Show vbModal
 End Sub
@@ -1250,12 +1259,21 @@ Private Sub mnLocationMapping_Click()
   frmLocationMapping.Show vbModal
 End Sub
 
+Private Sub mnLogout_Click()
+ frmControl.Visible = False
+  frmlogin.Show vbModal
+End Sub
+
 Private Sub mnStudents_Click()
   frmStudents.Show vbModal
 End Sub
 
 Private Sub mnTransaction_Click()
   frmTransactionReport.Show vbModal
+End Sub
+
+Private Sub mnUsers_Click()
+  frmAccount.Show vbModal
 End Sub
 
 Private Sub sections_Click()

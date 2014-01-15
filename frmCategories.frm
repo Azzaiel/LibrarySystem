@@ -333,11 +333,12 @@ Private Sub clearForm()
 End Sub
 
 Private Sub cmbDelete_Click()
- Dim response As String
+  Dim response As String
   response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
     rs.Delete
     MsgBox "Record Deleted", vbInformation
+    Call populateDataGrid
   End If
 End Sub
 
@@ -367,7 +368,6 @@ Private Sub cmbNewRec_Click()
        Call toogelInsertMode(False)
        Call populateDataGrid
     End If
-
   End If
 End Sub
 Private Sub toogelInsertMode(isInisilization As Boolean)

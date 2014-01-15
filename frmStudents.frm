@@ -643,23 +643,28 @@ Private Function isFormValid() As Boolean
   isValid = True
   If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
      Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
-     isValid = False
+     isFormValid = False
+     Exit Function
   End If
   If (Not CommonHelper.hasValidValue(txtFirstName.Text)) Then
      Call CommonHelper.sendWarning(txtFirstName, "First Name is required field")
-     isValid = False
+     isFormValid = False
+     Exit Function
   End If
   If (Not CommonHelper.hasValidValue(txtMIDDLE_NAME.Text)) Then
      Call CommonHelper.sendWarning(txtMIDDLE_NAME, "Middel Name is required field")
-     isValid = False
+     isFormValid = False
+     Exit Function
   End If
   If (Not CommonHelper.hasValidValue(TxtLAST_NAME.Text)) Then
      Call CommonHelper.sendWarning(TxtLAST_NAME, "Last Name is required field")
-     isValid = False
+     isFormValid = False
+     Exit Function
   End If
   If (Not CommonHelper.hasValidValue(CStr(getSectionID))) Then
      Call CommonHelper.sendComboBoxWarning(cmSections, "Please select a section")
-     isValid = False
+     isFormValid = False
+     Exit Function
   End If
   isFormValid = isValid
 End Function

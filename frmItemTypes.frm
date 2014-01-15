@@ -312,6 +312,7 @@ Private Sub cmbDelete_Click()
   If (response = vbOK) Then
     rs.Delete
     MsgBox "Record Deleted", vbInformation
+    Call populateDataGrid
   End If
 End Sub
 

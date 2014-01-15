@@ -11,6 +11,15 @@ Begin VB.Form frmReturnDate
    ScaleWidth      =   3765
    Begin VB.CommandButton cmdCancel 
       Caption         =   "Cancel"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   1920
       TabIndex        =   3
@@ -19,6 +28,15 @@ Begin VB.Form frmReturnDate
    End
    Begin VB.CommandButton cmdOk 
       Caption         =   "OK"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   720
       TabIndex        =   2
@@ -43,17 +61,26 @@ Begin VB.Form frmReturnDate
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107544577
+      Format          =   110034945
       CurrentDate     =   41649
    End
    Begin VB.Label Label8 
       BackColor       =   &H0080FF80&
-      Caption         =   "Return Date"
+      Caption         =   "Due Date"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
-      Left            =   480
+      Left            =   600
       TabIndex        =   0
       Top             =   360
-      Width           =   1095
+      Width           =   975
    End
 End
 Attribute VB_Name = "frmReturnDate"
