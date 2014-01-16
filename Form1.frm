@@ -5,10 +5,10 @@ Begin VB.Form frmMain
    ClientHeight    =   9765
    ClientLeft      =   120
    ClientTop       =   750
-   ClientWidth     =   20250
+   ClientWidth     =   20130
    LinkTopic       =   "Form1"
    ScaleHeight     =   9765
-   ScaleWidth      =   20250
+   ScaleWidth      =   20130
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
@@ -927,7 +927,7 @@ Private Sub showSelectedItem()
       lblMarkDamage.Enabled = True
       lblMarkLost.Enabled = True
    ElseIf (cmStatus = "Borrowed") Then
-      Set tempRs = InventoryDao.getStudentBorrower(itemsRs!ID)
+      Set tempRs = InventoryDao.getStudentBorrower(itemsRs!id)
       txtLRN = tempRs!lrn
       txtStudentName = tempRs!STUDENT_NAME
       txtAdviser = tempRs!Adviser
@@ -1137,14 +1137,14 @@ Private Sub lblChekOut_Click()
     If (selectedReturnDate <> vbNull) Then
       Set tempRs = InventoryDao.getFakeTransactionRS
       tempRs.AddNew
-      tempRs!ITEM_ID = itemsRs!ID
+      tempRs!ITEM_ID = itemsRs!id
       tempRs!STUDENT_ID = selectedStudentID
       tempRs!LEND_DATE = Now
       tempRs!LEND_BY = UserSession.getLoginUser
       tempRs!REQUESTED_RETURN_DATE = selectedReturnDate
       tempRs.Update
       Call DbInstance.closeRecordSet(tempRs)
-      Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+      Set tempRs = InventoryDao.getRsByID(itemsRs!id)
       tempRs!Status = "Borrowed"
       tempRs!LAST_MOD_BY = UserSession.getLoginUser
       tempRs!LAST_MOD_DATE = Now
@@ -1176,7 +1176,7 @@ Private Sub lblMarkAvailable_Click()
     Exit Sub
   Else
     Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
     tempRs!Status = "Available"
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now
@@ -1197,7 +1197,7 @@ Private Sub lblMarkDamage_Click()
     Exit Sub
   Else
     Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
     tempRs!Status = "Damaged"
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now
@@ -1218,7 +1218,7 @@ Private Sub lblMarkLost_Click()
     Exit Sub
   Else
     Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!ID)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
     tempRs!Status = "Loss"
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now

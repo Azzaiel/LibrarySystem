@@ -1,4 +1,18 @@
 Attribute VB_Name = "CommonHelper"
+Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" _
+(ByVal hWnd As Long, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, _
+ByVal lpDirectory As String, _
+ByVal nShowCmd As Long) As Long
+Public Function openFile(FilePath As String, ownerHwnd As Long) As Boolean
+     Dim dummy As Long
+     
+               'open the file using the default Editor or viewer.
+     dummy = ShellExecute(ownerHwnd, "Open", FilePath & Chr$(0), Chr$(0), _
+                                          Left$(FilePath, InStr(FilePath, "\")), 0)
+     ShowFileDefault = dummy
+     
+End Function
+
 Public Function extractStringValue(value As Object) As String
   If (Not IsNull(value)) Then
     extractStringValue = value

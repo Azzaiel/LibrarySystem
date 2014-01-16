@@ -229,7 +229,7 @@ Public Function getCategoriesRs() As ADODB.Recordset
    sqlQuery = "Select ID, NAME, DESCRIPTION, CREATED_BY, CREATED_DATE " & _
               "       , LAST_MOD_BY, LAST_MOD_DATE " & _
               "From CATEGORIES " & _
-              "Order by ID"
+              "Order by LAST_MOD_DATE DESC "
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
@@ -239,6 +239,54 @@ Public Function getCategoriesRs() As ADODB.Recordset
    Set getCategoriesRs = rs
    
 End Function
+Public Function isCategoryBeingUsed(id As Integer) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * from Items where CATEGORY_ID = " & id & _
+              " limit 1 "
+
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isCategoryBeingUsed = True
+   Else
+     isCategoryBeingUsed = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+Public Function isCategoryExist(name As String, Optional id As Integer = -1) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "From CATEGORIES " & _
+              "Where name = '" & name & "'"
+
+   If (id <> -1) Then
+     sqlQuery = sqlQuery & " and ID <> " & id
+   End If
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isCategoryExist = True
+   Else
+     isCategoryExist = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+
 
 Public Function getSections() As ADODB.Recordset
  Dim con As ADODB.Connection

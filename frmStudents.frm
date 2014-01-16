@@ -456,6 +456,8 @@ Private rs As ADODB.Recordset
 Private tempRs As ADODB.Recordset
 Private sectionItemList() As Variant
 
+
+
 Private Sub DataGrid1_Click()
 
 End Sub
@@ -500,7 +502,7 @@ Private Sub cmbDelete_Click()
  Dim response As String
  response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
-    Set tempRs = StudentDao.getRsByID(rs!ID)
+    Set tempRs = StudentDao.getRsByID(rs!id)
     tempRs.Delete
     Call DbInstance.closeRecordSet(tempRs)
     MsgBox "Record Deleted", vbInformation
@@ -512,7 +514,7 @@ End Sub
 Private Sub cmbEdit_Click()
   Call resetFromSkin
   If (isFormValid) Then
-    Set tempRs = StudentDao.getRsByID(rs!ID)
+    Set tempRs = StudentDao.getRsByID(rs!id)
     tempRs!lrn = Val(txtLRN.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
@@ -529,7 +531,7 @@ Private Sub cmbEdit_Click()
 End Sub
 
 Private Sub cmbExport_Click()
- Dim excelApp As New Excel.Application
+  Dim excelApp As New Excel.Application
   Dim oBook As New Excel.Workbook
   Dim oSheet As New Excel.Worksheet
   
@@ -545,7 +547,17 @@ Private Sub cmbExport_Click()
 
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
-  excelApp.Visible = True
+  
+  With oSheet.PageSetup
+    .Zoom = 80
+    .Orientation = xlLandscape
+  End With
+  Call oBook.ExportAsFixedFormat(xlTypePDF, CommonHelper.getTempPath & "\temp.pdf", xlQualityStandard, False, True)
+  oBook.Close
+  Dim test As Double
+  
+  Call CommonHelper.openFile(CommonHelper.getTempPath & "\temp.pdf", Me.hWnd)
+
 End Sub
 
 Private Sub cmbNewRec_Click()
@@ -631,7 +643,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
  Call showSelectedData
 End Sub
 Private Sub showSelectedData()
-   lblID.Caption = rs!ID
+   lblID.Caption = rs!id
    txtLRN.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME

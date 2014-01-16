@@ -307,7 +307,7 @@ Private rs As ADODB.Recordset
 
 Private Sub showSelectedItemInForm()
 
-  lblID.Caption = rs!ID
+  lblID.Caption = rs!id
   txtName.Text = rs!name
   txtDescription.Text = CommonHelper.extractStringValue(rs!Description)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
@@ -336,39 +336,58 @@ Private Sub cmbDelete_Click()
   Dim response As String
   response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
+    If (LookupDao.isCategoryBeingUsed(rs!id)) Then
+      MsgBox "Record cannot be deleted. It is being used by another record", vbCritical
+      Exit Sub
+    End If
     rs.Delete
     MsgBox "Record Deleted", vbInformation
     Call populateDataGrid
   End If
 End Sub
-
 Private Sub cmbEdit_Click()
-  rs!name = txtName.Text
-  rs!Description = txtDescription.Text
-  rs!LAST_MOD_BY = UserSession.getLoginUser
-  rs!LAST_MOD_DATE = Now
-  rs.Update
-  MsgBox "Record updated", vbInformation
-  Call showSelectedItemInForm
+  Call restoreFormDefaultSkin
+  If (isFormDetailValid) Then
+    If (LookupDao.isCategoryExist(txtName, rs!id)) Then
+        MsgBox "Category Already Exist", vbCritical
+        Exit Sub
+    End If
+    rs!name = txtName.Text
+    rs!Description = txtDescription.Text
+    rs!LAST_MOD_BY = UserSession.getLoginUser
+    rs!LAST_MOD_DATE = Now
+    rs.Update
+    MsgBox "Record updated", vbInformation
+    Call populateDataGrid
+  End If
 End Sub
-
 Private Sub cmbNewRec_Click()
+  Call restoreFormDefaultSkin
   If cmbNewRec.Caption = "New" Then
     Call toogelInsertMode(True)
     txtName.SetFocus
   Else
+    If (LookupDao.isCategoryExist(txtName)) Then
+        MsgBox "Category Already Exist", vbCritical
+        Exit Sub
+    End If
     If (isFormDetailValid) Then
        rs.AddNew
        rs!name = txtName.Text
        rs!Description = txtDescription.Text
        rs!CREATED_BY = UserSession.getLoginUser
        rs!CREATED_DATE = Now
+       rs!LAST_MOD_BY = UserSession.getLoginUser
+       rs!LAST_MOD_DATE = Now
        rs.Update
        MsgBox "Record Created!", vbInformation
        Call toogelInsertMode(False)
        Call populateDataGrid
     End If
   End If
+End Sub
+Private Sub restoreFormDefaultSkin()
+  Call CommonHelper.toDefaultSkin(txtName)
 End Sub
 Private Sub toogelInsertMode(isInisilization As Boolean)
   If (isInisilization) Then
@@ -384,9 +403,9 @@ Private Sub toogelInsertMode(isInisilization As Boolean)
 End Sub
 
 Private Function isFormDetailValid() As Boolean
-  If (Me.txtName = vbNullString) Then
+  If (Not CommonHelper.hasValidValue(txtName)) Then
     isFormDetailValid = False
-    MsgBox "Please enter the Category Name", vbCritical
+    Call CommonHelper.sendWarning(txtName, "Please enter the Category Name")
   Else
     isFormDetailValid = True
   End If
@@ -401,7 +420,7 @@ End Sub
 
 Private Sub Form_Load()
  Call populateDataGrid
- Call formatDataGrid
+ 
 End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getCategoriesRs
@@ -409,7 +428,10 @@ Public Sub populateDataGrid()
   If (rs.RecordCount > 0) Then
     rs.MoveFirst
     Call showSelectedItemInForm
+  Else
+    Call clearForm
   End If
+  Call formatDataGrid
   dgCategories.Refresh
 End Sub
 Private Sub formatDataGrid()
