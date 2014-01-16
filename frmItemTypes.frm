@@ -310,6 +310,10 @@ Private Sub cmbDelete_Click()
   Dim response As String
   response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
+    If (LookupDao.isItemBeingUsed(rs!id)) Then
+      MsgBox "Record cannot be deleted. It is being used by another record", vbCritical
+      Exit Sub
+    End If
     rs.Delete
     MsgBox "Record Deleted", vbInformation
     Call populateDataGrid
@@ -334,17 +338,45 @@ Private Sub formatDataGrid()
     .Columns(6).Alignment = dbgCenter
   End With
 End Sub
+
+Private Sub cmbEdit_Click()
+  Call restoreFormDefaultSkin
+  If (isFormDetailValid) Then
+    If (LookupDao.isItemTypeExist(txtName, rs!id)) Then
+        MsgBox "Item Already Exist", vbCritical
+        Exit Sub
+    End If
+    rs!name = txtName
+    rs!Description = txtDescription
+    rs!LAST_MOD_BY = UserSession.getLoginUser
+    rs!LAST_MOD_DATE = Now
+    rs.Update
+    MsgBox "Record Updated", vbInformation
+    Call toogelInsertMode(False)
+    Call populateDataGrid
+  End If
+End Sub
+Private Sub restoreFormDefaultSkin()
+  Call CommonHelper.toDefaultSkin(txtName)
+End Sub
 Private Sub cmbNewRec_Click()
+  Call restoreFormDefaultSkin
   If cmbNewRec.Caption = "New" Then
     txtName.SetFocus
     Call toogelInsertMode(True)
   Else
-    If (isFormDetailValid = True) Then
+    If (isFormDetailValid) Then
+      If (LookupDao.isItemTypeExist(txtName)) Then
+        MsgBox "Item Already Exist", vbCritical
+        Exit Sub
+      End If
       rs.AddNew
       rs!name = txtName
       rs!Description = txtDescription
       rs!CREATED_BY = UserSession.getLoginUser
       rs!CREATED_DATE = Now
+      rs!LAST_MOD_BY = UserSession.getLoginUser
+      rs!LAST_MOD_DATE = Now
       rs.Update
       MsgBox "Record Added", vbInformation
       Call toogelInsertMode(False)
@@ -367,7 +399,7 @@ End Sub
 Private Function isFormDetailValid() As Boolean
   If (Me.txtName = vbNullString) Then
     isFormDetailValid = False
-    MsgBox "Please enter the Item Type Name", vbCritical
+    Call CommonHelper.sendWarning(txtName, "Please enter the Item Type Name")
   Else
     isFormDetailValid = True
   End If
@@ -385,7 +417,7 @@ Private Sub Command4_Click()
  Unload Me
 End Sub
 Private Sub showSelectedRow()
-  lblID.Caption = rs!ID
+  lblID.Caption = rs!id
   txtName.Text = rs!name
   txtDescription.Text = CommonHelper.extractStringValue(rs!Description)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
@@ -400,7 +432,6 @@ End Sub
 
 Private Sub Form_Load()
   Call populateDataGrid
-  Call formatDataGrid
 End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getItemTypesRs()
@@ -410,6 +441,7 @@ Public Sub populateDataGrid()
     Call showSelectedRow
   End If
   dgItemTypes.Refresh
+    Call formatDataGrid
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
   Set dgItemTypes.DataSource = Nothing

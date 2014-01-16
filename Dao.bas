@@ -29,7 +29,7 @@ Public Function getItemTypesRs() As ADODB.Recordset
    sqlQuery = "Select ID, NAME, DESCRIPTION, CREATED_BY, CREATED_DATE " & _
               "       , LAST_MOD_BY, LAST_MOD_DATE " & _
               "From ITEM_TYPES " & _
-              "Order by ID"
+              "Order by LAST_MOD_DATE desc "
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
@@ -37,6 +37,53 @@ Public Function getItemTypesRs() As ADODB.Recordset
    rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
    
    Set getItemTypesRs = rs
+   
+End Function
+Public Function isItemTypeExist(name As String, Optional id As Integer = -1) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "From ITEM_TYPES " & _
+              "Where name = '" & name & "'"
+
+   If (id <> -1) Then
+     sqlQuery = sqlQuery & " and ID <> " & id
+   End If
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isItemTypeExist = True
+   Else
+     isItemTypeExist = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+Public Function isItemBeingUsed(id As Integer) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * from Items where ITEM_TYPE_ID = " & id & _
+              " limit 1 "
+
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isItemBeingUsed = True
+   Else
+     isItemBeingUsed = False
+   End If
+   Call closeRecordSet(rs)
    
 End Function
 Public Function getLocationImgName(locationID As String) As String
@@ -78,8 +125,8 @@ Public Function getCategoriesItemList() As Variant
    Dim index As Integer
    index = 0
    While Not rs.EOF
-     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!ID
-     itemList(index, Constants.ITEM_LABEL_INDEX) = rs!Name
+     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!id
+     itemList(index, Constants.ITEM_LABEL_INDEX) = rs!name
      index = index + 1
      rs.MoveNext
    Wend
@@ -104,8 +151,8 @@ Public Function getLocationMappingItemList() As Variant
    Dim index As Integer
    index = 0
    While Not rs.EOF
-     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!ID
-     itemList(index, Constants.ITEM_LABEL_INDEX) = rs!Name
+     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!id
+     itemList(index, Constants.ITEM_LABEL_INDEX) = rs!name
      index = index + 1
      rs.MoveNext
    Wend
@@ -132,8 +179,8 @@ Public Function getItemTypeItemList() As Variant
    Dim index As Integer
    index = 0
    While Not rs.EOF
-     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!ID
-     itemList(index, Constants.ITEM_LABEL_INDEX) = rs!Name
+     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!id
+     itemList(index, Constants.ITEM_LABEL_INDEX) = rs!name
      index = index + 1
      rs.MoveNext
    Wend
@@ -162,7 +209,7 @@ Public Function getSectionsItemList() As Variant
    Dim index As Integer
    index = 0
    While Not rs.EOF
-     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!ID
+     itemList(index, Constants.ITEM_VALUE_INDEX) = rs!id
      itemList(index, Constants.ITEM_LABEL_INDEX) = rs!Section
      index = index + 1
      rs.MoveNext
