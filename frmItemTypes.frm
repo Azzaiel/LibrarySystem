@@ -109,7 +109,7 @@ Begin VB.Form frmItemTypes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   5040
+      Left            =   4920
       TabIndex        =   5
       Top             =   3240
       Width           =   1095
@@ -304,6 +304,8 @@ Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
 Private Sub cmbClear_Click()
+  Call restoreFormDefaultSkin
+  Call toogelInsertMode(False)
   Call clearForm
 End Sub
 Private Sub cmbDelete_Click()
@@ -417,6 +419,7 @@ Private Sub Command4_Click()
  Unload Me
 End Sub
 Private Sub showSelectedRow()
+  Call restoreFormDefaultSkin
   lblID.Caption = rs!id
   txtName.Text = rs!name
   txtDescription.Text = CommonHelper.extractStringValue(rs!Description)
@@ -434,6 +437,7 @@ Private Sub Form_Load()
   Call populateDataGrid
 End Sub
 Public Sub populateDataGrid()
+  Call restoreFormDefaultSkin
   Set rs = LookupDao.getItemTypesRs()
   Set dgItemTypes.DataSource = rs
   If (rs.RecordCount > 0) Then
@@ -441,7 +445,7 @@ Public Sub populateDataGrid()
     Call showSelectedRow
   End If
   dgItemTypes.Refresh
-    Call formatDataGrid
+  Call formatDataGrid
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
   Set dgItemTypes.DataSource = Nothing

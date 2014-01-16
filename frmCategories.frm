@@ -307,6 +307,7 @@ Private rs As ADODB.Recordset
 
 Private Sub showSelectedItemInForm()
 
+  Call restoreFormDefaultSkin
   lblID.Caption = rs!id
   txtName.Text = rs!name
   txtDescription.Text = CommonHelper.extractStringValue(rs!Description)
@@ -318,6 +319,7 @@ Private Sub showSelectedItemInForm()
 End Sub
 
 Private Sub cmbClear_Click()
+ Call restoreFormDefaultSkin
  Call toogelInsertMode(False)
  Call clearForm
 End Sub
@@ -423,6 +425,7 @@ Private Sub Form_Load()
  
 End Sub
 Public Sub populateDataGrid()
+  Call restoreFormDefaultSkin
   Set rs = LookupDao.getCategoriesRs
   Set dgCategories.DataSource = rs
   If (rs.RecordCount > 0) Then
