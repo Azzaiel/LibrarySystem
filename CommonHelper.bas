@@ -9,7 +9,7 @@ Public Function openFile(FilePath As String, ownerHwnd As Long) As Boolean
                'open the file using the default Editor or viewer.
      dummy = ShellExecute(ownerHwnd, "Open", FilePath & Chr$(0), Chr$(0), _
                                           Left$(FilePath, InStr(FilePath, "\")), 0)
-     ShowFileDefault = dummy
+     openFile = dummy
      
 End Function
 

@@ -19,6 +19,54 @@ Public Function getLocationMappingRS() As ADODB.Recordset
    Set getLocationMappingRS = rs
    
 End Function
+Public Function isLocAleadyExist(name As String, Optional id As Integer = -1) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "From location_mappings " & _
+              "Where name = '" & name & "'"
+
+   If (id <> -1) Then
+     sqlQuery = sqlQuery & " and ID <> " & id
+   End If
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isLocAleadyExist = True
+   Else
+     isLocAleadyExist = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+Public Function isLocBeingUsed(id As Integer) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * from Items where LOCATION_ID = " & id & _
+              " limit 1 "
+
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isLocBeingUsed = True
+   Else
+     isLocBeingUsed = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+
 Public Function getItemTypesRs() As ADODB.Recordset
    
    Dim con As ADODB.Connection

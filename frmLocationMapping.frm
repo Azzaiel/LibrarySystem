@@ -341,6 +341,10 @@ Private Sub cmbDelete_Click()
   Dim response As String
   response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
+    If (LookupDao.isLocBeingUsed(rs!id)) Then
+      MsgBox "Record cannot be deleted. It is being used by another record", vbCritical
+      Exit Sub
+    End If
     rs.Delete
     MsgBox "Record Deleted", vbInformation
     Call showSelectedData
@@ -366,13 +370,19 @@ End Function
 Private Sub cmbEdit_Click()
   Call restoreFormDefaultSkin
   If (isFormValid) Then
+    
+    If (LookupDao.isLocAleadyExist(txtName, rs!id)) Then
+        MsgBox "Location Already Exist", vbCritical
+        Exit Sub
+    End If
+      
     rs!name = txtName.Text
     rs!FILE_NAME = txtFileName.Caption
     rs!LAST_MOD_BY = UserSession.getLoginUser
     rs!LAST_MOD_DATE = Now
     rs.Update
-    If (cdJpegBrowser.fileName <> vbNullString And txtFileName.Caption <> vbNullString) Then
-      Call FileCopy(cdJpegBrowser.fileName, CommonHelper.getImgPath & "\" & txtFileName.Caption)
+    If (cdJpegBrowser.FileName <> vbNullString And txtFileName.Caption <> vbNullString) Then
+      Call FileCopy(cdJpegBrowser.FileName, CommonHelper.getImgPath & "\" & txtFileName.Caption)
     End If
     MsgBox "Record Updated!", vbInformation
     Call showSelectedData
@@ -385,14 +395,20 @@ Private Sub cmbNewRec_Click()
   Else
     Call restoreFormDefaultSkin
     If (isFormValid) Then
+      
+      If (LookupDao.isLocAleadyExist(txtName)) Then
+        MsgBox "Location Already Exist", vbCritical
+        Exit Sub
+      End If
+      
       rs.AddNew
       rs!name = txtName.Text
       rs!FILE_NAME = txtFileName.Caption
       rs!CREATED_BY = UserSession.getLoginUser
       rs!CREATED_DATE = Now
       rs.Update
-      If (cdJpegBrowser.fileName <> vbNullString) Then
-        Call FileCopy(cdJpegBrowser.fileName, CommonHelper.getImgPath & "\" & txtFileName.Caption)
+      If (cdJpegBrowser.FileName <> vbNullString) Then
+        Call FileCopy(cdJpegBrowser.FileName, CommonHelper.getImgPath & "\" & txtFileName.Caption)
       End If
       MsgBox "Record Added!", vbInformation
       Call toogelInsertMode(False)
@@ -427,11 +443,11 @@ Private Sub cmdLoadImg_Click()
   cdJpegBrowser.DialogTitle = "Select a JPEG image file"
   cdJpegBrowser.ShowOpen
   
-  imgLoc.Picture = LoadPicture(cdJpegBrowser.fileName)
-  txtFileName.Caption = CommonHelper.getFileName(cdJpegBrowser.fileName)
+  imgLoc.Picture = LoadPicture(cdJpegBrowser.FileName)
+  txtFileName.Caption = CommonHelper.getFileName(cdJpegBrowser.FileName)
 End Sub
 Private Sub showSelectedData()
-  lblID.Caption = rs!ID
+  lblID.Caption = rs!id
   txtName.Text = rs!name
   txtFileName.Caption = CommonHelper.extractStringValue(rs!FILE_NAME)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
