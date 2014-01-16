@@ -78,7 +78,7 @@ Begin VB.Form frmChagePass
       End
       Begin VB.Label Label2 
          BackColor       =   &H0080FF80&
-         Caption         =   "Current Password"
+         Caption         =   "Confirm Password"
          Height          =   255
          Left            =   240
          TabIndex        =   6
@@ -176,6 +176,7 @@ Private Sub Form_Unload(Cancel As Integer)
        frmMain.frmControl.Visible = False
         Me.Hide
        frmlogin.Show vbModal
+       Exit Sub
     Else
       Cancel = 1
     End If
