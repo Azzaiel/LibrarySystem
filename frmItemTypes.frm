@@ -340,7 +340,6 @@ Private Sub formatDataGrid()
     .Columns(6).Alignment = dbgCenter
   End With
 End Sub
-
 Private Sub cmbEdit_Click()
   Call restoreFormDefaultSkin
   If (isFormDetailValid) Then

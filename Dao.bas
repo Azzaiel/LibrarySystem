@@ -9,7 +9,7 @@ Public Function getLocationMappingRS() As ADODB.Recordset
    
    sqlQuery = "select ID, NAME, FILE_NAME, CREATED_BY, CREATED_DATE, LAST_MOD_BY, LAST_MOD_DATE " & _
               "from location_mappings " & _
-              "Order by ID"
+              "Order by LAST_MOD_DATE desc "
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
@@ -334,8 +334,6 @@ Public Function isCategoryExist(name As String, Optional id As Integer = -1) As 
    Call closeRecordSet(rs)
    
 End Function
-
-
 Public Function getSections() As ADODB.Recordset
  Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -346,7 +344,7 @@ Public Function getSections() As ADODB.Recordset
               "       , CREATED_DATE, LAST_MOD_BY " & _
               "       , LAST_MOD_DATE " & _
               "From Sections " & _
-              "Order by ID"
+              "Order by LAST_MOD_DATE desc "
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
@@ -355,5 +353,51 @@ Public Function getSections() As ADODB.Recordset
    
    Set getSections = rs
 End Function
+Public Function isSectionExist(name As String, level As String, Optional id As Integer = -1) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "From Sections " & _
+              "Where name = '" & name & "'" & _
+              "      and level = '" & level & "'"
 
+   If (id <> -1) Then
+     sqlQuery = sqlQuery & " and ID <> " & id
+   End If
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isSectionExist = True
+   Else
+     isSectionExist = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+Public Function isSectionBeingUsed(id As Integer) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * from students where SECTION_ID = " & id & _
+              " limit 1 "
+
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isSectionBeingUsed = True
+   Else
+     isSectionBeingUsed = False
+   End If
+   Call closeRecordSet(rs)
+End Function
 

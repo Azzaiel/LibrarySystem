@@ -84,7 +84,7 @@ Begin VB.Form frmSections
       End
       Begin VB.Label Label3 
          BackColor       =   &H0080FF80&
-         Caption         =   "Level"
+         Caption         =   "*Level"
          Height          =   255
          Left            =   360
          TabIndex        =   15
@@ -93,7 +93,7 @@ Begin VB.Form frmSections
       End
       Begin VB.Label Label4 
          BackColor       =   &H0080FF80&
-         Caption         =   "Adviser"
+         Caption         =   "*Adviser"
          Height          =   255
          Left            =   360
          TabIndex        =   14
@@ -323,9 +323,9 @@ Private rs As ADODB.Recordset
 
 Private Sub showSelectedItemInForm()
 
-  lblID.Caption = rs!ID
+  lblID.Caption = rs!id
   txtName.Text = rs!name
-  txtLevel.Text = CommonHelper.extractStringValue(rs!Level)
+  txtLevel.Text = CommonHelper.extractStringValue(rs!level)
   txtAdviser.Text = CommonHelper.extractStringValue(rs!Adviser)
   lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
   lblCreatedDate.Caption = CommonHelper.extractDateValue(rs!CREATED_DATE)
@@ -355,41 +355,91 @@ Private Sub cmbDelete_Click()
  Dim response As String
   response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
+    If (LookupDao.isSectionBeingUsed(rs!id)) Then
+      MsgBox "Record cannot be deleted. It is being used by another record", vbCritical
+      Exit Sub
+    End If
     rs.Delete
     MsgBox "Record Deleted", vbInformation
   End If
 End Sub
 
 Private Sub cmbEdit_Click()
+   Call restoreFormDefaultSkin
   If (isFormDetailValid) Then
-    rs!name = txtName.Text
-    rs!Level = txtLevel.Text
-    rs!Adviser = txtAdviser.Text
-    rs!LAST_MOD_BY = UserSession.getLoginUser
-    rs!LAST_MOD_DATE = Now
-    rs.Update
+    If (hasValidForm) Then
+      If (LookupDao.isSectionExist(txtName, txtLevel, rs!id)) Then
+        MsgBox "Section Already Exist", vbCritical
+        Exit Sub
+      End If
+      rs!name = txtName.Text
+      rs!level = txtLevel.Text
+      rs!Adviser = txtAdviser.Text
+      rs!LAST_MOD_BY = UserSession.getLoginUser
+      rs!LAST_MOD_DATE = Now
+      rs.Update
+      MsgBox "Record updated", vbInformation
+      Call populateDataGrid
+    End If
   End If
-  MsgBox "Record updated", vbInformation
-  Call showSelectedItemInForm
+ 
 End Sub
 
 Private Sub cmbNewRec_Click()
+   Call restoreFormDefaultSkin
    If cmbNewRec.Caption = "New" Then
      Call toogelInsertMode(True)
      txtName.SetFocus
    Else
-     rs.AddNew
-     rs!Level = txtLevel.Text
-     rs!name = txtName.Text
-     rs!Adviser = txtAdviser.Text
-     rs!CREATED_BY = UserSession.getLoginUser
-     rs!CREATED_DATE = Now
-     rs.Update
-     MsgBox "Record Created!", vbInformation
-     Call toogelInsertMode(False)
-     Call populateDataGrid
+     If (hasValidForm) Then
+       If (LookupDao.isSectionExist(txtName, txtLevel)) Then
+          MsgBox "Section Already Exist", vbCritical
+          Exit Sub
+       End If
+       rs.AddNew
+       rs!level = txtLevel.Text
+       rs!name = txtName.Text
+       rs!Adviser = txtAdviser.Text
+       rs!CREATED_BY = UserSession.getLoginUser
+       rs!CREATED_DATE = Now
+       rs!LAST_MOD_BY = UserSession.getLoginUser
+       rs!LAST_MOD_DATE = Now
+       rs.Update
+       MsgBox "Record Created!", vbInformation
+       Call toogelInsertMode(False)
+       Call populateDataGrid
+     End If
    End If
 End Sub
+Private Sub restoreFormDefaultSkin()
+  Call CommonHelper.toDefaultSkin(txtName)
+  Call CommonHelper.toDefaultSkin(txtLevel)
+  Call CommonHelper.toDefaultSkin(txtAdviser)
+End Sub
+Private Function hasValidForm() As Boolean
+
+  If (Not CommonHelper.hasValidValue(txtName)) Then
+    Call CommonHelper.sendWarning(txtName, "Name is a required Field")
+    hasValidForm = False
+    Exit Function
+  End If
+  
+    If (Not CommonHelper.hasValidValue(txtLevel)) Then
+    Call CommonHelper.sendWarning(txtLevel, "Level is a required Field")
+    hasValidForm = False
+    Exit Function
+  End If
+  
+  If (Not CommonHelper.hasValidValue(txtAdviser)) Then
+    Call CommonHelper.sendWarning(txtAdviser, "Adviser is a required Field")
+    hasValidForm = False
+    Exit Function
+  End If
+  
+  hasValidForm = True
+  
+End Function
+
 Private Sub toogelInsertMode(isInisilization As Boolean)
   If (isInisilization) Then
     Call clearForm
@@ -404,6 +454,7 @@ Private Sub toogelInsertMode(isInisilization As Boolean)
 End Sub
 
 Private Sub cmdClear_Click()
+  Call restoreFormDefaultSkin
   Call toogelInsertMode(False)
   Call clearForm
 End Sub
@@ -417,7 +468,6 @@ End Sub
 
 Private Sub Form_Load()
  Call populateDataGrid
- Call formatDataGrid
 End Sub
 Public Sub populateDataGrid()
   Set rs = LookupDao.getSections
@@ -427,6 +477,7 @@ Public Sub populateDataGrid()
     Call showSelectedItemInForm
   End If
   dbSections.Refresh
+  Call formatDataGrid
 End Sub
 Private Sub formatDataGrid()
   With dbSections
