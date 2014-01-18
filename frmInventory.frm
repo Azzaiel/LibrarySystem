@@ -306,7 +306,7 @@ Begin VB.Form frmInventory
          Left            =   1560
          TabIndex        =   8
          Top             =   1320
-         Width           =   1935
+         Width           =   5055
       End
       Begin VB.ComboBox cmItemType 
          Height          =   315
@@ -900,6 +900,10 @@ Private Sub populateDropDown()
     cmSearchCategory.AddItem (categoriesItemList(index, Constants.ITEM_LABEL_INDEX))
   Next index
   
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+   Call frmMain.reloadBookStats
 End Sub
 
 Private Sub txtSearchAuthor_KeyPress(KeyAscii As Integer)

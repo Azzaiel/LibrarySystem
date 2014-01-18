@@ -61,7 +61,7 @@ Begin VB.Form frmReturnDate
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   110034945
+      Format          =   107413505
       CurrentDate     =   41649
    End
    Begin VB.Label Label8 
@@ -104,4 +104,8 @@ End Sub
 
 Private Sub Form_Load()
   dtpReturnDate = DateAdd("ww", 1, Now)
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+  Call frmMain.reloadBookStats
 End Sub

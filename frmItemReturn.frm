@@ -402,7 +402,7 @@ Private Sub Form_Load()
     'Item
     txtItemCode = CommonHelper.extractStringValue(rs!ITEM_CODE)
     txtItemType = CommonHelper.extractStringValue(rs!ITEM_TYPE)
-    txtCategory = CommonHelper.extractStringValue(rs!CATEGORY)
+    txtCategory = CommonHelper.extractStringValue(rs!Category)
     txtItemName = CommonHelper.extractStringValue(rs!ITEM_NAME)
     txtAuthor = CommonHelper.extractStringValue(rs!author)
     'Student
@@ -419,4 +419,5 @@ End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
    Call DbInstance.closeRecordSet(rs)
+   Call frmMain.reloadBookStats
 End Sub

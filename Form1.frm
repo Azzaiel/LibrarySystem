@@ -2,19 +2,117 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmMain 
    Caption         =   "Library System"
-   ClientHeight    =   9765
+   ClientHeight    =   9810
    ClientLeft      =   120
    ClientTop       =   750
-   ClientWidth     =   20130
+   ClientWidth     =   20250
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9765
-   ScaleWidth      =   20130
+   ScaleHeight     =   9810
+   ScaleWidth      =   20250
    Begin VB.Frame frmControl 
       Height          =   11895
       Left            =   0
       TabIndex        =   0
-      Top             =   -120
-      Width           =   20055
+      Top             =   0
+      Width           =   20295
+      Begin VB.Frame Frame6 
+         Caption         =   "Stats"
+         Height          =   2295
+         Left            =   13920
+         TabIndex        =   53
+         Top             =   7440
+         Width           =   6135
+         Begin MSDataGridLib.DataGrid dgStat 
+            Height          =   1335
+            Left            =   840
+            TabIndex        =   54
+            Top             =   240
+            Width           =   4455
+            _ExtentX        =   7858
+            _ExtentY        =   2355
+            _Version        =   393216
+            AllowUpdate     =   -1  'True
+            AllowArrows     =   -1  'True
+            HeadLines       =   1
+            RowHeight       =   15
+            TabAction       =   2
+            RowDividerStyle =   3
+            AllowDelete     =   -1  'True
+            BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ColumnCount     =   2
+            BeginProperty Column00 
+               DataField       =   ""
+               Caption         =   ""
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   1033
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column01 
+               DataField       =   ""
+               Caption         =   ""
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   1033
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            SplitCount      =   1
+            BeginProperty Split0 
+               SizeMode        =   1
+               AllowRowSizing  =   0   'False
+               AllowSizing     =   0   'False
+               BeginProperty Column00 
+               EndProperty
+               BeginProperty Column01 
+               EndProperty
+            EndProperty
+         End
+         Begin VB.Label lblTotalBooks 
+            Alignment       =   2  'Center
+            Caption         =   "totalBooks"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   13.5
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   495
+            Left            =   720
+            TabIndex        =   55
+            Top             =   1680
+            Width           =   4815
+         End
+      End
       Begin VB.Frame Frame1 
          Caption         =   "Quick Search"
          Height          =   2055
@@ -596,19 +694,19 @@ Begin VB.Form frmMain
       Begin VB.Frame Frame3 
          Caption         =   "Dashboard - (Double click to open detail form)"
          ClipControls    =   0   'False
-         Height          =   9615
-         Left            =   13800
+         Height          =   7335
+         Left            =   13920
          TabIndex        =   3
          Top             =   120
          Width           =   6135
          Begin MSDataGridLib.DataGrid dgTransactionDash 
-            Height          =   9255
+            Height          =   6975
             Left            =   120
             TabIndex        =   46
             Top             =   240
             Width           =   5895
             _ExtentX        =   10398
-            _ExtentY        =   16325
+            _ExtentY        =   12303
             _Version        =   393216
             AllowUpdate     =   -1  'True
             AllowArrows     =   -1  'True
@@ -800,6 +898,7 @@ Option Explicit
 Private itemsRs As ADODB.Recordset
 Private tempRs As ADODB.Recordset
 Private transactionRS As ADODB.Recordset
+Private statRS As ADODB.Recordset
 
 Private itemTypeItemList() As Variant
 Private locationItemList() As Variant
@@ -991,7 +1090,23 @@ Private Sub Form_Load()
   Call populateDropDown
   Call initiateItemsRs
   Call populateTransactionDatagrid
+  Call reloadBookStats
 End Sub
+Public Sub reloadBookStats()
+   Set statRS = InventoryDao.getBookStatRs
+   Set dgStat.DataSource = statRS
+   Dim totalBooks As Long
+   totalBooks = 0
+   While Not statRS.EOF
+     totalBooks = totalBooks + Val(statRS!Total)
+     statRS.MoveNext
+   Wend
+   
+   lblTotalBooks = "Total Books: " & totalBooks
+   
+   dgStat.Refresh
+End Sub
+
 Private Sub populateTransactionDatagrid()
   Set transactionRS = InventoryDao.getTransactionDashboardRs
   Set dgTransactionDash.DataSource = transactionRS
@@ -1104,13 +1219,6 @@ End Function
 
 
 
-Private Sub Frame6_DragDrop(Source As Control, X As Single, Y As Single)
-
-End Sub
-
-Private Sub Frame6_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-  
-End Sub
 Private Sub clearStudentInfo()
     txtStudentName = ""
     txtSection = ""
@@ -1151,6 +1259,7 @@ Private Sub lblChekOut_Click()
       tempRs.Update
       Call DbInstance.closeRecordSet(tempRs)
       MsgBox "Transaction Successful"
+      Call reloadBookStats
       Call cmItemsQuickSearch_Click
       Call clearDetailForm
       Call populateTransactionDatagrid
@@ -1185,6 +1294,7 @@ Private Sub lblMarkAvailable_Click()
     MsgBox "Item Status updated", vbInformation
     Call cmItemsQuickSearch_Click
   End If
+   Call reloadBookStats
 End Sub
 
 Private Sub lblMarkAvailable_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1206,6 +1316,7 @@ Private Sub lblMarkDamage_Click()
     MsgBox "Item Status updated", vbInformation
     Call cmItemsQuickSearch_Click
   End If
+   Call reloadBookStats
 End Sub
 
 Private Sub lblMarkDamage_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1227,6 +1338,7 @@ Private Sub lblMarkLost_Click()
     MsgBox "Item Status updated", vbInformation
     Call cmItemsQuickSearch_Click
   End If
+   Call reloadBookStats
 End Sub
 
 Private Sub lblMarkLost_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)

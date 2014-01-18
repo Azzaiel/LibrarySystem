@@ -157,7 +157,7 @@ Private Sub cmdSubmit_Click()
         rs!Password = Hash.HashBytes(bytBlock)
         rs!FORCE_CHANGE = "F"
         rs.Update
-        UserSession.foreChange = "F"
+        UserSession.forceChange = "F"
         MsgBox "Password was successfuly updated", vbInformation
         Unload Me
       Else
@@ -169,7 +169,7 @@ Private Sub cmdSubmit_Click()
   End If
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
-  If (UserSession.foreChange = "T") Then
+  If (UserSession.forceChange = "T") Then
     Dim response As String
     response = MsgBox("Your are not allowed use the system unless you change your password. System will close if you contineu", vbOKCancel, "Question")
     If (response = vbOK) Then

@@ -345,3 +345,23 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
    
    Set getTransactionReport = rs
 End Function
+
+Public Function getBookStatRs() As ADODB.Recordset
+    Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "select STATUS as BOOKS, COUNT(*) as Total " & _
+              "from items " & _
+              "GROUP BY STATUS " & _
+              "ORDER BY STATUS "
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getBookStatRs = rs
+End Function
+

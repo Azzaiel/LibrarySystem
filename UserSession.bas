@@ -2,7 +2,7 @@ Attribute VB_Name = "UserSession"
 Option Explicit
 Public username As String
 Public role As String
-Public foreChange As String
+Public forceChange As String
 
 Public Function getLoginUser() As String
 

@@ -502,6 +502,14 @@ Private Sub cmbDelete_Click()
  Dim response As String
  response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
+  
+    If (StudentDao.isStudentBeingUsed(rs!id)) Then
+    
+      MsgBox "Cannot delete record, It has a reference to the transaction data", vbCritical
+      Exit Sub
+    
+    End If
+  
     Set tempRs = StudentDao.getRsByID(rs!id)
     tempRs.Delete
     Call DbInstance.closeRecordSet(tempRs)
@@ -514,6 +522,12 @@ End Sub
 Private Sub cmbEdit_Click()
   Call resetFromSkin
   If (isFormValid) Then
+  
+    If (isLrnAlreadyInUse(rs!id)) Then
+      MsgBox "Lrn is Already in use", vbCritical
+      Exit Sub
+    End If
+      
     Set tempRs = StudentDao.getRsByID(rs!id)
     tempRs!lrn = Val(txtLrn.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
@@ -546,11 +560,15 @@ Private Sub cmbExport_Click()
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
   
-  Call oBook.ExportAsFixedFormat(xlTypePDF, CommonHelper.getTempPath & "\temp.pdf", xlQualityStandard, False, True)
+  Dim pdfFilePat As String
+  
+  pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
+  
+  Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
   oBook.Close
   Dim test As Double
   
-  Call CommonHelper.openFile(CommonHelper.getTempPath & Constants.TEMP_PDF, Me.hWnd)
+  Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
 
 End Sub
 
@@ -561,6 +579,12 @@ Private Sub cmbNewRec_Click()
     txtLrn.SetFocus
   Else
     If (isFormValid) Then
+     
+      If (isLrnAlreadyInUse) Then
+        MsgBox "Lrn is Already in use", vbCritical
+        Exit Sub
+      End If
+    
       Set tempRs = StudentDao.getFakeRs
       tempRs.AddNew
       tempRs!lrn = Val(txtLrn.Text)
@@ -581,6 +605,19 @@ Private Sub cmbNewRec_Click()
     End If
   End If
 End Sub
+Private Function isLrnAlreadyInUse(Optional studentID As Integer = -1) As Boolean
+   Set tempRs = StudentDao.getRsByLrn(txtLrn)
+   If (tempRs.RecordCount > 0) Then
+     If (tempRs!id = studentID) Then
+       isLrnAlreadyInUse = False
+     Else
+       isLrnAlreadyInUse = True
+     End If
+   Else
+     isLrnAlreadyInUse = False
+   End If
+   Call DbInstance.closeRecordSet(tempRs)
+End Function
 Private Sub toogelInsertMode(isInisilization As Boolean)
   If (isInisilization) Then
     Call clearForm

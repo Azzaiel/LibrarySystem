@@ -111,7 +111,7 @@ Public Function getFakeRs() As ADODB.Recordset
    Set getFakeRs = rs
 
 End Function
-Public Function getRsByID(StudentID As Integer) As ADODB.Recordset
+Public Function getRsByID(studentID As Integer) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -120,7 +120,7 @@ Public Function getRsByID(StudentID As Integer) As ADODB.Recordset
    
    sqlQuery = "Select * " & _
               "from STUDENTS " & _
-              "Where ID = " & StudentID
+              "Where ID = " & studentID
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
@@ -130,5 +130,44 @@ Public Function getRsByID(StudentID As Integer) As ADODB.Recordset
    Set getRsByID = rs
 
 End Function
+Public Function getRsByLrn(lrn As String) As ADODB.Recordset
 
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "from STUDENTS " & _
+              "Where LRN = " & lrn
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getRsByLrn = rs
+
+End Function
+Public Function isStudentBeingUsed(id As Integer) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * from transactions where STUDENT_ID = " & id & _
+              " limit 1 "
+
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isStudentBeingUsed = True
+   Else
+     isStudentBeingUsed = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
 
