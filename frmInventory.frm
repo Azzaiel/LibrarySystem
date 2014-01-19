@@ -747,10 +747,20 @@ Private Sub cmbExport_Click()
   oSheet.Range("C7").value = lossCount
   
   oSheet.Range("C8").value = availableCount + borrowedCount + damageCount + lossCount
-
+  
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
-  excelApp.Visible = True
+  
+  If (UserSession.role = "Admin") Then
+    excelApp.Visible = True
+  Else
+    Dim pdfFilePat As String
+    pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
+    Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
+    oBook.Close
+    Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
+  End If
+
 End Sub
 
 Private Sub cmbNewRec_Click()

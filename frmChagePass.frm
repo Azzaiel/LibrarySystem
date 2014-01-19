@@ -122,22 +122,24 @@ Private Sub cmbClose_Click()
   Unload Me
 End Sub
 Private Function isFormValid() As Boolean
-  Dim isValid As Boolean
-  isValid = True
   If (Not CommonHelper.hasValidValue(txtCurrentPass.Text)) Then
      Call CommonHelper.sendWarning(txtCurrentPass, "Please Enter your Current password")
      isFormValid = False
+     Exit Function
   ElseIf (Not CommonHelper.hasValidValue(txtNewPass.Text)) Then
      Call CommonHelper.sendWarning(txtNewPass, "Please Enter your New password")
      isFormValid = False
+     Exit Function
   ElseIf (Not CommonHelper.hasValidValue(txtConfirmPass.Text)) Then
      Call CommonHelper.sendWarning(txtConfirmPass, "Please Enter your New password")
      isFormValid = False
+     Exit Function
   ElseIf (txtNewPass.Text <> txtConfirmPass.Text) Then
      MsgBox "New password and Confirm password does not match", vbCritical
      isFormValid = False
+     Exit Function
   End If
-  isFormValid = isValid
+  isFormValid = True
 End Function
 Private Sub resetFromSkin()
  Call CommonHelper.toDefaultSkin(txtCurrentPass)
