@@ -1074,6 +1074,7 @@ Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
     
   End If
 End Sub
+
 Private Sub dgTransactionDash_DblClick()
    If (transactionRS.RecordCount > 0) Then
      frmItemReturn.transactionID = transactionRS!Transaction_ID

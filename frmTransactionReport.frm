@@ -267,4 +267,10 @@ End Sub
 Private Sub Form_Load()
   dpStartDate = DateAdd("m", -1, Now)
   dpEndDate = Now
-End Sub
+  Set dgReport.DataSource = Nothing
+  Call DbInstance.closeRecordSet(rs)
+  Set rs = InventoryDao.getFakeTransactionReportRs
+  Set dgReport.DataSource = rs
+  dgReport.Refresh
+  Call formatDataGrid
+  End Sub

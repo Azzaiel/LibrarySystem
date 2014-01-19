@@ -703,9 +703,13 @@ Private Sub cmbExport_Click()
   
   oSheet.name = "Transaction Report"
   
-  oSheet.Range("A2").CopyFromRecordset dgItems.DataSource
+  oSheet.Range("A11").CopyFromRecordset dgItems.DataSource
   oSheet.Columns.AutoFit
   oSheet.Range("O1:Q1").EntireColumn.Hidden = True
+  
+  Dim availableCount As Integer
+  Dim lossCount As Integer
+  
 
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK

@@ -364,6 +364,36 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
    Set getTransactionReport = rs
 End Function
 
+Public Function getFakeTransactionReportRs()
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select item.ITEM_CODE, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as ITEM_NAME, item.AUTHOR " & _
+              "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
+              "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_BY as RELEASED_BY " & _
+              "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _
+              "from transactions tran, STUDENTS stud " & _
+              "     , sections sec, items item " & _
+              "     , item_types as itype " & _
+              "     , categories cat " & _
+              "where tran.STUDENT_ID = stud.ID " & _
+              "      and tran.ITEM_ID = item.ID " & _
+              "      and stud.SECTION_ID = sec.ID " & _
+              "      and itype.ID = item.ITEM_TYPE_ID " & _
+              "      and cat.ID = item.CATEGORY_ID " & _
+              "      and 1 = 2 "
+       
+           
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getFakeTransactionReportRs = rs
+End Function
+
 Public Function getBookStatRs() As ADODB.Recordset
     Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
