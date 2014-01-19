@@ -235,6 +235,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
+Private tempRs As ADODB.Recordset
 Private Sub toogelInsertMode(isInisilization As Boolean)
   If (isInisilization) Then
     Call clearForm
@@ -282,6 +283,10 @@ Private Sub cmbNewRec_Click()
     txtUserName.SetFocus
   Else
     If (isFormDetailValid) Then
+      If (isUsernameAlreadyExist) Then
+        MsgBox "Username Already exist", vbCritical
+        Exit Sub
+      End If
       rs.AddNew
       rs!username = txtUserName
       rs!role = cmRole.Text
@@ -297,6 +302,17 @@ Private Sub cmbNewRec_Click()
     End If
   End If
 End Sub
+Private Function isUsernameAlreadyExist() As Boolean
+  Set tempRs = UserSession.getUserByUserName(txtUserName)
+  
+  If (tempRs.RecordCount > 0) Then
+    isUsernameAlreadyExist = True
+  Else
+    isUsernameAlreadyExist = False
+  End If
+  
+  Call DbInstance.closeRecordSet(tempRs)
+End Function
 Private Function resetFormSkin()
   Call CommonHelper.toDefaultSkin(txtUserName)
   Call CommonHelper.toComboBoxDefaultSkin(cmRole)
