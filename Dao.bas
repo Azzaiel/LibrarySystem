@@ -401,3 +401,4 @@ Public Function isSectionBeingUsed(id As Integer) As Boolean
    Call closeRecordSet(rs)
 End Function
 
+

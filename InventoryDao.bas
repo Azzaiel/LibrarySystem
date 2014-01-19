@@ -382,4 +382,26 @@ Public Function getBookStatRs() As ADODB.Recordset
    
    Set getBookStatRs = rs
 End Function
+Public Function isItemBeingUsed(itemID As Integer) As Boolean
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * from transactions where ITEM_ID = " & itemID & _
+              " limit 1 "
+
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+     isItemBeingUsed = True
+   Else
+     isItemBeingUsed = False
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+
 

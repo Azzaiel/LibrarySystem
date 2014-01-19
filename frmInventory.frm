@@ -617,9 +617,14 @@ Private Sub cmbClose_Click()
 End Sub
 
 Private Sub cmbDelete_Click()
- 'Call resetFromSkin
  Dim response As String
  response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
+ 
+  If (InventoryDao.isItemBeingUsed(rs!id)) Then
+    MsgBox "Cannot delete an Item that is already used for a transaction", vbCritical
+    Exit Sub
+  End If
+ 
   If (response = vbOK) Then
     Set tempRs = InventoryDao.getRsByID(rs!id)
     tempRs.Delete
@@ -631,7 +636,7 @@ Private Sub cmbDelete_Click()
 End Sub
 Private Sub clearForm()
 
-     lblID.Caption = ""
+    lblID.Caption = ""
     txtName.Text = ""
     txtItemCode.Text = ""
     txtDescription.Text = ""
@@ -708,7 +713,7 @@ Private Sub cmbExport_Click()
 End Sub
 
 Private Sub cmbNewRec_Click()
-  Call restoreFormDefaultSkin
+      Call restoreFormDefaultSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
     txtItemCode.SetFocus
