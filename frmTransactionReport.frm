@@ -14,7 +14,7 @@ Begin VB.Form frmTransactionReport
       Caption         =   "Select Date Range by Borrow Date"
       Height          =   975
       Left            =   3960
-      TabIndex        =   0
+      TabIndex        =   4
       Top             =   0
       Width           =   10455
       Begin VB.CommandButton cmdExport 
@@ -30,7 +30,7 @@ Begin VB.Form frmTransactionReport
          EndProperty
          Height          =   375
          Left            =   8520
-         TabIndex        =   7
+         TabIndex        =   3
          Top             =   360
          Width           =   1695
       End
@@ -47,13 +47,34 @@ Begin VB.Form frmTransactionReport
          EndProperty
          Height          =   375
          Left            =   6480
-         TabIndex        =   5
+         TabIndex        =   2
          Top             =   360
          Width           =   1695
       End
       Begin MSComCtl2.DTPicker dpStartDate 
          Height          =   375
          Left            =   1440
+         TabIndex        =   0
+         Top             =   360
+         Width           =   1695
+         _ExtentX        =   2990
+         _ExtentY        =   661
+         _Version        =   393216
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Format          =   108199937
+         CurrentDate     =   41650
+      End
+      Begin MSComCtl2.DTPicker dpEndDate 
+         Height          =   375
+         Left            =   4560
          TabIndex        =   1
          Top             =   360
          Width           =   1695
@@ -69,28 +90,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   110034945
-         CurrentDate     =   41650
-      End
-      Begin MSComCtl2.DTPicker dpEndDate 
-         Height          =   375
-         Left            =   4560
-         TabIndex        =   2
-         Top             =   360
-         Width           =   1695
-         _ExtentX        =   2990
-         _ExtentY        =   661
-         _Version        =   393216
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Format          =   110034945
+         Format          =   108199937
          CurrentDate     =   41650
       End
       Begin VB.Label Label1 
@@ -107,7 +107,7 @@ Begin VB.Form frmTransactionReport
          EndProperty
          Height          =   255
          Left            =   3360
-         TabIndex        =   4
+         TabIndex        =   6
          Top             =   360
          Width           =   1095
       End
@@ -125,7 +125,7 @@ Begin VB.Form frmTransactionReport
          EndProperty
          Height          =   255
          Left            =   240
-         TabIndex        =   3
+         TabIndex        =   5
          Top             =   360
          Width           =   1095
       End
@@ -133,7 +133,7 @@ Begin VB.Form frmTransactionReport
    Begin MSDataGridLib.DataGrid dgReport 
       Height          =   6975
       Left            =   240
-      TabIndex        =   6
+      TabIndex        =   7
       Top             =   1080
       Width           =   17775
       _ExtentX        =   31353

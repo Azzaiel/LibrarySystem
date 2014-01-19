@@ -23,7 +23,7 @@ Begin VB.Form frmLocationMapping
       EndProperty
       Height          =   495
       Left            =   480
-      TabIndex        =   19
+      TabIndex        =   2
       Top             =   7560
       Width           =   1095
    End
@@ -40,7 +40,7 @@ Begin VB.Form frmLocationMapping
       EndProperty
       Height          =   495
       Left            =   1800
-      TabIndex        =   18
+      TabIndex        =   3
       Top             =   7560
       Width           =   1095
    End
@@ -57,7 +57,7 @@ Begin VB.Form frmLocationMapping
       EndProperty
       Height          =   495
       Left            =   3120
-      TabIndex        =   17
+      TabIndex        =   4
       Top             =   7560
       Width           =   1095
    End
@@ -74,7 +74,7 @@ Begin VB.Form frmLocationMapping
       EndProperty
       Height          =   495
       Left            =   5640
-      TabIndex        =   16
+      TabIndex        =   6
       Top             =   7560
       Width           =   1095
    End
@@ -91,7 +91,7 @@ Begin VB.Form frmLocationMapping
       EndProperty
       Height          =   495
       Left            =   4440
-      TabIndex        =   15
+      TabIndex        =   5
       Top             =   7560
       Width           =   1095
    End
@@ -99,13 +99,13 @@ Begin VB.Form frmLocationMapping
       Caption         =   "Loc Form"
       Height          =   7335
       Left            =   120
-      TabIndex        =   0
+      TabIndex        =   7
       Top             =   120
       Width           =   6975
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1320
-         TabIndex        =   3
+         TabIndex        =   0
          Top             =   840
          Width           =   1935
       End
@@ -113,7 +113,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "Load Image"
          Height          =   255
          Left            =   3240
-         TabIndex        =   2
+         TabIndex        =   1
          Top             =   1440
          Width           =   1335
       End
@@ -130,7 +130,7 @@ Begin VB.Form frmLocationMapping
          Picture         =   "frmLocationMapping.frx":0000
          ScaleHeight     =   3675
          ScaleWidth      =   6195
-         TabIndex        =   1
+         TabIndex        =   8
          Top             =   1920
          Width           =   6255
       End
@@ -157,7 +157,7 @@ Begin VB.Form frmLocationMapping
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   14
+         TabIndex        =   19
          Top             =   6840
          Width           =   1935
       End
@@ -166,7 +166,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "Created By"
          Height          =   255
          Left            =   240
-         TabIndex        =   13
+         TabIndex        =   18
          Top             =   5760
          Width           =   855
       End
@@ -175,7 +175,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "Created Date"
          Height          =   255
          Left            =   240
-         TabIndex        =   12
+         TabIndex        =   17
          Top             =   6120
          Width           =   975
       End
@@ -184,7 +184,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "Last Mod By"
          Height          =   255
          Left            =   240
-         TabIndex        =   11
+         TabIndex        =   16
          Top             =   6480
          Width           =   975
       End
@@ -193,7 +193,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "Last Mod Date"
          Height          =   255
          Left            =   240
-         TabIndex        =   10
+         TabIndex        =   15
          Top             =   6840
          Width           =   1095
       End
@@ -202,7 +202,7 @@ Begin VB.Form frmLocationMapping
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   9
+         TabIndex        =   14
          Top             =   5760
          Width           =   1935
       End
@@ -211,7 +211,7 @@ Begin VB.Form frmLocationMapping
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   8
+         TabIndex        =   13
          Top             =   6120
          Width           =   1935
       End
@@ -220,7 +220,7 @@ Begin VB.Form frmLocationMapping
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   7
+         TabIndex        =   12
          Top             =   6480
          Width           =   1935
       End
@@ -229,7 +229,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "ID"
          Height          =   255
          Left            =   240
-         TabIndex        =   6
+         TabIndex        =   11
          Top             =   360
          Width           =   255
       End
@@ -238,7 +238,7 @@ Begin VB.Form frmLocationMapping
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   840
-         TabIndex        =   5
+         TabIndex        =   10
          Top             =   360
          Width           =   375
       End
@@ -247,7 +247,7 @@ Begin VB.Form frmLocationMapping
          Caption         =   "* Name"
          Height          =   255
          Left            =   240
-         TabIndex        =   4
+         TabIndex        =   9
          Top             =   840
          Width           =   615
       End

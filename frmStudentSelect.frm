@@ -13,13 +13,13 @@ Begin VB.Form frmStudentSelect
       Caption         =   "Search Panel"
       Height          =   1455
       Left            =   600
-      TabIndex        =   0
+      TabIndex        =   5
       Top             =   120
       Width           =   7335
       Begin VB.TextBox txtSearchLastName 
          Height          =   285
          Left            =   4920
-         TabIndex        =   5
+         TabIndex        =   2
          Top             =   360
          Width           =   1935
       End
@@ -27,30 +27,48 @@ Begin VB.Form frmStudentSelect
          Height          =   315
          Left            =   1320
          Style           =   2  'Dropdown List
-         TabIndex        =   4
+         TabIndex        =   1
          Top             =   840
          Width           =   1935
       End
       Begin VB.TextBox txtSearchLrn 
          Height          =   285
          Left            =   1320
-         TabIndex        =   3
+         TabIndex        =   0
          Top             =   360
          Width           =   1935
       End
       Begin VB.CommandButton cmbSearch 
          Caption         =   "Search"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   3840
-         TabIndex        =   2
+         TabIndex        =   3
          Top             =   840
          Width           =   1095
       End
       Begin VB.CommandButton cmbClearSearch 
          Caption         =   "Clear"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   5280
-         TabIndex        =   1
+         TabIndex        =   4
          Top             =   840
          Width           =   1095
       End
@@ -190,7 +208,7 @@ Private Sub dgStudents_DblClick()
     frmMain.txtStudentName.Caption = rs!FULL_NAME
     frmMain.txtSection = rs!Section
     frmMain.txtAdviser = rs!Adviser
-    frmMain.selectedStudentID = rs!ID
+    frmMain.selectedStudentID = rs!id
     frmMain.txtLRN = rs!lrn
   End If
   Unload Me

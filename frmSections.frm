@@ -13,27 +13,27 @@ Begin VB.Form frmSections
       Caption         =   "Created By"
       Height          =   3735
       Left            =   240
-      TabIndex        =   6
+      TabIndex        =   9
       Top             =   120
       Width           =   4815
       Begin VB.TextBox txtAdviser 
          Height          =   285
          Left            =   1560
-         TabIndex        =   22
+         TabIndex        =   2
          Top             =   1680
          Width           =   1935
       End
       Begin VB.TextBox txtLevel 
          Height          =   285
          Left            =   1560
-         TabIndex        =   21
+         TabIndex        =   1
          Top             =   1320
          Width           =   1935
       End
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1560
-         TabIndex        =   7
+         TabIndex        =   0
          Top             =   960
          Width           =   1935
       End
@@ -42,7 +42,7 @@ Begin VB.Form frmSections
          Caption         =   "Last Mod Date"
          Height          =   255
          Left            =   360
-         TabIndex        =   20
+         TabIndex        =   22
          Top             =   3120
          Width           =   1095
       End
@@ -51,7 +51,7 @@ Begin VB.Form frmSections
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   19
+         TabIndex        =   21
          Top             =   3120
          Width           =   1935
       End
@@ -60,7 +60,7 @@ Begin VB.Form frmSections
          Caption         =   "ID"
          Height          =   255
          Left            =   360
-         TabIndex        =   18
+         TabIndex        =   20
          Top             =   600
          Width           =   255
       End
@@ -69,7 +69,7 @@ Begin VB.Form frmSections
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   17
+         TabIndex        =   19
          Top             =   600
          Width           =   375
       End
@@ -78,7 +78,7 @@ Begin VB.Form frmSections
          Caption         =   "* Name"
          Height          =   255
          Left            =   360
-         TabIndex        =   16
+         TabIndex        =   18
          Top             =   960
          Width           =   615
       End
@@ -87,7 +87,7 @@ Begin VB.Form frmSections
          Caption         =   "*Level"
          Height          =   255
          Left            =   360
-         TabIndex        =   15
+         TabIndex        =   17
          Top             =   1320
          Width           =   855
       End
@@ -96,7 +96,7 @@ Begin VB.Form frmSections
          Caption         =   "*Adviser"
          Height          =   255
          Left            =   360
-         TabIndex        =   14
+         TabIndex        =   16
          Top             =   1680
          Width           =   855
       End
@@ -105,7 +105,7 @@ Begin VB.Form frmSections
          Caption         =   "Created by"
          Height          =   255
          Left            =   360
-         TabIndex        =   13
+         TabIndex        =   15
          Top             =   2040
          Width           =   975
       End
@@ -114,7 +114,7 @@ Begin VB.Form frmSections
          Caption         =   "Created date"
          Height          =   255
          Left            =   360
-         TabIndex        =   12
+         TabIndex        =   14
          Top             =   2400
          Width           =   975
       End
@@ -123,7 +123,7 @@ Begin VB.Form frmSections
          Caption         =   "Last Mod by"
          Height          =   255
          Left            =   360
-         TabIndex        =   11
+         TabIndex        =   13
          Top             =   2760
          Width           =   1095
       End
@@ -132,7 +132,7 @@ Begin VB.Form frmSections
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   10
+         TabIndex        =   12
          Top             =   2040
          Width           =   1935
       End
@@ -141,7 +141,7 @@ Begin VB.Form frmSections
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   9
+         TabIndex        =   11
          Top             =   2400
          Width           =   1935
       End
@@ -150,7 +150,7 @@ Begin VB.Form frmSections
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   8
+         TabIndex        =   10
          Top             =   2760
          Width           =   1935
       End
@@ -168,7 +168,7 @@ Begin VB.Form frmSections
       EndProperty
       Height          =   495
       Left            =   120
-      TabIndex        =   5
+      TabIndex        =   3
       Top             =   3960
       Width           =   1095
    End
@@ -202,7 +202,7 @@ Begin VB.Form frmSections
       EndProperty
       Height          =   495
       Left            =   2640
-      TabIndex        =   3
+      TabIndex        =   5
       Top             =   3960
       Width           =   1095
    End
@@ -219,7 +219,7 @@ Begin VB.Form frmSections
       EndProperty
       Height          =   495
       Left            =   1920
-      TabIndex        =   2
+      TabIndex        =   7
       Top             =   4560
       Width           =   1095
    End
@@ -236,14 +236,14 @@ Begin VB.Form frmSections
       EndProperty
       Height          =   495
       Left            =   3960
-      TabIndex        =   0
+      TabIndex        =   6
       Top             =   3960
       Width           =   1095
    End
    Begin MSDataGridLib.DataGrid dbSections 
       Height          =   5055
       Left            =   5280
-      TabIndex        =   1
+      TabIndex        =   8
       Top             =   0
       Width           =   14175
       _ExtentX        =   25003

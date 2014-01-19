@@ -23,7 +23,7 @@ Begin VB.Form frmAccount
       EndProperty
       Height          =   495
       Left            =   2520
-      TabIndex        =   12
+      TabIndex        =   4
       Top             =   2040
       Width           =   1095
    End
@@ -40,7 +40,7 @@ Begin VB.Form frmAccount
       EndProperty
       Height          =   495
       Left            =   3720
-      TabIndex        =   10
+      TabIndex        =   5
       Top             =   2040
       Width           =   1095
    End
@@ -57,7 +57,7 @@ Begin VB.Form frmAccount
       EndProperty
       Height          =   495
       Left            =   1920
-      TabIndex        =   9
+      TabIndex        =   6
       Top             =   2640
       Width           =   1095
    End
@@ -74,7 +74,7 @@ Begin VB.Form frmAccount
       EndProperty
       Height          =   495
       Left            =   1320
-      TabIndex        =   8
+      TabIndex        =   3
       Top             =   2040
       Width           =   1095
    End
@@ -91,7 +91,7 @@ Begin VB.Form frmAccount
       EndProperty
       Height          =   495
       Left            =   120
-      TabIndex        =   7
+      TabIndex        =   2
       Top             =   2040
       Width           =   1095
    End
@@ -99,7 +99,7 @@ Begin VB.Form frmAccount
       Caption         =   "Account Form"
       Height          =   1695
       Left            =   120
-      TabIndex        =   0
+      TabIndex        =   7
       Top             =   120
       Width           =   4695
       Begin VB.ComboBox cmRole 
@@ -108,23 +108,23 @@ Begin VB.Form frmAccount
          Left            =   1560
          List            =   "frmAccount.frx":000A
          Style           =   2  'Dropdown List
-         TabIndex        =   6
+         TabIndex        =   1
          Top             =   1080
          Width           =   1935
       End
       Begin VB.TextBox txtUserName 
          Height          =   285
          Left            =   1560
-         TabIndex        =   1
+         TabIndex        =   0
          Top             =   720
          Width           =   2895
       End
       Begin VB.Label Label2 
          BackColor       =   &H0080FF80&
-         Caption         =   "Role"
+         Caption         =   "*Role"
          Height          =   255
          Left            =   360
-         TabIndex        =   5
+         TabIndex        =   11
          Top             =   1080
          Width           =   615
       End
@@ -133,7 +133,7 @@ Begin VB.Form frmAccount
          Caption         =   "ID"
          Height          =   255
          Left            =   360
-         TabIndex        =   4
+         TabIndex        =   10
          Top             =   360
          Width           =   255
       End
@@ -142,16 +142,16 @@ Begin VB.Form frmAccount
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   3
+         TabIndex        =   9
          Top             =   360
          Width           =   375
       End
       Begin VB.Label lblName 
          BackColor       =   &H0080FF80&
-         Caption         =   "Username"
+         Caption         =   "*Username"
          Height          =   255
          Left            =   360
-         TabIndex        =   2
+         TabIndex        =   8
          Top             =   720
          Width           =   855
       End
@@ -159,7 +159,7 @@ Begin VB.Form frmAccount
    Begin MSDataGridLib.DataGrid dgUsers 
       Height          =   2895
       Left            =   5040
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   120
       Width           =   4815
       _ExtentX        =   8493
@@ -248,8 +248,8 @@ Private Sub toogelInsertMode(isInisilization As Boolean)
   End If
 End Sub
 Private Sub showSelectedData()
-  lblID = CommonHelper.extractStringValue(rs!ID)
-  txtUserName = CommonHelper.extractStringValue(rs!userName)
+  lblID = CommonHelper.extractStringValue(rs!id)
+  txtUserName = CommonHelper.extractStringValue(rs!username)
   cmRole.Text = CommonHelper.extractStringValue(rs!role)
 End Sub
 Private Sub clearForm()
@@ -259,6 +259,7 @@ Private Sub clearForm()
 End Sub
 
 Private Sub cmbClear_Click()
+  Call resetFormSkin
   Call toogelInsertMode(False)
   Call clearForm
 End Sub
@@ -274,25 +275,47 @@ Private Sub cmbDelete_Click()
     End If
   End If
 End Sub
-
 Private Sub cmbNewRec_Click()
+  Call resetFormSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
     txtUserName.SetFocus
   Else
-    rs.AddNew
-    rs!userName = txtUserName
-    rs!role = cmRole.Text
-    Dim bytBlock() As Byte
-    Dim Hash As New MD5Hash
-    bytBlock = StrConv(txtUserName, vbFromUnicode)
-    rs!Password = Hash.HashBytes(bytBlock)
-    rs!FORCE_CHANGE = "T"
-    rs.Update
-    MsgBox "Record Added! Default password was set", vbInformation
-    Call toogelInsertMode(False)
+    If (isFormDetailValid) Then
+      rs.AddNew
+      rs!username = txtUserName
+      rs!role = cmRole.Text
+      Dim bytBlock() As Byte
+      Dim Hash As New MD5Hash
+      bytBlock = StrConv(txtUserName, vbFromUnicode)
+      rs!Password = Hash.HashBytes(bytBlock)
+      rs!FORCE_CHANGE = "T"
+      rs.Update
+      MsgBox "Record Added! Default password was set", vbInformation
+      Call toogelInsertMode(False)
+      Call populateDataGrid
+    End If
   End If
 End Sub
+Private Function resetFormSkin()
+  Call CommonHelper.toDefaultSkin(txtUserName)
+  Call CommonHelper.toComboBoxDefaultSkin(cmRole)
+End Function
+Private Function isFormDetailValid() As Boolean
+  If (Not CommonHelper.hasValidValue(txtUserName)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendWarning(txtUserName, "Please enter a Username")
+    Exit Function
+  End If
+  
+  If (Not CommonHelper.hasValidValue(cmRole.Text)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendComboBoxWarning(cmRole, "Please select a Role")
+    Exit Function
+  End If
+  
+  isFormDetailValid = True
+End Function
 Private Sub cmbReset_Click()
   If (CommonHelper.hasValidValue(lblID)) Then
     Dim response As String

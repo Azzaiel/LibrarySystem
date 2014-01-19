@@ -163,7 +163,25 @@ Public Function getFakeRs() As ADODB.Recordset
    Set getFakeRs = rs
 
 End Function
+Public Function getRsByItemCode(itemCode As String) As ADODB.Recordset
 
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select * " & _
+              "from ITEMS " & _
+              "Where ITEM_CODE = '" & itemCode & "'"
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   Set getRsByItemCode = rs
+
+End Function
 Public Function getRsByID(itemID As Integer) As ADODB.Recordset
 
    Dim con As ADODB.Connection

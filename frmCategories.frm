@@ -13,20 +13,20 @@ Begin VB.Form frmCategories
       Caption         =   "Created By"
       Height          =   3015
       Left            =   240
-      TabIndex        =   6
+      TabIndex        =   8
       Top             =   120
       Width           =   5895
       Begin VB.TextBox txtDescription 
          Height          =   285
          Left            =   1680
-         TabIndex        =   20
+         TabIndex        =   1
          Top             =   960
          Width           =   3735
       End
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1680
-         TabIndex        =   7
+         TabIndex        =   0
          Top             =   600
          Width           =   3735
       End
@@ -35,7 +35,7 @@ Begin VB.Form frmCategories
          Caption         =   "ID"
          Height          =   255
          Left            =   480
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   240
          Width           =   255
       End
@@ -44,7 +44,7 @@ Begin VB.Form frmCategories
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1680
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   240
          Width           =   375
       End
@@ -53,7 +53,7 @@ Begin VB.Form frmCategories
          Caption         =   "* Name"
          Height          =   255
          Left            =   480
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   600
          Width           =   615
       End
@@ -62,7 +62,7 @@ Begin VB.Form frmCategories
          Caption         =   "Description"
          Height          =   255
          Left            =   480
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   960
          Width           =   855
       End
@@ -71,7 +71,7 @@ Begin VB.Form frmCategories
          Caption         =   "Created By"
          Height          =   255
          Left            =   480
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   1320
          Width           =   855
       End
@@ -80,7 +80,7 @@ Begin VB.Form frmCategories
          Caption         =   "Created Date"
          Height          =   255
          Left            =   480
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   1680
          Width           =   975
       End
@@ -89,7 +89,7 @@ Begin VB.Form frmCategories
          Caption         =   "Last Mod By"
          Height          =   255
          Left            =   480
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   2040
          Width           =   975
       End
@@ -98,7 +98,7 @@ Begin VB.Form frmCategories
          Caption         =   "Last Mod Date"
          Height          =   255
          Left            =   480
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   2400
          Width           =   1095
       End
@@ -107,7 +107,7 @@ Begin VB.Form frmCategories
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1680
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   1320
          Width           =   2535
       End
@@ -116,7 +116,7 @@ Begin VB.Form frmCategories
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1680
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   1680
          Width           =   2535
       End
@@ -125,7 +125,7 @@ Begin VB.Form frmCategories
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1680
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   2040
          Width           =   2535
       End
@@ -134,7 +134,7 @@ Begin VB.Form frmCategories
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1680
-         TabIndex        =   8
+         TabIndex        =   9
          Top             =   2400
          Width           =   2535
       End
@@ -152,7 +152,7 @@ Begin VB.Form frmCategories
       EndProperty
       Height          =   495
       Left            =   240
-      TabIndex        =   5
+      TabIndex        =   2
       Top             =   3240
       Width           =   1095
    End
@@ -169,7 +169,7 @@ Begin VB.Form frmCategories
       EndProperty
       Height          =   495
       Left            =   1440
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   3240
       Width           =   1095
    End
@@ -186,7 +186,7 @@ Begin VB.Form frmCategories
       EndProperty
       Height          =   495
       Left            =   2640
-      TabIndex        =   3
+      TabIndex        =   4
       Top             =   3240
       Width           =   1095
    End
@@ -203,7 +203,7 @@ Begin VB.Form frmCategories
       EndProperty
       Height          =   495
       Left            =   5040
-      TabIndex        =   2
+      TabIndex        =   6
       Top             =   3240
       Width           =   1095
    End
@@ -220,14 +220,14 @@ Begin VB.Form frmCategories
       EndProperty
       Height          =   495
       Left            =   3840
-      TabIndex        =   0
+      TabIndex        =   5
       Top             =   3240
       Width           =   1095
    End
    Begin MSDataGridLib.DataGrid dgCategories 
       Height          =   3615
       Left            =   6360
-      TabIndex        =   1
+      TabIndex        =   7
       Top             =   120
       Width           =   12375
       _ExtentX        =   21828

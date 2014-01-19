@@ -22,7 +22,7 @@ Begin VB.Form frmReturnDate
       EndProperty
       Height          =   375
       Left            =   1920
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   840
       Width           =   975
    End
@@ -39,14 +39,14 @@ Begin VB.Form frmReturnDate
       EndProperty
       Height          =   375
       Left            =   720
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   840
       Width           =   975
    End
    Begin MSComCtl2.DTPicker dtpReturnDate 
       Height          =   375
       Left            =   1680
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   360
       Width           =   1575
       _ExtentX        =   2778
@@ -61,7 +61,7 @@ Begin VB.Form frmReturnDate
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Format          =   107413505
+      Format          =   108199937
       CurrentDate     =   41649
    End
    Begin VB.Label Label8 
@@ -78,7 +78,7 @@ Begin VB.Form frmReturnDate
       EndProperty
       Height          =   255
       Left            =   600
-      TabIndex        =   0
+      TabIndex        =   3
       Top             =   360
       Width           =   975
    End

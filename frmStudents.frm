@@ -13,7 +13,7 @@ Begin VB.Form frmStudents
       Caption         =   "Search Panel"
       Height          =   855
       Left            =   5280
-      TabIndex        =   30
+      TabIndex        =   33
       Top             =   120
       Width           =   13335
       Begin VB.CommandButton cmbExport 
@@ -29,7 +29,7 @@ Begin VB.Form frmStudents
          EndProperty
          Height          =   495
          Left            =   12120
-         TabIndex        =   36
+         TabIndex        =   15
          Top             =   240
          Width           =   855
       End
@@ -46,7 +46,7 @@ Begin VB.Form frmStudents
          EndProperty
          Height          =   495
          Left            =   11160
-         TabIndex        =   35
+         TabIndex        =   14
          Top             =   240
          Width           =   855
       End
@@ -63,14 +63,14 @@ Begin VB.Form frmStudents
          EndProperty
          Height          =   495
          Left            =   10200
-         TabIndex        =   34
+         TabIndex        =   13
          Top             =   240
          Width           =   855
       End
       Begin VB.TextBox txtSearchLrn 
          Height          =   285
          Left            =   1320
-         TabIndex        =   6
+         TabIndex        =   10
          Top             =   360
          Width           =   1935
       End
@@ -78,14 +78,14 @@ Begin VB.Form frmStudents
          Height          =   315
          Left            =   4560
          Style           =   2  'Dropdown List
-         TabIndex        =   7
+         TabIndex        =   11
          Top             =   360
          Width           =   1815
       End
       Begin VB.TextBox txtSearchLastName 
          Height          =   285
          Left            =   7800
-         TabIndex        =   8
+         TabIndex        =   12
          Top             =   360
          Width           =   1935
       End
@@ -94,7 +94,7 @@ Begin VB.Form frmStudents
          Caption         =   "LRN"
          Height          =   255
          Left            =   480
-         TabIndex        =   33
+         TabIndex        =   36
          Top             =   360
          Width           =   615
       End
@@ -103,7 +103,7 @@ Begin VB.Form frmStudents
          Caption         =   "SECTION"
          Height          =   255
          Left            =   3480
-         TabIndex        =   32
+         TabIndex        =   35
          Top             =   360
          Width           =   975
       End
@@ -112,7 +112,7 @@ Begin VB.Form frmStudents
          Caption         =   "LAST_NAME"
          Height          =   255
          Left            =   6720
-         TabIndex        =   31
+         TabIndex        =   34
          Top             =   360
          Width           =   975
       End
@@ -130,7 +130,7 @@ Begin VB.Form frmStudents
       EndProperty
       Height          =   495
       Left            =   3960
-      TabIndex        =   29
+      TabIndex        =   8
       Top             =   4560
       Width           =   1095
    End
@@ -147,7 +147,7 @@ Begin VB.Form frmStudents
       EndProperty
       Height          =   495
       Left            =   2040
-      TabIndex        =   28
+      TabIndex        =   9
       Top             =   5160
       Width           =   1095
    End
@@ -164,7 +164,7 @@ Begin VB.Form frmStudents
       EndProperty
       Height          =   495
       Left            =   2760
-      TabIndex        =   27
+      TabIndex        =   7
       Top             =   4560
       Width           =   1095
    End
@@ -181,7 +181,7 @@ Begin VB.Form frmStudents
       EndProperty
       Height          =   495
       Left            =   1560
-      TabIndex        =   26
+      TabIndex        =   6
       Top             =   4560
       Width           =   1095
    End
@@ -198,7 +198,7 @@ Begin VB.Form frmStudents
       EndProperty
       Height          =   495
       Left            =   240
-      TabIndex        =   25
+      TabIndex        =   5
       Top             =   4560
       Width           =   1215
    End
@@ -206,42 +206,42 @@ Begin VB.Form frmStudents
       Caption         =   "Detail Form"
       Height          =   4335
       Left            =   240
-      TabIndex        =   9
+      TabIndex        =   17
       Top             =   0
       Width           =   4815
       Begin VB.ComboBox cmSections 
          Height          =   315
          Left            =   1440
          Style           =   2  'Dropdown List
-         TabIndex        =   5
+         TabIndex        =   4
          Top             =   2160
          Width           =   1935
       End
       Begin VB.TextBox TxtLAST_NAME 
          Height          =   285
          Left            =   1440
-         TabIndex        =   4
+         TabIndex        =   3
          Top             =   1800
          Width           =   1935
       End
       Begin VB.TextBox txtLrn 
          Height          =   285
          Left            =   1440
-         TabIndex        =   1
+         TabIndex        =   0
          Top             =   600
          Width           =   1935
       End
       Begin VB.TextBox txtFirstName 
          Height          =   285
          Left            =   1440
-         TabIndex        =   2
+         TabIndex        =   1
          Top             =   960
          Width           =   1935
       End
       Begin VB.TextBox txtMIDDLE_NAME 
          Height          =   285
          Left            =   1440
-         TabIndex        =   3
+         TabIndex        =   2
          Top             =   1320
          Width           =   1935
       End
@@ -250,7 +250,7 @@ Begin VB.Form frmStudents
          Caption         =   "*SECTION"
          Height          =   255
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   32
          Top             =   2160
          Width           =   975
       End
@@ -259,7 +259,7 @@ Begin VB.Form frmStudents
          Caption         =   "*LAST_NAME"
          Height          =   255
          Left            =   120
-         TabIndex        =   23
+         TabIndex        =   31
          Top             =   1800
          Width           =   1095
       End
@@ -268,7 +268,7 @@ Begin VB.Form frmStudents
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   22
+         TabIndex        =   30
          Top             =   3240
          Width           =   1935
       End
@@ -277,7 +277,7 @@ Begin VB.Form frmStudents
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   21
+         TabIndex        =   29
          Top             =   2880
          Width           =   1935
       End
@@ -286,7 +286,7 @@ Begin VB.Form frmStudents
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   20
+         TabIndex        =   28
          Top             =   2520
          Width           =   1935
       End
@@ -295,7 +295,7 @@ Begin VB.Form frmStudents
          Caption         =   "Last Mod by"
          Height          =   255
          Left            =   120
-         TabIndex        =   19
+         TabIndex        =   27
          Top             =   3240
          Width           =   1095
       End
@@ -304,7 +304,7 @@ Begin VB.Form frmStudents
          Caption         =   "Created date"
          Height          =   255
          Left            =   120
-         TabIndex        =   18
+         TabIndex        =   26
          Top             =   2880
          Width           =   975
       End
@@ -313,7 +313,7 @@ Begin VB.Form frmStudents
          Caption         =   "Created by"
          Height          =   255
          Left            =   120
-         TabIndex        =   17
+         TabIndex        =   25
          Top             =   2520
          Width           =   975
       End
@@ -322,7 +322,7 @@ Begin VB.Form frmStudents
          Caption         =   "*MIDDLE_NAME"
          Height          =   255
          Left            =   120
-         TabIndex        =   16
+         TabIndex        =   24
          Top             =   1320
          Width           =   1215
       End
@@ -331,7 +331,7 @@ Begin VB.Form frmStudents
          Caption         =   "*FIRST_NAME"
          Height          =   255
          Left            =   120
-         TabIndex        =   15
+         TabIndex        =   23
          Top             =   960
          Width           =   1095
       End
@@ -340,7 +340,7 @@ Begin VB.Form frmStudents
          Caption         =   "* LRN"
          Height          =   255
          Left            =   120
-         TabIndex        =   14
+         TabIndex        =   22
          Top             =   600
          Width           =   615
       End
@@ -349,7 +349,7 @@ Begin VB.Form frmStudents
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   13
+         TabIndex        =   21
          Top             =   240
          Width           =   375
       End
@@ -358,7 +358,7 @@ Begin VB.Form frmStudents
          Caption         =   "ID"
          Height          =   255
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   20
          Top             =   240
          Width           =   255
       End
@@ -367,7 +367,7 @@ Begin VB.Form frmStudents
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1440
-         TabIndex        =   11
+         TabIndex        =   19
          Top             =   3600
          Width           =   1935
       End
@@ -376,7 +376,7 @@ Begin VB.Form frmStudents
          Caption         =   "Last Mod Date"
          Height          =   255
          Left            =   120
-         TabIndex        =   10
+         TabIndex        =   18
          Top             =   3600
          Width           =   1095
       End
@@ -384,7 +384,7 @@ Begin VB.Form frmStudents
    Begin MSDataGridLib.DataGrid dgStudents 
       Height          =   4575
       Left            =   5280
-      TabIndex        =   0
+      TabIndex        =   16
       Top             =   1080
       Width           =   13335
       _ExtentX        =   23521
@@ -473,7 +473,7 @@ Private Sub cmbClear_Click()
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLrn.Text = ""
+   txtLRN.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -529,7 +529,7 @@ Private Sub cmbEdit_Click()
     End If
       
     Set tempRs = StudentDao.getRsByID(rs!id)
-    tempRs!lrn = Val(txtLrn.Text)
+    tempRs!lrn = Val(txtLRN.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -576,7 +576,7 @@ Private Sub cmbNewRec_Click()
   Call resetFromSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
-    txtLrn.SetFocus
+    txtLRN.SetFocus
   Else
     If (isFormValid) Then
      
@@ -587,7 +587,7 @@ Private Sub cmbNewRec_Click()
     
       Set tempRs = StudentDao.getFakeRs
       tempRs.AddNew
-      tempRs!lrn = Val(txtLrn.Text)
+      tempRs!lrn = Val(txtLRN.Text)
       tempRs!FIRST_NAME = txtFirstName.Text
       tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
       tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -606,7 +606,7 @@ Private Sub cmbNewRec_Click()
   End If
 End Sub
 Private Function isLrnAlreadyInUse(Optional studentID As Integer = -1) As Boolean
-   Set tempRs = StudentDao.getRsByLrn(txtLrn)
+   Set tempRs = StudentDao.getRsByLrn(txtLRN)
    If (tempRs.RecordCount > 0) Then
      If (tempRs!id = studentID) Then
        isLrnAlreadyInUse = False
@@ -675,7 +675,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!id
-   txtLrn.Text = rs!lrn
+   txtLRN.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -743,8 +743,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
-     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
+     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
      isFormValid = False
      Exit Function
   End If
@@ -772,7 +772,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLrn)
+ Call CommonHelper.toDefaultSkin(txtLRN)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(txtMIDDLE_NAME)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)

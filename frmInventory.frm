@@ -13,7 +13,7 @@ Begin VB.Form frmInventory
       Caption         =   "Search Form"
       Height          =   1215
       Left            =   7200
-      TabIndex        =   35
+      TabIndex        =   44
       Top             =   0
       Width           =   11415
       Begin VB.CommandButton cmbExport 
@@ -28,8 +28,8 @@ Begin VB.Form frmInventory
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   9960
-         TabIndex        =   49
+         Left            =   9480
+         TabIndex        =   21
          Top             =   720
          Width           =   1335
       End
@@ -45,8 +45,8 @@ Begin VB.Form frmInventory
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   8400
-         TabIndex        =   47
+         Left            =   7920
+         TabIndex        =   20
          Top             =   720
          Width           =   1335
       End
@@ -62,45 +62,45 @@ Begin VB.Form frmInventory
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   6960
-         TabIndex        =   46
+         Left            =   6360
+         TabIndex        =   19
          Top             =   720
          Width           =   1335
       End
       Begin VB.TextBox txtSearchAuthor 
          Height          =   285
-         Left            =   8040
-         TabIndex        =   44
+         Left            =   7440
+         TabIndex        =   18
          Top             =   240
          Width           =   3135
       End
       Begin VB.ComboBox cmSearchCategory 
          Height          =   315
-         Left            =   4680
+         Left            =   4200
          Style           =   2  'Dropdown List
-         TabIndex        =   42
+         TabIndex        =   17
          Top             =   720
          Width           =   1935
       End
       Begin VB.TextBox txtSearchName 
          Height          =   285
-         Left            =   4680
-         TabIndex        =   40
+         Left            =   4200
+         TabIndex        =   15
          Top             =   240
-         Width           =   1935
+         Width           =   2415
       End
       Begin VB.ComboBox cmSearchType 
          Height          =   315
          Left            =   1320
          Style           =   2  'Dropdown List
-         TabIndex        =   38
+         TabIndex        =   16
          Top             =   720
          Width           =   1935
       End
       Begin VB.TextBox txtSearchItemCode 
          Height          =   285
          Left            =   1320
-         TabIndex        =   36
+         TabIndex        =   14
          Top             =   240
          Width           =   1935
       End
@@ -109,25 +109,25 @@ Begin VB.Form frmInventory
          Caption         =   "Author"
          Height          =   255
          Left            =   6840
-         TabIndex        =   45
+         TabIndex        =   49
          Top             =   240
-         Width           =   855
+         Width           =   495
       End
       Begin VB.Label Label16 
          BackColor       =   &H0080FF80&
          Caption         =   "Category"
          Height          =   255
-         Left            =   3480
-         TabIndex        =   43
+         Left            =   3360
+         TabIndex        =   48
          Top             =   720
-         Width           =   975
+         Width           =   735
       End
       Begin VB.Label Label15 
          BackColor       =   &H0080FF80&
          Caption         =   " Name"
          Height          =   255
-         Left            =   3480
-         TabIndex        =   41
+         Left            =   3360
+         TabIndex        =   47
          Top             =   240
          Width           =   615
       End
@@ -136,7 +136,7 @@ Begin VB.Form frmInventory
          Caption         =   "Type"
          Height          =   255
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   46
          Top             =   720
          Width           =   975
       End
@@ -145,7 +145,7 @@ Begin VB.Form frmInventory
          Caption         =   "Item Code"
          Height          =   255
          Left            =   120
-         TabIndex        =   37
+         TabIndex        =   45
          Top             =   240
          Width           =   855
       End
@@ -163,7 +163,7 @@ Begin VB.Form frmInventory
       EndProperty
       Height          =   495
       Left            =   720
-      TabIndex        =   34
+      TabIndex        =   9
       Top             =   9600
       Width           =   1095
    End
@@ -180,7 +180,7 @@ Begin VB.Form frmInventory
       EndProperty
       Height          =   495
       Left            =   1920
-      TabIndex        =   33
+      TabIndex        =   10
       Top             =   9600
       Width           =   1095
    End
@@ -197,7 +197,7 @@ Begin VB.Form frmInventory
       EndProperty
       Height          =   495
       Left            =   3120
-      TabIndex        =   32
+      TabIndex        =   11
       Top             =   9600
       Width           =   1095
    End
@@ -214,7 +214,7 @@ Begin VB.Form frmInventory
       EndProperty
       Height          =   495
       Left            =   5520
-      TabIndex        =   31
+      TabIndex        =   13
       Top             =   9600
       Width           =   1095
    End
@@ -231,7 +231,7 @@ Begin VB.Form frmInventory
       EndProperty
       Height          =   495
       Left            =   4320
-      TabIndex        =   30
+      TabIndex        =   12
       Top             =   9600
       Width           =   1095
    End
@@ -239,7 +239,7 @@ Begin VB.Form frmInventory
       Caption         =   "Item"
       Height          =   9495
       Left            =   120
-      TabIndex        =   1
+      TabIndex        =   23
       Top             =   0
       Width           =   6975
       Begin VB.ComboBox cmStatus 
@@ -249,7 +249,7 @@ Begin VB.Form frmInventory
          List            =   "frmInventory.frx":0010
          Locked          =   -1  'True
          Style           =   1  'Simple Combo
-         TabIndex        =   48
+         TabIndex        =   8
          Text            =   "cmStatus"
          Top             =   7680
          Width           =   1935
@@ -257,21 +257,21 @@ Begin VB.Form frmInventory
       Begin VB.TextBox txtDonatedBy 
          Height          =   285
          Left            =   1560
-         TabIndex        =   19
+         TabIndex        =   7
          Top             =   7320
          Width           =   4815
       End
       Begin VB.TextBox txtAuthor 
          Height          =   285
          Left            =   1560
-         TabIndex        =   17
+         TabIndex        =   6
          Top             =   6960
          Width           =   4815
       End
       Begin VB.TextBox txtDescription 
          Height          =   645
          Left            =   1560
-         TabIndex        =   16
+         TabIndex        =   5
          Top             =   6240
          Width           =   4815
       End
@@ -279,7 +279,7 @@ Begin VB.Form frmInventory
          Height          =   315
          Left            =   1560
          Style           =   2  'Dropdown List
-         TabIndex        =   13
+         TabIndex        =   4
          Top             =   5880
          Width           =   1935
       End
@@ -289,7 +289,7 @@ Begin VB.Form frmInventory
          Picture         =   "frmInventory.frx":0038
          ScaleHeight     =   3675
          ScaleWidth      =   6195
-         TabIndex        =   12
+         TabIndex        =   30
          Top             =   2040
          Width           =   6255
       End
@@ -297,14 +297,14 @@ Begin VB.Form frmInventory
          Height          =   315
          Left            =   1560
          Style           =   2  'Dropdown List
-         TabIndex        =   10
+         TabIndex        =   3
          Top             =   1680
          Width           =   1935
       End
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1560
-         TabIndex        =   8
+         TabIndex        =   2
          Top             =   1320
          Width           =   5055
       End
@@ -312,14 +312,14 @@ Begin VB.Form frmInventory
          Height          =   315
          Left            =   1560
          Style           =   2  'Dropdown List
-         TabIndex        =   6
+         TabIndex        =   1
          Top             =   960
          Width           =   1935
       End
       Begin VB.TextBox txtItemCode 
          Height          =   285
          Left            =   1560
-         TabIndex        =   4
+         TabIndex        =   0
          Top             =   600
          Width           =   1935
       End
@@ -328,7 +328,7 @@ Begin VB.Form frmInventory
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   29
+         TabIndex        =   43
          Top             =   9120
          Width           =   1935
       End
@@ -337,7 +337,7 @@ Begin VB.Form frmInventory
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   28
+         TabIndex        =   42
          Top             =   8760
          Width           =   1935
       End
@@ -346,7 +346,7 @@ Begin VB.Form frmInventory
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   27
+         TabIndex        =   41
          Top             =   8400
          Width           =   1935
       End
@@ -355,7 +355,7 @@ Begin VB.Form frmInventory
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   26
+         TabIndex        =   40
          Top             =   8040
          Width           =   1935
       End
@@ -364,7 +364,7 @@ Begin VB.Form frmInventory
          Caption         =   "Last Mod Date"
          Height          =   255
          Left            =   360
-         TabIndex        =   25
+         TabIndex        =   39
          Top             =   9120
          Width           =   1095
       End
@@ -373,7 +373,7 @@ Begin VB.Form frmInventory
          Caption         =   "Last Mod By"
          Height          =   255
          Left            =   360
-         TabIndex        =   24
+         TabIndex        =   38
          Top             =   8760
          Width           =   975
       End
@@ -382,7 +382,7 @@ Begin VB.Form frmInventory
          Caption         =   "Created Date"
          Height          =   255
          Left            =   360
-         TabIndex        =   23
+         TabIndex        =   37
          Top             =   8400
          Width           =   975
       End
@@ -391,7 +391,7 @@ Begin VB.Form frmInventory
          Caption         =   "Created By"
          Height          =   255
          Left            =   360
-         TabIndex        =   22
+         TabIndex        =   36
          Top             =   8040
          Width           =   855
       End
@@ -400,7 +400,7 @@ Begin VB.Form frmInventory
          Caption         =   "Status"
          Height          =   255
          Left            =   360
-         TabIndex        =   21
+         TabIndex        =   35
          Top             =   7680
          Width           =   495
       End
@@ -409,7 +409,7 @@ Begin VB.Form frmInventory
          Caption         =   "Donated By"
          Height          =   255
          Left            =   360
-         TabIndex        =   20
+         TabIndex        =   34
          Top             =   7320
          Width           =   855
       End
@@ -418,7 +418,7 @@ Begin VB.Form frmInventory
          Caption         =   "Author"
          Height          =   255
          Left            =   360
-         TabIndex        =   18
+         TabIndex        =   33
          Top             =   6960
          Width           =   855
       End
@@ -427,7 +427,7 @@ Begin VB.Form frmInventory
          Caption         =   "Description"
          Height          =   255
          Left            =   360
-         TabIndex        =   15
+         TabIndex        =   32
          Top             =   6240
          Width           =   855
       End
@@ -436,7 +436,7 @@ Begin VB.Form frmInventory
          Caption         =   "*Category"
          Height          =   255
          Left            =   360
-         TabIndex        =   14
+         TabIndex        =   31
          Top             =   5880
          Width           =   975
       End
@@ -445,7 +445,7 @@ Begin VB.Form frmInventory
          Caption         =   "*Location"
          Height          =   255
          Left            =   360
-         TabIndex        =   11
+         TabIndex        =   29
          Top             =   1680
          Width           =   975
       End
@@ -454,7 +454,7 @@ Begin VB.Form frmInventory
          Caption         =   "* Name"
          Height          =   255
          Left            =   360
-         TabIndex        =   9
+         TabIndex        =   28
          Top             =   1320
          Width           =   615
       End
@@ -463,16 +463,16 @@ Begin VB.Form frmInventory
          Caption         =   "*Type"
          Height          =   255
          Left            =   360
-         TabIndex        =   7
+         TabIndex        =   27
          Top             =   960
          Width           =   975
       End
       Begin VB.Label lblName 
          BackColor       =   &H0080FF80&
-         Caption         =   "Item Code"
+         Caption         =   "*Item Code"
          Height          =   255
          Left            =   360
-         TabIndex        =   5
+         TabIndex        =   26
          Top             =   600
          Width           =   855
       End
@@ -481,7 +481,7 @@ Begin VB.Form frmInventory
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
-         TabIndex        =   3
+         TabIndex        =   25
          Top             =   240
          Width           =   375
       End
@@ -490,7 +490,7 @@ Begin VB.Form frmInventory
          Caption         =   "ID"
          Height          =   255
          Left            =   360
-         TabIndex        =   2
+         TabIndex        =   24
          Top             =   240
          Width           =   255
       End
@@ -498,7 +498,7 @@ Begin VB.Form frmInventory
    Begin MSDataGridLib.DataGrid dgItems 
       Height          =   8775
       Left            =   7200
-      TabIndex        =   0
+      TabIndex        =   22
       Top             =   1320
       Width           =   11415
       _ExtentX        =   20135
@@ -607,6 +607,7 @@ Private Function getCategoryID() As Integer
 End Function
 
 Private Sub cmbClear_Click()
+  Call restoreFormDefaultSkin
   Call clearForm
   Call toogelInsertMode(False)
 End Sub
@@ -620,7 +621,7 @@ Private Sub cmbDelete_Click()
  Dim response As String
  response = MsgBox("Are you sure you want to delete the record?", vbOKCancel, "Question")
   If (response = vbOK) Then
-    Set tempRs = InventoryDao.getRsByID(rs!ID)
+    Set tempRs = InventoryDao.getRsByID(rs!id)
     tempRs.Delete
     Call DbInstance.closeRecordSet(tempRs)
     MsgBox "Record Deleted", vbInformation
@@ -649,24 +650,42 @@ Private Sub clearForm()
 End Sub
 
 Private Sub cmbEdit_Click()
-    Set tempRs = InventoryDao.getRsByID(rs!ID)
-    tempRs!name = txtName.Text
-    tempRs!ITEM_CODE = txtItemCode.Text
-    tempRs!Description = txtDescription.Text
-    tempRs!DONATED_BY = txtDonatedBy.Text
-    tempRs!author = txtAuthor.Text
-    tempRs!Status = cmStatus.Text
-    tempRs!LOCATION_ID = getLocationID
-    tempRs!ITEM_TYPE_ID = getItemTypeID
-    tempRs!CATEGORY_ID = getCategoryID
-    tempRs!LAST_MOD_BY = UserSession.getLoginUser
-    tempRs!LAST_MOD_DATE = Now
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Record Updated!!", vbInformation
-    Call populateDataGrid
-
+    Call restoreFormDefaultSkin
+    If (isFormDetailValid) Then
+      If (isItemCodeAlreadyExist(rs!ITEM_CODE)) Then
+        MsgBox "Item Code Already in use", vbCritical
+        Exit Sub
+      End If
+      Set tempRs = InventoryDao.getRsByID(rs!id)
+      tempRs!name = txtName.Text
+      tempRs!ITEM_CODE = txtItemCode.Text
+      tempRs!Description = txtDescription.Text
+      tempRs!DONATED_BY = txtDonatedBy.Text
+      tempRs!author = txtAuthor.Text
+      tempRs!Status = cmStatus.Text
+      tempRs!LOCATION_ID = getLocationID
+      tempRs!ITEM_TYPE_ID = getItemTypeID
+      tempRs!CATEGORY_ID = getCategoryID
+      tempRs!LAST_MOD_BY = UserSession.getLoginUser
+      tempRs!LAST_MOD_DATE = Now
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      MsgBox "Record Updated!!", vbInformation
+      Call populateDataGrid
+    End If
 End Sub
+Private Function isItemCodeAlreadyExist(Optional excludeItemCode As String = "") As Boolean
+  Set tempRs = InventoryDao.getRsByItemCode(txtItemCode)
+  Dim inUse As Boolean
+  inUse = False
+  If (tempRs.RecordCount > 0) Then
+    If (tempRs!ITEM_CODE <> excludeItemCode) Then
+      inUse = True
+    End If
+  End If
+  isItemCodeAlreadyExist = inUse
+  Call DbInstance.closeRecordSet(tempRs)
+End Function
 
 Private Sub cmbExport_Click()
   Dim excelApp As New Excel.Application
@@ -689,34 +708,82 @@ Private Sub cmbExport_Click()
 End Sub
 
 Private Sub cmbNewRec_Click()
-
+  Call restoreFormDefaultSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
     txtItemCode.SetFocus
   Else
-    Set tempRs = InventoryDao.getFakeRs
-    tempRs.AddNew
-    tempRs!name = txtName.Text
-    tempRs!ITEM_CODE = txtItemCode.Text
-    tempRs!Description = txtDescription.Text
-    tempRs!DONATED_BY = txtDonatedBy.Text
-    tempRs!author = txtAuthor.Text
-    tempRs!Status = cmStatus.Text
-    tempRs!LOCATION_ID = getLocationID
-    tempRs!ITEM_TYPE_ID = getItemTypeID
-    tempRs!CATEGORY_ID = getCategoryID
-    tempRs!CREATED_BY = UserSession.getLoginUser
-    tempRs!CREATED_DATE = Now
-    tempRs!LAST_MOD_BY = UserSession.getLoginUser
-    tempRs!LAST_MOD_DATE = Now
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Record Created!!", vbInformation
-    Call populateDataGrid
-    Call toogelInsertMode(False)
+    If (isFormDetailValid) Then
+      If (isItemCodeAlreadyExist) Then
+        MsgBox "Item Code Already in use", vbCritical
+        Exit Sub
+      End If
+      Set tempRs = InventoryDao.getFakeRs
+      tempRs.AddNew
+      tempRs!name = txtName.Text
+      tempRs!ITEM_CODE = txtItemCode.Text
+      tempRs!Description = txtDescription.Text
+      tempRs!DONATED_BY = txtDonatedBy.Text
+      tempRs!author = txtAuthor.Text
+      tempRs!Status = cmStatus.Text
+      tempRs!LOCATION_ID = getLocationID
+      tempRs!ITEM_TYPE_ID = getItemTypeID
+      tempRs!CATEGORY_ID = getCategoryID
+      tempRs!CREATED_BY = UserSession.getLoginUser
+      tempRs!CREATED_DATE = Now
+      tempRs!LAST_MOD_BY = UserSession.getLoginUser
+      tempRs!LAST_MOD_DATE = Now
+      tempRs.Update
+      Call DbInstance.closeRecordSet(tempRs)
+      MsgBox "Record Created!!", vbInformation
+      Call populateDataGrid
+      Call toogelInsertMode(False)
+    End If
+   
   End If
 
 End Sub
+Private Sub restoreFormDefaultSkin()
+  Call CommonHelper.toDefaultSkin(txtItemCode)
+  Call CommonHelper.toComboBoxDefaultSkin(cmItemType)
+  Call CommonHelper.toDefaultSkin(txtName)
+  Call CommonHelper.toComboBoxDefaultSkin(cmLocation)
+  Call CommonHelper.toComboBoxDefaultSkin(cmCategory)
+End Sub
+
+Private Function isFormDetailValid() As Boolean
+  If (Not CommonHelper.hasValidValue(txtItemCode)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendWarning(txtItemCode, "Please enter the an Item Code")
+    Exit Function
+  End If
+  
+  If (Not CommonHelper.hasValidValue(cmItemType.Text)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendComboBoxWarning(cmItemType, "Please select an Item Type Name")
+    Exit Function
+  End If
+  
+  If (Not CommonHelper.hasValidValue(txtName)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendWarning(txtName, "Please enter the a Name")
+    Exit Function
+  End If
+  
+  If (Not CommonHelper.hasValidValue(cmLocation.Text)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendComboBoxWarning(cmLocation, "Please select a Locatio ")
+    Exit Function
+  End If
+  
+  If (Not CommonHelper.hasValidValue(cmCategory.Text)) Then
+    isFormDetailValid = False
+    Call CommonHelper.sendComboBoxWarning(cmCategory, "Please select a Category")
+    Exit Function
+  End If
+  
+  isFormDetailValid = True
+End Function
 Private Sub toogelInsertMode(isInisilization As Boolean)
   If (isInisilization) Then
     Call clearForm
@@ -838,7 +905,7 @@ Private Sub formatDataGrid()
 End Sub
 Private Sub showSelectedData()
   
-    lblID.Caption = rs!ID
+    lblID.Caption = rs!id
     txtName.Text = CommonHelper.extractStringValue(rs!name)
     txtItemCode.Text = CommonHelper.extractStringValue(rs!ITEM_CODE)
     txtDescription.Text = CommonHelper.extractStringValue(rs!Description)

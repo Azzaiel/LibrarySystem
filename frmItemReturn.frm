@@ -20,7 +20,7 @@ Begin VB.Form frmItemReturn
       Height          =   285
       Left            =   1440
       Locked          =   -1  'True
-      TabIndex        =   27
+      TabIndex        =   3
       Top             =   1200
       Width           =   1935
    End
@@ -37,7 +37,7 @@ Begin VB.Form frmItemReturn
       Height          =   285
       Left            =   1440
       Locked          =   -1  'True
-      TabIndex        =   26
+      TabIndex        =   1
       Top             =   480
       Width           =   1935
    End
@@ -45,7 +45,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Student info"
       Height          =   1095
       Left            =   240
-      TabIndex        =   19
+      TabIndex        =   24
       Top             =   3120
       Width           =   6735
       Begin VB.Label Label16 
@@ -53,7 +53,7 @@ Begin VB.Form frmItemReturn
          Caption         =   "Date Borrowed"
          Height          =   255
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   27
          Top             =   240
          Width           =   1095
       End
@@ -71,7 +71,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   1320
-         TabIndex        =   24
+         TabIndex        =   9
          Top             =   240
          Width           =   2295
       End
@@ -89,7 +89,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   5040
-         TabIndex        =   23
+         TabIndex        =   11
          Top             =   240
          Width           =   1335
       End
@@ -107,7 +107,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   1320
-         TabIndex        =   22
+         TabIndex        =   10
          Top             =   600
          Width           =   2295
       End
@@ -116,7 +116,7 @@ Begin VB.Form frmItemReturn
          Caption         =   "Remaning days"
          Height          =   255
          Left            =   3840
-         TabIndex        =   21
+         TabIndex        =   26
          Top             =   240
          Width           =   1095
       End
@@ -125,24 +125,42 @@ Begin VB.Form frmItemReturn
          Caption         =   "Due Date"
          Height          =   255
          Left            =   120
-         TabIndex        =   20
+         TabIndex        =   25
          Top             =   600
          Width           =   1095
       End
    End
    Begin VB.CommandButton cmdClosed 
       Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   3720
-      TabIndex        =   18
+      TabIndex        =   13
       Top             =   4320
       Width           =   1695
    End
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Mark as Returned"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   1320
-      TabIndex        =   17
+      TabIndex        =   12
       Top             =   4320
       Width           =   1695
    End
@@ -159,7 +177,7 @@ Begin VB.Form frmItemReturn
       Height          =   285
       Left            =   1440
       Locked          =   -1  'True
-      TabIndex        =   11
+      TabIndex        =   2
       Top             =   840
       Width           =   1935
    End
@@ -176,7 +194,7 @@ Begin VB.Form frmItemReturn
       Height          =   285
       Left            =   1440
       Locked          =   -1  'True
-      TabIndex        =   10
+      TabIndex        =   0
       Top             =   120
       Width           =   1935
    End
@@ -193,7 +211,7 @@ Begin VB.Form frmItemReturn
       Height          =   285
       Left            =   1440
       Locked          =   -1  'True
-      TabIndex        =   9
+      TabIndex        =   4
       Top             =   1560
       Width           =   5055
    End
@@ -201,7 +219,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Student info"
       Height          =   1095
       Left            =   240
-      TabIndex        =   0
+      TabIndex        =   14
       Top             =   1920
       Width           =   6735
       Begin VB.Label Label1 
@@ -209,7 +227,7 @@ Begin VB.Form frmItemReturn
          Caption         =   "Student Name"
          Height          =   255
          Left            =   120
-         TabIndex        =   8
+         TabIndex        =   18
          Top             =   600
          Width           =   1095
       End
@@ -218,7 +236,7 @@ Begin VB.Form frmItemReturn
          Caption         =   "Section"
          Height          =   255
          Left            =   3720
-         TabIndex        =   7
+         TabIndex        =   17
          Top             =   240
          Width           =   615
       End
@@ -227,7 +245,7 @@ Begin VB.Form frmItemReturn
          Caption         =   "Adviser"
          Height          =   255
          Left            =   3720
-         TabIndex        =   6
+         TabIndex        =   16
          Top             =   600
          Width           =   615
       End
@@ -245,7 +263,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   1320
-         TabIndex        =   5
+         TabIndex        =   6
          Top             =   600
          Width           =   2295
       End
@@ -263,7 +281,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   4440
-         TabIndex        =   4
+         TabIndex        =   7
          Top             =   240
          Width           =   2175
       End
@@ -281,7 +299,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   4440
-         TabIndex        =   3
+         TabIndex        =   8
          Top             =   600
          Width           =   2175
       End
@@ -299,7 +317,7 @@ Begin VB.Form frmItemReturn
          EndProperty
          Height          =   255
          Left            =   1320
-         TabIndex        =   2
+         TabIndex        =   5
          Top             =   240
          Width           =   2295
       End
@@ -308,7 +326,7 @@ Begin VB.Form frmItemReturn
          Caption         =   "LRN"
          Height          =   255
          Left            =   120
-         TabIndex        =   1
+         TabIndex        =   15
          Top             =   240
          Width           =   1095
       End
@@ -318,7 +336,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Item Name"
       Height          =   255
       Left            =   240
-      TabIndex        =   16
+      TabIndex        =   23
       Top             =   840
       Width           =   855
    End
@@ -327,7 +345,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Type"
       Height          =   255
       Left            =   240
-      TabIndex        =   15
+      TabIndex        =   22
       Top             =   480
       Width           =   975
    End
@@ -336,7 +354,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Item Code"
       Height          =   255
       Left            =   240
-      TabIndex        =   14
+      TabIndex        =   21
       Top             =   120
       Width           =   855
    End
@@ -345,7 +363,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Author"
       Height          =   255
       Left            =   240
-      TabIndex        =   13
+      TabIndex        =   20
       Top             =   1560
       Width           =   855
    End
@@ -354,7 +372,7 @@ Begin VB.Form frmItemReturn
       Caption         =   "Category"
       Height          =   255
       Left            =   240
-      TabIndex        =   12
+      TabIndex        =   19
       Top             =   1200
       Width           =   975
    End
