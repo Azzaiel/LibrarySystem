@@ -974,7 +974,13 @@ Private Sub showSelectedData()
     lblCreatedDate.Caption = CommonHelper.extractDateValue(rs!CREATED_DATE)
     lblLatModBy.Caption = CommonHelper.extractStringValue(rs!LAST_MOD_BY)
     lblLastModDate.Caption = CommonHelper.extractDateValue(rs!LAST_MOD_DATE)
-    cmStatus.Text = CommonHelper.extractStringValue(rs!Status)
+    
+    
+    If (cmbNewRec.Caption = "New") Then
+      cmStatus.Text = CommonHelper.extractStringValue(rs!Status)
+    Else
+      cmStatus.Text = "Available"
+    End If
     
     cmItemType.ListIndex = -1
     cmLocation.ListIndex = -1

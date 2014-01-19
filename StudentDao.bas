@@ -23,7 +23,7 @@ Public Function getAllRs() As ADODB.Recordset
 
 End Function
 
-Public Function qucikSearchRs(lrn As Integer, sectionID As Integer, lastName As String) As ADODB.Recordset
+Public Function qucikSearchRs(lrn As String, sectionID As Integer, lastName As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -35,8 +35,8 @@ Public Function qucikSearchRs(lrn As Integer, sectionID As Integer, lastName As 
               "from STUDENTS a, sections b " & _
               "Where a.SECTION_ID = b.ID "
               
-   If (Not IsNull(lrn) And lrn > 0) Then
-     sqlQuery = sqlQuery & " and Cast(a.LRN as char) Like '" & lrn & "%' "
+   If (CommonHelper.hasValidValue(lrn)) Then
+     sqlQuery = sqlQuery & " and a.LRN Like '" & lrn & "%' "
    End If
    
    If (Not IsNull(sectionID) And sectionID > 0) Then
@@ -56,7 +56,7 @@ Public Function qucikSearchRs(lrn As Integer, sectionID As Integer, lastName As 
               
 End Function
 
-Public Function searchRs(lrn As Integer, sectionID As Integer, lastName As String) As ADODB.Recordset
+Public Function searchRs(lrn As String, sectionID As Integer, lastName As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -69,8 +69,8 @@ Public Function searchRs(lrn As Integer, sectionID As Integer, lastName As Strin
               "from STUDENTS a, sections b " & _
               "Where a.SECTION_ID = b.ID "
               
-   If (Not IsNull(lrn) And lrn > 0) Then
-     sqlQuery = sqlQuery & " and Cast(a.LRN as char) Like '" & lrn & "%' "
+   If (CommonHelper.hasValidValue(lrn)) Then
+     sqlQuery = sqlQuery & " and a.LRN Like '" & lrn & "%' "
    End If
    
    If (Not IsNull(sectionID) And sectionID > 0) Then
@@ -139,7 +139,7 @@ Public Function getRsByLrn(lrn As String) As ADODB.Recordset
    
    sqlQuery = "Select * " & _
               "from STUDENTS " & _
-              "Where LRN = " & lrn
+              "Where LRN = '" & lrn & "'"
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
