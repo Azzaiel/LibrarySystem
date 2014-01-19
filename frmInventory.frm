@@ -693,6 +693,7 @@ Private Function isItemCodeAlreadyExist(Optional excludeItemCode As String = "")
 End Function
 
 Private Sub cmbExport_Click()
+
   Dim excelApp As New Excel.Application
   Dim oBook As New Excel.Workbook
   Dim oSheet As New Excel.Worksheet
@@ -707,9 +708,45 @@ Private Sub cmbExport_Click()
   oSheet.Columns.AutoFit
   oSheet.Range("O1:Q1").EntireColumn.Hidden = True
   
-  Dim availableCount As Integer
-  Dim lossCount As Integer
+  Dim availableCount As Long
+  Dim borrowedCount As Long
+  Dim damageCount As Long
+  Dim lossCount As Long
+    
+  availableCount = 0
+  borrowedCount = 0
+  damageCount = 0
+  lossCount = 0
+  rs.MoveFirst
+  Dim itemStatus As String
+  While Not rs.EOF
+    itemStatus = CommonHelper.extractStringValue(rs!Status)
+    If (itemStatus = "Available") Then
+      availableCount = availableCount + 1
+    ElseIf (itemStatus = "Borrowed") Then
+      borrowedCount = borrowedCount + 1
+    ElseIf (itemStatus = "Damaged") Then
+      damageCount = damageCount + 1
+    ElseIf (itemStatus = "Loss") Then
+      lossCount = lossCount + 1
+    End If
+    rs.MoveNext
+  Wend
+  rs.MoveFirst
   
+  oSheet.Range("A4").value = "Available"
+  oSheet.Range("C4").value = availableCount
+  
+  oSheet.Range("A5").value = "Borrowed"
+  oSheet.Range("C5").value = borrowedCount
+  
+  oSheet.Range("A6").value = "Damaged"
+  oSheet.Range("C6").value = damageCount
+  
+  oSheet.Range("A7").value = "Loss"
+  oSheet.Range("C7").value = lossCount
+  
+  oSheet.Range("C8").value = availableCount + borrowedCount + damageCount + lossCount
 
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
@@ -748,9 +785,7 @@ Private Sub cmbNewRec_Click()
       Call populateDataGrid
       Call toogelInsertMode(False)
     End If
-   
   End If
-
 End Sub
 Private Sub restoreFormDefaultSkin()
   Call CommonHelper.toDefaultSkin(txtItemCode)
@@ -884,6 +919,7 @@ Private Sub populateDataGrid()
   Call formatDataGrid
 End Sub
 Private Sub formatDataGrid()
+
   If (rs.RecordCount > 0) Then
     rs.MoveFirst
     Call showSelectedData
@@ -913,6 +949,10 @@ Private Sub formatDataGrid()
   End With
 End Sub
 Private Sub showSelectedData()
+
+    If (rs.EOF) Then
+      Exit Sub
+    End If
   
     lblID.Caption = rs!id
     txtName.Text = CommonHelper.extractStringValue(rs!name)
