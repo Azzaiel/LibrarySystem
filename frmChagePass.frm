@@ -21,7 +21,7 @@ Begin VB.Form frmChagePass
       EndProperty
       Height          =   495
       Left            =   960
-      TabIndex        =   2
+      TabIndex        =   3
       Top             =   2040
       Width           =   1335
    End
@@ -38,14 +38,14 @@ Begin VB.Form frmChagePass
       EndProperty
       Height          =   495
       Left            =   3000
-      TabIndex        =   3
+      TabIndex        =   4
       Top             =   2040
       Width           =   1215
    End
    Begin VB.Frame Frame1 
       Height          =   1815
       Left            =   120
-      TabIndex        =   4
+      TabIndex        =   5
       Top             =   120
       Width           =   4935
       Begin VB.TextBox txtConfirmPass 
@@ -53,7 +53,7 @@ Begin VB.Form frmChagePass
          IMEMode         =   3  'DISABLE
          Left            =   1800
          PasswordChar    =   "*"
-         TabIndex        =   7
+         TabIndex        =   2
          Top             =   1320
          Width           =   2895
       End
@@ -90,7 +90,7 @@ Begin VB.Form frmChagePass
          Caption         =   "New Password"
          Height          =   255
          Left            =   240
-         TabIndex        =   6
+         TabIndex        =   7
          Top             =   960
          Width           =   1335
       End
@@ -105,7 +105,7 @@ Begin VB.Form frmChagePass
          Caption         =   "Current Password"
          Height          =   255
          Left            =   240
-         TabIndex        =   5
+         TabIndex        =   6
          Top             =   360
          Width           =   1335
       End

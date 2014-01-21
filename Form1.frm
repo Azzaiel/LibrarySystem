@@ -2,15 +2,15 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmMain 
    Caption         =   "Library System"
-   ClientHeight    =   9810
+   ClientHeight    =   10335
    ClientLeft      =   120
    ClientTop       =   750
    ClientWidth     =   20250
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9810
+   ScaleHeight     =   10335
    ScaleWidth      =   20250
    Begin VB.Frame frmControl 
-      Height          =   11895
+      Height          =   10095
       Left            =   0
       TabIndex        =   0
       Top             =   0
@@ -853,22 +853,25 @@ Begin VB.Form frmMain
       End
    End
    Begin VB.Menu mnLookups 
-      Caption         =   "Lookups"
+      Caption         =   "Library"
       Begin VB.Menu mnItemType 
-         Caption         =   "Itemn Type"
+         Caption         =   "Library Materials"
       End
       Begin VB.Menu Categuries 
          Caption         =   "Categories"
       End
       Begin VB.Menu mnLocationMapping 
-         Caption         =   "Location Mapping"
+         Caption         =   "Location Map"
       End
+   End
+   Begin VB.Menu mnName 
+      Caption         =   "School Data"
       Begin VB.Menu sections 
          Caption         =   "Sections"
       End
-   End
-   Begin VB.Menu mnStudents 
-      Caption         =   "Students"
+      Begin VB.Menu mnStudents 
+         Caption         =   "Students"
+      End
    End
    Begin VB.Menu mnInvetory 
       Caption         =   "Inventory"
@@ -885,8 +888,14 @@ Begin VB.Form frmMain
          Caption         =   "Changes Password"
       End
    End
-   Begin VB.Menu mnLogout 
-      Caption         =   "Logout"
+   Begin VB.Menu mnAppSession 
+      Caption         =   "App Session"
+      Begin VB.Menu mnLogout 
+         Caption         =   "Logout"
+      End
+      Begin VB.Menu mnExit 
+         Caption         =   "Exit"
+      End
    End
 End
 Attribute VB_Name = "frmMain"
@@ -1360,6 +1369,14 @@ Private Sub mnChangePassword_Click()
   frmChagePass.Show vbModal
 End Sub
 
+Private Sub mnExit_Click()
+    Dim response As String
+    response = MsgBox("Are you sure you want to exit system?", vbYesNo, "Question")
+    If (response = vbYes) Then
+      End
+    End If
+End Sub
+
 Private Sub mnInvetory_Click()
   frmInventory.Show vbModal
 End Sub
@@ -1373,8 +1390,12 @@ Private Sub mnLocationMapping_Click()
 End Sub
 
 Private Sub mnLogout_Click()
- frmControl.Visible = False
-  frmlogin.Show vbModal
+  Dim response As String
+    response = MsgBox("Are you sure you want to logout from system?", vbYesNo, "Question")
+    If (response = vbYes) Then
+      frmControl.Visible = False
+      frmlogin.Show vbModal
+    End If
 End Sub
 
 Private Sub mnStudents_Click()

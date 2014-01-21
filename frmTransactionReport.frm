@@ -69,7 +69,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108199937
+         Format          =   110690305
          CurrentDate     =   41650
       End
       Begin MSComCtl2.DTPicker dpEndDate 
@@ -90,7 +90,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   108199937
+         Format          =   110690305
          CurrentDate     =   41650
       End
       Begin VB.Label Label1 
@@ -226,7 +226,13 @@ Private Sub cmdExport_Click()
 
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
-  excelApp.Visible = True
+  'excelApp.Visible = True
+  
+    Dim pdfFilePat As String
+    pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
+    Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
+    oBook.Close
+    Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
 
 End Sub
 

@@ -751,15 +751,15 @@ Private Sub cmbExport_Click()
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
   
-  If (UserSession.role = "Admin") Then
-    excelApp.Visible = True
-  Else
+  'If (UserSession.role = "Admin") Then
+  '  excelApp.Visible = True
+  'Else
     Dim pdfFilePat As String
     pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
     Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
     oBook.Close
     Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
-  End If
+  'End If
 
 End Sub
 

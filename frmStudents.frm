@@ -473,7 +473,7 @@ Private Sub cmbClear_Click()
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLrn.Text = ""
+   txtLRN.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -529,7 +529,7 @@ Private Sub cmbEdit_Click()
     End If
       
     Set tempRs = StudentDao.getRsByID(rs!id)
-    tempRs!lrn = Val(txtLrn.Text)
+    tempRs!lrn = Val(txtLRN.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -561,15 +561,15 @@ Private Sub cmbExport_Click()
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
   
-  If (UserSession.role = "Admin") Then
-   excelApp.Visible = True
-  Else
+  'If (UserSession.role = "Admin") Then
+  ' excelApp.Visible = True
+  'Else
     Dim pdfFilePat As String
     pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
     Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
     oBook.Close
     Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
-  End If
+  'End If
 
 End Sub
 
@@ -577,7 +577,7 @@ Private Sub cmbNewRec_Click()
   Call resetFromSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
-    txtLrn.SetFocus
+    txtLRN.SetFocus
   Else
     If (isFormValid) Then
      
@@ -588,7 +588,7 @@ Private Sub cmbNewRec_Click()
     
       Set tempRs = StudentDao.getFakeRs
       tempRs.AddNew
-      tempRs!lrn = Val(txtLrn.Text)
+      tempRs!lrn = Val(txtLRN.Text)
       tempRs!FIRST_NAME = txtFirstName.Text
       tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
       tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -607,7 +607,7 @@ Private Sub cmbNewRec_Click()
   End If
 End Sub
 Private Function isLrnAlreadyInUse(Optional studentID As Integer = -1) As Boolean
-   Set tempRs = StudentDao.getRsByLrn(txtLrn)
+   Set tempRs = StudentDao.getRsByLrn(txtLRN)
    If (tempRs.RecordCount > 0) Then
      If (tempRs!id = studentID) Then
        isLrnAlreadyInUse = False
@@ -676,7 +676,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!id
-   txtLrn.Text = rs!lrn
+   txtLRN.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -744,8 +744,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
-     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
+     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
      isFormValid = False
      Exit Function
   End If
@@ -773,7 +773,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLrn)
+ Call CommonHelper.toDefaultSkin(txtLRN)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(txtMIDDLE_NAME)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)
