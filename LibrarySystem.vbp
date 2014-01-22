@@ -33,6 +33,7 @@ Form=frmChagePass.frm
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""
+ExeName32="LibrarySystem.exe"
 Command32=""
 Name="LibrarySystem"
 HelpContextID="0"

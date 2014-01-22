@@ -91,7 +91,7 @@ Private Sub cmbClose_Click()
 End Sub
 
 Private Sub cmdSubmit_Click()
-  If (Not CommonHelper.hasValidValue(txtUsername.Text)) Then
+  If (Not CommonHelper.hasValidValue(txtUserName.Text)) Then
     MsgBox "Please enter a Username", vbCritical
     Exit Sub
   ElseIf (Not CommonHelper.hasValidValue(txtPassword.Text)) Then
@@ -99,7 +99,7 @@ Private Sub cmdSubmit_Click()
     Exit Sub
   End If
   
-  Set rs = UserSession.getUserByUserName(txtUsername)
+  Set rs = UserSession.getUserByUserName(txtUserName)
   
   If (rs.RecordCount > 0) Then
       Dim bytBlock() As Byte
@@ -119,9 +119,10 @@ Private Sub cmdSubmit_Click()
           frmMain.mnUsers.Visible = False
           frmMain.mnLookups.Visible = False
         End If
-        txtUsername = ""
+        txtUserName = ""
         txtPassword = ""
-        txtUsername.SetFocus
+        txtUserName.SetFocus
+        frmMain.lblIUser.Caption = "You are currently login as: " & UserSession.getLoginUser
         Me.Hide
         If (UserSession.forceChange = "T") Then
           frmChagePass.Show vbModal

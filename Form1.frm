@@ -19,13 +19,13 @@ Begin VB.Form frmMain
          Caption         =   "Stats"
          Height          =   2295
          Left            =   13920
-         TabIndex        =   53
+         TabIndex        =   50
          Top             =   7440
          Width           =   6135
          Begin MSDataGridLib.DataGrid dgStat 
             Height          =   1335
             Left            =   840
-            TabIndex        =   54
+            TabIndex        =   51
             Top             =   240
             Width           =   4455
             _ExtentX        =   7858
@@ -108,7 +108,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   495
             Left            =   720
-            TabIndex        =   55
+            TabIndex        =   52
             Top             =   1680
             Width           =   4815
          End
@@ -226,6 +226,68 @@ Begin VB.Form frmMain
          TabIndex        =   5
          Top             =   120
          Width           =   6975
+         Begin VB.Frame Frame7 
+            ClipControls    =   0   'False
+            Height          =   1455
+            Left            =   3960
+            TabIndex        =   54
+            Top             =   360
+            Width           =   1935
+            Begin VB.OptionButton optAvailable 
+               Caption         =   "Available"
+               Enabled         =   0   'False
+               BeginProperty Font 
+                  Name            =   "MS Sans Serif"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   255
+               Left            =   240
+               TabIndex        =   57
+               Top             =   960
+               Width           =   1335
+            End
+            Begin VB.OptionButton optLost 
+               Caption         =   "Lost"
+               Enabled         =   0   'False
+               BeginProperty Font 
+                  Name            =   "MS Sans Serif"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   255
+               Left            =   240
+               TabIndex        =   56
+               Top             =   600
+               Width           =   1335
+            End
+            Begin VB.OptionButton optDamage 
+               Caption         =   "Damanged"
+               Enabled         =   0   'False
+               BeginProperty Font 
+                  Name            =   "MS Sans Serif"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   255
+               Left            =   240
+               TabIndex        =   55
+               Top             =   240
+               Width           =   1575
+            End
+         End
          Begin VB.Frame fmStudentInfo 
             Caption         =   "Student info"
             Height          =   1335
@@ -519,60 +581,6 @@ Begin VB.Form frmMain
             Top             =   1320
             Width           =   1935
          End
-         Begin VB.Label lblMarkAvailable 
-            Caption         =   "Mark as Available"
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   -1  'True
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00FF0000&
-            Height          =   255
-            Left            =   3960
-            TabIndex        =   52
-            Top             =   1080
-            Width           =   1695
-         End
-         Begin VB.Label lblMarkLost 
-            Caption         =   "Mark as Lost"
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   -1  'True
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00FF0000&
-            Height          =   255
-            Left            =   3960
-            TabIndex        =   51
-            Top             =   720
-            Width           =   1335
-         End
-         Begin VB.Label lblMarkDamage 
-            Caption         =   "Mark as Damanged"
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   -1  'True
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            ForeColor       =   &H00FF0000&
-            Height          =   255
-            Left            =   3960
-            TabIndex        =   50
-            Top             =   360
-            Width           =   1935
-         End
          Begin VB.Label lblChekOut 
             Caption         =   "Check out Item"
             BeginProperty Font 
@@ -774,19 +782,19 @@ Begin VB.Form frmMain
       End
       Begin VB.Frame Frame2 
          Caption         =   "Result"
-         Height          =   7575
+         Height          =   6975
          Left            =   120
          TabIndex        =   2
          Top             =   2160
          Width           =   6495
          Begin MSDataGridLib.DataGrid dgItems 
-            Height          =   7215
+            Height          =   6615
             Left            =   120
             TabIndex        =   19
             Top             =   240
             Width           =   6255
             _ExtentX        =   11033
-            _ExtentY        =   12726
+            _ExtentY        =   11668
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
@@ -850,6 +858,27 @@ Begin VB.Form frmMain
                EndProperty
             EndProperty
          End
+      End
+      Begin VB.Label lblIUser 
+         Alignment       =   2  'Center
+         BackColor       =   &H00FFFFFF&
+         BackStyle       =   0  'Transparent
+         Caption         =   " Name"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00008000&
+         Height          =   495
+         Left            =   0
+         TabIndex        =   53
+         Top             =   9360
+         Width           =   6855
       End
    End
    Begin VB.Menu mnLookups 
@@ -915,6 +944,8 @@ Private categoriesItemList() As Variant
 
 Public selectedStudentID As Integer
 Public selectedReturnDate As Date
+
+Private isStatusChangedEnabled As Boolean
 
 Private Sub Categuries_Click()
   frmCategories.Show vbModal
@@ -1025,15 +1056,20 @@ Private Sub showSelectedItem()
      End If
    Next index
    
+   isStatusChangedEnabled = False
    Call toogelItemCheckOutUI(False)
-   lblMarkAvailable.Enabled = False
-   lblMarkDamage.Enabled = False
-   lblMarkLost.Enabled = False
+   optDamage.Enabled = False
+   optLost.Enabled = False
+   optAvailable.Enabled = False
+   optDamage.value = False
+   optLost.value = False
+   optAvailable.value = False
    
    If (cmStatus = "Available") Then
       Call toogelItemCheckOutUI(True)
-      lblMarkDamage.Enabled = True
-      lblMarkLost.Enabled = True
+      optAvailable.value = True
+      optDamage.Enabled = True
+      optLost.Enabled = True
    ElseIf (cmStatus = "Borrowed") Then
       Set tempRs = InventoryDao.getStudentBorrower(itemsRs!id)
       txtLRN = tempRs!lrn
@@ -1042,14 +1078,16 @@ Private Sub showSelectedItem()
       txtSection = tempRs!Section
       Call DbInstance.closeRecordSet(tempRs)
    ElseIf (cmStatus = "Damaged") Then
-      lblMarkAvailable.Enabled = True
-      lblMarkLost.Enabled = True
+      optDamage.value = True
+      optLost.Enabled = True
+      optAvailable.Enabled = True
    ElseIf (cmStatus = "Loss") Then
-      lblMarkDamage.Enabled = True
-      lblMarkAvailable.Enabled = True
+      optLost.value = True
+      optDamage.Enabled = True
+      optAvailable.Enabled = True
    End If
    
-   
+   isStatusChangedEnabled = True
    
 End Sub
 
@@ -1237,12 +1275,7 @@ Private Sub clearStudentInfo()
     txtLRN = ""
 End Sub
 
-Private Sub Frame5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-  lblChekOut.ForeColor = vbBlue
-  lblMarkDamage.ForeColor = vbBlue
-  lblMarkLost.ForeColor = vbBlue
-  lblMarkAvailable.ForeColor = vbBlue
-End Sub
+
 
 Private Sub lblChekOut_Click()
   If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
@@ -1290,21 +1323,7 @@ Private Sub lblLost_Click()
 End Sub
 
 Private Sub lblMarkAvailable_Click()
-  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
-    MsgBox "Please select an Item", vbCritical
-    Exit Sub
-  Else
-    Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-    tempRs!Status = "Available"
-    tempRs!LAST_MOD_BY = UserSession.getLoginUser
-    tempRs!LAST_MOD_DATE = Now
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Item Status updated", vbInformation
-    Call cmItemsQuickSearch_Click
-  End If
-   Call reloadBookStats
+ 
 End Sub
 
 Private Sub lblMarkAvailable_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1312,21 +1331,7 @@ Private Sub lblMarkAvailable_MouseMove(Button As Integer, Shift As Integer, X As
 End Sub
 
 Private Sub lblMarkDamage_Click()
-  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
-    MsgBox "Please select an Item", vbCritical
-    Exit Sub
-  Else
-    Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-    tempRs!Status = "Damaged"
-    tempRs!LAST_MOD_BY = UserSession.getLoginUser
-    tempRs!LAST_MOD_DATE = Now
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Item Status updated", vbInformation
-    Call cmItemsQuickSearch_Click
-  End If
-   Call reloadBookStats
+  
 End Sub
 
 Private Sub lblMarkDamage_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1334,21 +1339,7 @@ Private Sub lblMarkDamage_MouseMove(Button As Integer, Shift As Integer, X As Si
 End Sub
 
 Private Sub lblMarkLost_Click()
-  If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
-    MsgBox "Please select an Item", vbCritical
-    Exit Sub
-  Else
-    Call DbInstance.closeRecordSet(tempRs)
-    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-    tempRs!Status = "Loss"
-    tempRs!LAST_MOD_BY = UserSession.getLoginUser
-    tempRs!LAST_MOD_DATE = Now
-    tempRs.Update
-    Call DbInstance.closeRecordSet(tempRs)
-    MsgBox "Item Status updated", vbInformation
-    Call cmItemsQuickSearch_Click
-  End If
-   Call reloadBookStats
+ 
 End Sub
 
 Private Sub lblMarkLost_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -1408,6 +1399,53 @@ End Sub
 
 Private Sub mnUsers_Click()
   frmAccount.Show vbModal
+End Sub
+
+Private Sub optAvailable_Click()
+   If (isStatusChangedEnabled) Then
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
+    tempRs!Status = "Available"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+    Call reloadBookStats
+  End If
+End Sub
+
+Private Sub optDamage_Click()
+  If (isStatusChangedEnabled) Then
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
+    tempRs!Status = "Damaged"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+    Call reloadBookStats
+  End If
+  
+End Sub
+
+Private Sub optLost_Click()
+   If (isStatusChangedEnabled) Then
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
+    tempRs!Status = "Loss"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+    Call reloadBookStats
+  End If
+   
 End Sub
 
 Private Sub sections_Click()
