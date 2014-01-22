@@ -115,6 +115,7 @@ Begin VB.Form frmAccount
       Begin VB.TextBox txtUserName 
          Height          =   285
          Left            =   1560
+         MaxLength       =   16
          TabIndex        =   0
          Top             =   720
          Width           =   2895

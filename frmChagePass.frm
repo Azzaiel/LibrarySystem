@@ -52,6 +52,7 @@ Begin VB.Form frmChagePass
          Height          =   285
          IMEMode         =   3  'DISABLE
          Left            =   1800
+         MaxLength       =   16
          PasswordChar    =   "*"
          TabIndex        =   2
          Top             =   1320
@@ -61,6 +62,7 @@ Begin VB.Form frmChagePass
          Height          =   285
          IMEMode         =   3  'DISABLE
          Left            =   1800
+         MaxLength       =   16
          PasswordChar    =   "*"
          TabIndex        =   1
          Top             =   960
@@ -70,6 +72,7 @@ Begin VB.Form frmChagePass
          Height          =   285
          IMEMode         =   3  'DISABLE
          Left            =   1800
+         MaxLength       =   16
          PasswordChar    =   "*"
          TabIndex        =   0
          ToolTipText     =   "2w321312321"

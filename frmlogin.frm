@@ -46,6 +46,7 @@ Begin VB.Form frmlogin
    Begin VB.TextBox txtUsername 
       Height          =   285
       Left            =   1440
+      MaxLength       =   16
       TabIndex        =   0
       Top             =   240
       Width           =   2895
@@ -54,6 +55,7 @@ Begin VB.Form frmlogin
       Height          =   285
       IMEMode         =   3  'DISABLE
       Left            =   1440
+      MaxLength       =   16
       PasswordChar    =   "*"
       TabIndex        =   1
       ToolTipText     =   "2w321312321"
