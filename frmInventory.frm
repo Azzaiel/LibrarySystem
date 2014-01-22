@@ -657,10 +657,10 @@ End Sub
 Private Sub cmbEdit_Click()
     Call restoreFormDefaultSkin
     If (isFormDetailValid) Then
-      If (isItemCodeAlreadyExist(rs!ITEM_CODE)) Then
-        MsgBox "Item Code Already in use", vbCritical
-        Exit Sub
-      End If
+      'If (isItemCodeAlreadyExist(rs!ITEM_CODE)) Then
+       ' MsgBox "Item Code Already in use", vbCritical
+        'Exit Sub
+      'End If
       Set tempRs = InventoryDao.getRsByID(rs!id)
       tempRs!name = txtName.Text
       tempRs!ITEM_CODE = txtItemCode.Text
@@ -770,10 +770,10 @@ Private Sub cmbNewRec_Click()
     txtItemCode.SetFocus
   Else
     If (isFormDetailValid) Then
-      If (isItemCodeAlreadyExist) Then
-        MsgBox "Item Code Already in use", vbCritical
-        Exit Sub
-      End If
+      'If (isItemCodeAlreadyExist) Then
+        'MsgBox "Item Code Already in use", vbCritical
+        'Exit Sub
+      'End If
       Set tempRs = InventoryDao.getFakeRs
       tempRs.AddNew
       tempRs!name = txtName.Text
