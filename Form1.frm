@@ -936,6 +936,9 @@ Begin VB.Form frmMain
          Caption         =   "Changes Password"
       End
    End
+   Begin VB.Menu dbBackum 
+      Caption         =   "Db Bacukup"
+   End
    Begin VB.Menu mnAppSession 
       Caption         =   "App Session"
       Begin VB.Menu mnLogout 
@@ -1029,6 +1032,17 @@ Private Sub clearDetailForm()
    cmCategory.ListIndex = -1
    
 End Sub
+
+Private Sub dbBackum_Click()
+   Dim dirPath As String
+   dirPath = CommonHelper.selectDir(Me.hWnd)
+   If (CommonHelper.hasValidValue(dirPath)) Then
+     dirPath = dirPath & "\Library_DB_backup_" & Format(Now, "mmddyyssmmn")
+     Call DbInstance.backup_db(dirPath)
+     MsgBox "Backup successfult, Data is saved on " & dirPath
+   End If
+End Sub
+
 Private Sub dgItems_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
   Call showSelectedItem
 End Sub

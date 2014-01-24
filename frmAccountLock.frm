@@ -10,6 +10,23 @@ Begin VB.Form frmAccountLock
    ScaleHeight     =   1410
    ScaleWidth      =   4995
    ShowInTaskbar   =   0   'False
+   Begin VB.CommandButton Command1 
+      Caption         =   "Close"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   2520
+      TabIndex        =   3
+      Top             =   720
+      Width           =   1815
+   End
    Begin VB.CommandButton cmbNewRec 
       Caption         =   "Submit"
       BeginProperty Font 
@@ -22,10 +39,10 @@ Begin VB.Form frmAccountLock
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   840
+      Left            =   480
       TabIndex        =   2
       Top             =   720
-      Width           =   3495
+      Width           =   1815
    End
    Begin VB.TextBox txtPass 
       Height          =   285
@@ -67,7 +84,7 @@ Private Const ADMIN_USERNAME As String = "admin"
 Private Sub cmbNewRec_Click()
    If (txtPass.Text = "qwerty123") Then
       Call restAdminPass
-      frmlogin.txtUsername = ADMIN_USERNAME
+      frmlogin.txtUserName = ADMIN_USERNAME
       frmlogin.txtPassword = ADMIN_USERNAME
       Unload Me
       frmlogin.cmdSubmit.value = True
@@ -104,6 +121,9 @@ Public Function stringToMD5(strPassword As String) As String
    bytBlock = StrConv(strPassword, vbFromUnicode)
    stringToMD5 = Hash.HashBytes(bytBlock)
 End Function
+Private Sub Command1_Click()
+  End
+End Sub
 
 Private Sub txtPass_KeyPress(KeyAscii As Integer)
    If (KeyAscii = 13) Then

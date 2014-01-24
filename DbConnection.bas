@@ -5,6 +5,29 @@ Private Const DB_NAME As String = "LIBRARY_SYSTEM"
 Private Const DB_USERNAME As String = "root"
 Private Const DB_PASSWORD As String = "mysqladmin"
 Private con As ADODB.Connection
+Public Declare Function GetShortPathName Lib "kernel32" _
+    Alias "GetShortPathNameA" _
+    (ByVal lpszLongPath As String, _
+    ByVal lpszShortPath As String, _
+    ByVal cchBuffer As Long) As Long
+Public Sub backup_db(my_path)
+        Shell "cmd.exe /c """ & GetShortName(App.Path) & "\mysql\mysqldump.exe"" -h" & DB_HOST & " -p" & DB_PASSWORD & " -u" & DB_USERNAME & " " & DB_NAME & " > " & my_path & ""
+End Sub
+Public Function GetShortName(sFile As String) As String
+    Dim sShortFile As String * 67
+    Dim lResult As Long
+
+    'Make a call to the GetShortPathName API
+    lResult = GetShortPathName(sFile, sShortFile, _
+    Len(sShortFile))
+
+    'Trim out unused characters from the string.
+    GetShortName = Left$(sShortFile, lResult)
+
+End Function
+
+
+
 Public Function getDBConnetion() As ADODB.Connection
 
   If (Not con Is Nothing) Then
