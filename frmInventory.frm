@@ -143,7 +143,7 @@ Begin VB.Form frmInventory
       End
       Begin VB.Label Label15 
          BackColor       =   &H0080FF80&
-         Caption         =   " Name"
+         Caption         =   " Title"
          Height          =   255
          Left            =   3360
          TabIndex        =   47
@@ -470,12 +470,12 @@ Begin VB.Form frmInventory
       End
       Begin VB.Label Label2 
          BackColor       =   &H0080FF80&
-         Caption         =   "* Name"
+         Caption         =   "*Title"
          Height          =   255
          Left            =   360
          TabIndex        =   28
          Top             =   1320
-         Width           =   615
+         Width           =   375
       End
       Begin VB.Label Label5 
          BackColor       =   &H0080FF80&
@@ -506,12 +506,12 @@ Begin VB.Form frmInventory
       End
       Begin VB.Label Label1 
          BackColor       =   &H0080FF80&
-         Caption         =   "ID"
+         Caption         =   "Accession no."
          Height          =   255
          Left            =   360
          TabIndex        =   24
          Top             =   240
-         Width           =   255
+         Width           =   1095
       End
    End
    Begin MSDataGridLib.DataGrid dgItems 
@@ -970,8 +970,11 @@ Private Sub formatDataGrid()
   
   With dgItems
      'ID - 0
-    .Columns(0).Width = 400
+    .Columns(0).Width = 1100
     .Columns(0).Alignment = dbgCenter
+    .Columns(0).Caption = "Accession no."
+    
+    .Columns(3).Caption = "Title "
 
      'CREATED DATE - 11
     .Columns(11).Width = 1500

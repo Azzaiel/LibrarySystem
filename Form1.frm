@@ -194,7 +194,7 @@ Begin VB.Form frmMain
          End
          Begin VB.Label Label15 
             BackColor       =   &H0080FF80&
-            Caption         =   " Name"
+            Caption         =   " Title"
             Height          =   255
             Left            =   240
             TabIndex        =   18
@@ -683,7 +683,7 @@ Begin VB.Form frmMain
          End
          Begin VB.Label Label2 
             BackColor       =   &H0080FF80&
-            Caption         =   "Item Name"
+            Caption         =   "Title"
             Height          =   255
             Left            =   240
             TabIndex        =   25
@@ -1195,6 +1195,8 @@ Private Sub formatTransactionDashDatagrid()
      'LRN - 0
     .Columns(0).Width = 1500
     .Columns(0).Alignment = dbgCenter
+    
+    .Columns(1).Caption = "Title"
 
      'DUE DATE - 5
     .Columns(5).Width = 1500
@@ -1266,6 +1268,8 @@ Private Sub formatIemsDataGrid()
   End If
   
   With dgItems
+  
+    .Columns(3).Caption = "Title"
 
      'CREATED DATE - 11
     .Columns(11).Width = 1500
