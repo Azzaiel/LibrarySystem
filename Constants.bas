@@ -1,5 +1,6 @@
 Attribute VB_Name = "Constants"
 Public Const DEFAULT_FORMAT As String = "MMMM, dd yyyy"
+Public Const DEFAULT_CURRENCY_FORMAT As String = "P ###,##0.00"
 
 
 Public Const ITEM_VALUE_INDEX As Integer = 0

@@ -8,7 +8,7 @@ Public Function getAllRs() As ADODB.Recordset
    Dim sqlQuery As String
    
    sqlQuery = "Select a.ID, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
-              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.STATUS, a.CREATED_BY, a.CREATED_DATE " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.PURCHASE_COST, a.STATUS, a.CREATED_BY, a.CREATED_DATE " & _
               "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID " & _
               "From ITEMS a, ITEM_TYPES b " & _
               "     , LOCATION_MAPPINGS c, CATEGORIES d " & _
@@ -33,7 +33,7 @@ Public Function getDashboardEmptyRs() As ADODB.Recordset
    Dim sqlQuery As String
    
    sqlQuery = "Select a.STATUS, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
-              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.CREATED_BY, a.CREATED_DATE " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.PURCHASE_COST, a.CREATED_BY, a.CREATED_DATE " & _
               "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID, a.ID " & _
               "From ITEMS a, ITEM_TYPES b " & _
               "     , LOCATION_MAPPINGS c, CATEGORIES d " & _
@@ -59,7 +59,7 @@ Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, autho
    Dim sqlQuery As String
    
    sqlQuery = "Select a.STATUS, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
-              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.CREATED_BY, a.CREATED_DATE " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.PURCHASE_COST, a.CREATED_BY, a.CREATED_DATE " & _
               "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID, a.ID " & _
               "From ITEMS a, ITEM_TYPES b " & _
               "     , LOCATION_MAPPINGS c, CATEGORIES d " & _
@@ -114,7 +114,7 @@ Public Function search(itemCode As String, itemTypeID As Integer, author As Stri
    Dim sqlQuery As String
    
    sqlQuery = "Select a.ID, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
-              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.STATUS, a.CREATED_BY, a.CREATED_DATE " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.PURCHASE_COST, a.STATUS, a.CREATED_BY, a.CREATED_DATE " & _
               "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID " & _
               "From ITEMS a, ITEM_TYPES b " & _
               "     , LOCATION_MAPPINGS c, CATEGORIES d " & _

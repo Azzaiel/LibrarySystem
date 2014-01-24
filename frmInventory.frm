@@ -2,12 +2,12 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmInventory 
    Caption         =   "Inventory"
-   ClientHeight    =   10245
+   ClientHeight    =   10605
    ClientLeft      =   330
    ClientTop       =   450
    ClientWidth     =   18765
    LinkTopic       =   "Form1"
-   ScaleHeight     =   10245
+   ScaleHeight     =   10605
    ScaleWidth      =   18765
    Begin VB.Frame Frame2 
       Caption         =   "Search Form"
@@ -183,7 +183,7 @@ Begin VB.Form frmInventory
       Height          =   495
       Left            =   720
       TabIndex        =   9
-      Top             =   9600
+      Top             =   9960
       Width           =   1095
    End
    Begin VB.CommandButton cmbEdit 
@@ -200,7 +200,7 @@ Begin VB.Form frmInventory
       Height          =   495
       Left            =   1920
       TabIndex        =   10
-      Top             =   9600
+      Top             =   9960
       Width           =   1095
    End
    Begin VB.CommandButton cmbDelete 
@@ -217,7 +217,7 @@ Begin VB.Form frmInventory
       Height          =   495
       Left            =   3120
       TabIndex        =   11
-      Top             =   9600
+      Top             =   9960
       Width           =   1095
    End
    Begin VB.CommandButton cmbClose 
@@ -234,7 +234,7 @@ Begin VB.Form frmInventory
       Height          =   495
       Left            =   5520
       TabIndex        =   13
-      Top             =   9600
+      Top             =   9960
       Width           =   1095
    End
    Begin VB.CommandButton cmbClear 
@@ -251,16 +251,24 @@ Begin VB.Form frmInventory
       Height          =   495
       Left            =   4320
       TabIndex        =   12
-      Top             =   9600
+      Top             =   9960
       Width           =   1095
    End
    Begin VB.Frame Frame1 
       Caption         =   "Item"
-      Height          =   9495
+      Height          =   9855
       Left            =   120
       TabIndex        =   23
       Top             =   0
       Width           =   6975
+      Begin VB.TextBox txtPurchaseCost 
+         Height          =   285
+         Left            =   1560
+         MaxLength       =   9
+         TabIndex        =   52
+         Top             =   7680
+         Width           =   1935
+      End
       Begin VB.ComboBox cmStatus 
          Height          =   315
          ItemData        =   "frmInventory.frx":0049
@@ -270,7 +278,7 @@ Begin VB.Form frmInventory
          Style           =   1  'Simple Combo
          TabIndex        =   8
          Text            =   "cmStatus"
-         Top             =   7680
+         Top             =   8040
          Width           =   1935
       End
       Begin VB.TextBox txtDonatedBy 
@@ -342,13 +350,22 @@ Begin VB.Form frmInventory
          Top             =   600
          Width           =   1935
       End
+      Begin VB.Label Label19 
+         BackColor       =   &H0080FF80&
+         Caption         =   "Purchase Cost"
+         Height          =   255
+         Left            =   360
+         TabIndex        =   53
+         Top             =   7680
+         Width           =   1095
+      End
       Begin VB.Label lblLastModDate 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
          Left            =   1560
          TabIndex        =   43
-         Top             =   9120
+         Top             =   9480
          Width           =   1935
       End
       Begin VB.Label lblLatModBy 
@@ -357,7 +374,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   42
-         Top             =   8760
+         Top             =   9120
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
@@ -366,7 +383,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   41
-         Top             =   8400
+         Top             =   8760
          Width           =   1935
       End
       Begin VB.Label lblCreatedBy 
@@ -375,7 +392,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   1560
          TabIndex        =   40
-         Top             =   8040
+         Top             =   8400
          Width           =   1935
       End
       Begin VB.Label Label13 
@@ -384,7 +401,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   39
-         Top             =   9120
+         Top             =   9480
          Width           =   1095
       End
       Begin VB.Label Label12 
@@ -393,7 +410,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   38
-         Top             =   8760
+         Top             =   9120
          Width           =   975
       End
       Begin VB.Label Label11 
@@ -402,7 +419,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   37
-         Top             =   8400
+         Top             =   8760
          Width           =   975
       End
       Begin VB.Label Label10 
@@ -411,7 +428,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   36
-         Top             =   8040
+         Top             =   8400
          Width           =   855
       End
       Begin VB.Label Label9 
@@ -420,7 +437,7 @@ Begin VB.Form frmInventory
          Height          =   255
          Left            =   360
          TabIndex        =   35
-         Top             =   7680
+         Top             =   8040
          Width           =   495
       End
       Begin VB.Label Label7 
@@ -665,6 +682,7 @@ Private Sub clearForm()
     lblCreatedDate.Caption = ""
     lblLatModBy.Caption = ""
     lblLastModDate.Caption = ""
+    txtPurchaseCost = ""
     cmStatus.ListIndex = -1
     
     cmItemType.ListIndex = -1
@@ -686,6 +704,7 @@ Private Sub cmbEdit_Click()
       tempRs!Description = txtDescription.Text
       tempRs!DONATED_BY = txtDonatedBy.Text
       tempRs!author = txtAuthor.Text
+      tempRs!PURCHASE_COST = Val(txtPurchaseCost)
       tempRs!status = cmStatus.Text
       tempRs!LOCATION_ID = getLocationID
       tempRs!ITEM_TYPE_ID = getItemTypeID
@@ -725,7 +744,7 @@ Private Sub cmbExport_Click()
   
   oSheet.Range("A11").CopyFromRecordset dgItems.DataSource
   oSheet.Columns.AutoFit
-  oSheet.Range("O1:Q1").EntireColumn.Hidden = True
+  oSheet.Range("P1:AA1").EntireColumn.Hidden = True
   
   Dim availableCount As Long
   Dim borrowedCount As Long
@@ -800,6 +819,7 @@ Private Sub cmbNewRec_Click()
       tempRs!ITEM_CODE = txtItemCode.Text
       tempRs!Description = txtDescription.Text
       tempRs!DONATED_BY = txtDonatedBy.Text
+      tempRs!PURCHASE_COST = Val(txtPurchaseCost)
       tempRs!author = txtAuthor.Text
       tempRs!status = cmStatus.Text
       tempRs!LOCATION_ID = getLocationID
@@ -978,20 +998,25 @@ Private Sub formatDataGrid()
     .Columns(1).Caption = "ISBN"
     
     .Columns(3).Caption = "Title "
-
-     'CREATED DATE - 11
-    .Columns(11).Width = 1500
-    .Columns(11).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(11).Alignment = dbgCenter
     
-    'LAST MOD DATE - 13
-    .Columns(13).Width = 1500
-    .Columns(13).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(13).Alignment = dbgCenter
+     'CREATED DATE - 9
+    .Columns(9).Width = 1500
+    .Columns(9).NumberFormat = DEFAULT_CURRENCY_FORMAT
     
-    .Columns(14).Visible = False
+    
+     'CREATED DATE - 12
+    .Columns(12).Width = 1500
+    .Columns(12).NumberFormat = Constants.DEFAULT_FORMAT
+    .Columns(12).Alignment = dbgCenter
+    
+    'LAST MOD DATE - 14
+    .Columns(14).Width = 1500
+    .Columns(14).NumberFormat = Constants.DEFAULT_FORMAT
+    .Columns(14).Alignment = dbgCenter
+    
     .Columns(15).Visible = False
     .Columns(16).Visible = False
+    .Columns(17).Visible = False
     
   End With
 End Sub
@@ -1011,6 +1036,8 @@ Private Sub showSelectedData()
     lblCreatedDate.Caption = CommonHelper.extractDateValue(rs!CREATED_DATE)
     lblLatModBy.Caption = CommonHelper.extractStringValue(rs!LAST_MOD_BY)
     lblLastModDate.Caption = CommonHelper.extractDateValue(rs!LAST_MOD_DATE)
+    txtPurchaseCost = CommonHelper.extractStringValue(rs!PURCHASE_COST)
+    
     
     
     If (cmbNewRec.Caption = "New") Then
@@ -1074,6 +1101,29 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer)
    Call frmMain.reloadBookStats
 End Sub
+
+Private Sub txtPurchaseCost_KeyPress(KeyAscii As Integer)
+   If (Not isFunctionAscii(KeyAscii) And (Not isNumberAscii(KeyAscii) Or Len(txtPurchaseCost) > 11)) Then
+    KeyAscii = 0
+    Beep
+  End If
+End Sub
+
+Private Function isFunctionAscii(ascii As Integer) As Boolean
+  If (ascii = 13 Or ascii = 8 Or ascii = 32) Then
+    isFunctionAscii = True
+  Else
+    isFunctionAscii = False
+  End If
+End Function
+
+Private Function isNumberAscii(ascii As Integer) As Boolean
+  If (ascii >= 48 And ascii <= 57) Then
+    isNumberAscii = True
+  Else
+    isNumberAscii = False
+  End If
+End Function
 
 Private Sub txtSearchAuthor_KeyPress(KeyAscii As Integer)
   If (KeyAscii = 13) Then

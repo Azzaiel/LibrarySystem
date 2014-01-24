@@ -245,6 +245,23 @@ Begin VB.Form frmMain
          TabIndex        =   5
          Top             =   120
          Width           =   6975
+         Begin VB.TextBox txtPurchaseCost 
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   285
+            Left            =   4440
+            Locked          =   -1  'True
+            TabIndex        =   60
+            Top             =   3360
+            Width           =   1935
+         End
          Begin VB.Frame Frame7 
             ClipControls    =   0   'False
             Height          =   1455
@@ -528,7 +545,7 @@ Begin VB.Form frmMain
             Style           =   1  'Simple Combo
             TabIndex        =   28
             Top             =   3360
-            Width           =   1935
+            Width           =   1695
          End
          Begin VB.TextBox txtItemCode 
             BeginProperty Font 
@@ -599,6 +616,15 @@ Begin VB.Form frmMain
             TabIndex        =   20
             Top             =   1320
             Width           =   1935
+         End
+         Begin VB.Label Label12 
+            BackColor       =   &H0080FF80&
+            Caption         =   "Purchase Cost"
+            Height          =   255
+            Left            =   3240
+            TabIndex        =   61
+            Top             =   3360
+            Width           =   1095
          End
          Begin VB.Label lblChekOut 
             Caption         =   "Check out Item"
@@ -1064,6 +1090,7 @@ Private Sub showSelectedItem()
     txtDonatedBy.Text = CommonHelper.extractStringValue(itemsRs!DONATED_BY)
     txtAuthor.Text = CommonHelper.extractStringValue(itemsRs!author)
     cmStatus.Text = CommonHelper.extractStringValue(itemsRs!status)
+    txtPurchaseCost = Format(itemsRs!PURCHASE_COST, Constants.DEFAULT_CURRENCY_FORMAT)
     
     cmItemType.ListIndex = -1
     cmLocation.ListIndex = -1
@@ -1285,6 +1312,9 @@ Private Sub formatIemsDataGrid()
      .Columns(1).Caption = "ISBN"
   
     .Columns(3).Caption = "Title"
+    
+    .Columns(9).Width = 1500
+    .Columns(9).NumberFormat = DEFAULT_CURRENCY_FORMAT
 
      'CREATED DATE - 11
     .Columns(11).Width = 1500
@@ -1296,10 +1326,10 @@ Private Sub formatIemsDataGrid()
     .Columns(13).NumberFormat = Constants.DEFAULT_FORMAT
     .Columns(13).Alignment = dbgCenter
     
-    .Columns(13).Visible = False
     .Columns(14).Visible = False
     .Columns(15).Visible = False
     .Columns(16).Visible = False
+    .Columns(17).Visible = False
     
   End With
 End Sub
