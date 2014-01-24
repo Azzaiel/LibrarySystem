@@ -109,6 +109,7 @@ Begin VB.Form frmStudentSelect
       _ExtentX        =   14631
       _ExtentY        =   7011
       _Version        =   393216
+      AllowUpdate     =   0   'False
       HeadLines       =   1
       RowHeight       =   15
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 

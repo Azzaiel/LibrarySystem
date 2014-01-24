@@ -735,13 +735,12 @@ Begin VB.Form frmMain
             _ExtentX        =   10398
             _ExtentY        =   12303
             _Version        =   393216
-            AllowUpdate     =   -1  'True
+            AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
             HeadLines       =   1
             RowHeight       =   15
             TabAction       =   2
             RowDividerStyle =   3
-            AllowDelete     =   -1  'True
             BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "MS Sans Serif"
                Size            =   8.25
