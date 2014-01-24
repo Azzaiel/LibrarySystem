@@ -88,12 +88,13 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
+Private attempCount As Integer
 Private Sub cmbClose_Click()
   Unload Me
 End Sub
 
 Private Sub cmdSubmit_Click()
-  If (Not CommonHelper.hasValidValue(txtUserName.Text)) Then
+  If (Not CommonHelper.hasValidValue(txtUsername.Text)) Then
     MsgBox "Please enter a Username", vbCritical
     Exit Sub
   ElseIf (Not CommonHelper.hasValidValue(txtPassword.Text)) Then
@@ -101,7 +102,7 @@ Private Sub cmdSubmit_Click()
     Exit Sub
   End If
   
-  Set rs = UserSession.getUserByUserName(txtUserName)
+  Set rs = UserSession.getUserByUserName(txtUsername)
   
   If (rs.RecordCount > 0) Then
       Dim bytBlock() As Byte
@@ -121,10 +122,11 @@ Private Sub cmdSubmit_Click()
           frmMain.mnUsers.Visible = False
           frmMain.mnLookups.Visible = False
         End If
-        txtUserName = ""
+        txtUsername = ""
         txtPassword = ""
-        txtUserName.SetFocus
+        txtUsername.SetFocus
         frmMain.lblIUser.Caption = "You are currently login as: " & UserSession.getLoginUser
+        attempCount = 3
         Me.Hide
         If (UserSession.forceChange = "T") Then
           frmChagePass.Show vbModal
@@ -135,6 +137,17 @@ Private Sub cmdSubmit_Click()
   
   MsgBox "Username and Password does not match", vbCritical
   
+  attempCount = attempCount - 1
+  
+  If (attempCount = 0) Then
+    MsgBox "3 login attemps was reached, System is now on lockdown", vbCritical
+    frmAccountLock.Show vbModal
+  End If
+  
+End Sub
+
+Private Sub Form_Load()
+  attempCount = 3
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)

@@ -30,6 +30,7 @@ Form=frmTransactionReport.frm
 Form=frmAccount.frm
 Class=MD5Hash; MD5Hash.cls
 Form=frmChagePass.frm
+Form=frmAccountLock.frm
 IconForm="frmMain"
 Startup="Sub Main"
 HelpFile=""

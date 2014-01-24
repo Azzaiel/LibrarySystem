@@ -75,7 +75,6 @@ Begin VB.Form frmChagePass
          MaxLength       =   16
          PasswordChar    =   "*"
          TabIndex        =   0
-         ToolTipText     =   "2w321312321"
          Top             =   360
          Width           =   2895
       End
