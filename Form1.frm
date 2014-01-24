@@ -212,7 +212,7 @@ Begin VB.Form frmMain
          End
          Begin VB.Label Label8 
             BackColor       =   &H0080FF80&
-            Caption         =   "Item Code"
+            Caption         =   "ISBN"
             Height          =   255
             Left            =   240
             TabIndex        =   15
@@ -665,7 +665,7 @@ Begin VB.Form frmMain
          End
          Begin VB.Label lblName 
             BackColor       =   &H0080FF80&
-            Caption         =   "Item Code"
+            Caption         =   "ISBN"
             Height          =   255
             Left            =   240
             TabIndex        =   27
@@ -1268,6 +1268,8 @@ Private Sub formatIemsDataGrid()
   End If
   
   With dgItems
+  
+     .Columns(1).Caption = "ISBN"
   
     .Columns(3).Caption = "Title"
 

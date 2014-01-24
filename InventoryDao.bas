@@ -353,7 +353,7 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
    
    Dim sqlQuery As String
    
-   sqlQuery = "Select item.ITEM_CODE, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as ITEM_NAME, item.AUTHOR " & _
+   sqlQuery = "Select item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
               "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
               "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_BY as RELEASED_BY " & _
               "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _
@@ -384,7 +384,7 @@ Public Function getFakeTransactionReportRs()
    
    Dim sqlQuery As String
    
-   sqlQuery = "Select item.ITEM_CODE, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as ITEM_NAME, item.AUTHOR " & _
+   sqlQuery = "Select item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
               "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
               "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_BY as RELEASED_BY " & _
               "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _

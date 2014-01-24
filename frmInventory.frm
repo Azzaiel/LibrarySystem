@@ -161,7 +161,7 @@ Begin VB.Form frmInventory
       End
       Begin VB.Label Label8 
          BackColor       =   &H0080FF80&
-         Caption         =   "Item Code"
+         Caption         =   "ISBN"
          Height          =   255
          Left            =   120
          TabIndex        =   45
@@ -488,7 +488,7 @@ Begin VB.Form frmInventory
       End
       Begin VB.Label lblName 
          BackColor       =   &H0080FF80&
-         Caption         =   "*Item Code"
+         Caption         =   "*ISBN"
          Height          =   255
          Left            =   360
          TabIndex        =   26
@@ -828,7 +828,7 @@ End Sub
 Private Function isFormDetailValid() As Boolean
   If (Not CommonHelper.hasValidValue(txtItemCode)) Then
     isFormDetailValid = False
-    Call CommonHelper.sendWarning(txtItemCode, "Please enter the an Item Code")
+    Call CommonHelper.sendWarning(txtItemCode, "Please enter the an ISBN")
     Exit Function
   End If
   
@@ -840,13 +840,13 @@ Private Function isFormDetailValid() As Boolean
   
   If (Not CommonHelper.hasValidValue(txtName)) Then
     isFormDetailValid = False
-    Call CommonHelper.sendWarning(txtName, "Please enter the a Name")
+    Call CommonHelper.sendWarning(txtName, "Please enter the a Title")
     Exit Function
   End If
   
   If (Not CommonHelper.hasValidValue(cmLocation.Text)) Then
     isFormDetailValid = False
-    Call CommonHelper.sendComboBoxWarning(cmLocation, "Please select a Locatio ")
+    Call CommonHelper.sendComboBoxWarning(cmLocation, "Please select a Location ")
     Exit Function
   End If
   
@@ -974,6 +974,8 @@ Private Sub formatDataGrid()
     .Columns(0).Width = 1100
     .Columns(0).Alignment = dbgCenter
     .Columns(0).Caption = "Accession no."
+    
+    .Columns(1).Caption = "ISBN"
     
     .Columns(3).Caption = "Title "
 

@@ -333,7 +333,7 @@ Begin VB.Form frmItemReturn
    End
    Begin VB.Label Label2 
       BackColor       =   &H0080FF80&
-      Caption         =   "Item Name"
+      Caption         =   "Title"
       Height          =   255
       Left            =   240
       TabIndex        =   23
@@ -351,7 +351,7 @@ Begin VB.Form frmItemReturn
    End
    Begin VB.Label lblName 
       BackColor       =   &H0080FF80&
-      Caption         =   "Item Code"
+      Caption         =   "ISBN"
       Height          =   255
       Left            =   240
       TabIndex        =   21
@@ -400,7 +400,7 @@ Private Sub cmbNewRec_Click()
       Call DbInstance.closeRecordSet(tempRs)
       
       Set tempRs = InventoryDao.getRsByID(itemID)
-      tempRs!Status = "Available"
+      tempRs!status = "Available"
       tempRs.Update
       Call DbInstance.closeRecordSet(tempRs)
       
@@ -439,3 +439,4 @@ Private Sub Form_Unload(Cancel As Integer)
    Call DbInstance.closeRecordSet(rs)
    Call frmMain.reloadBookStats
 End Sub
+
