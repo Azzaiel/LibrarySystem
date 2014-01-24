@@ -448,4 +448,27 @@ Public Function isItemBeingUsed(itemID As Integer) As Boolean
    
 End Function
 
+Public Function getItemNewID() As Long
+   
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select ID + 1 as newID from items order by ID Desc " & _
+              " limit 1 "
 
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   
+   If (rs.RecordCount > 0) Then
+    getItemNewID = rs!newID
+   Else
+     getItemNewID = 1
+   End If
+   Call closeRecordSet(rs)
+   
+End Function
+
+    

@@ -783,9 +783,10 @@ Private Sub cmbExport_Click()
 End Sub
 
 Private Sub cmbNewRec_Click()
-      Call restoreFormDefaultSkin
+    Call restoreFormDefaultSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
+    lblID = InventoryDao.getItemNewID
     txtItemCode.SetFocus
   Else
     If (isFormDetailValid) Then
