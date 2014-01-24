@@ -124,7 +124,7 @@ Begin VB.Form frmMain
             Height          =   315
             ItemData        =   "Form1.frx":0000
             Left            =   4200
-            List            =   "Form1.frx":0013
+            List            =   "Form1.frx":0016
             Style           =   2  'Dropdown List
             TabIndex        =   58
             Top             =   960
@@ -521,9 +521,9 @@ Begin VB.Form frmMain
                Strikethrough   =   0   'False
             EndProperty
             Height          =   315
-            ItemData        =   "Form1.frx":003D
+            ItemData        =   "Form1.frx":0049
             Left            =   1440
-            List            =   "Form1.frx":004D
+            List            =   "Form1.frx":0059
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
             TabIndex        =   28
@@ -710,7 +710,7 @@ Begin VB.Form frmMain
          Begin VB.PictureBox imgLoc 
             Height          =   3690
             Left            =   120
-            Picture         =   "Form1.frx":0075
+            Picture         =   "Form1.frx":0081
             ScaleHeight     =   3630
             ScaleWidth      =   6195
             TabIndex        =   6

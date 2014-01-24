@@ -88,7 +88,11 @@ Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, autho
    End If
    
     If (CommonHelper.hasValidValue(status)) Then
-     sqlQuery = sqlQuery & " And a.STATUS = '" & status & "'"
+     If (status = "Archive") Then
+       sqlQuery = sqlQuery & " And a.STATUS in ('Loss', 'Damaged') "
+     Else
+       sqlQuery = sqlQuery & " And a.STATUS = '" & status & "'"
+     End If
    End If
    
    sqlQuery = sqlQuery & " Order by a.LAST_MOD_DATE Desc "
@@ -138,8 +142,12 @@ Public Function search(itemCode As String, itemTypeID As Integer, author As Stri
      sqlQuery = sqlQuery & " And a.name Like '" & name & "%'"
    End If
    
-    If (CommonHelper.hasValidValue(status)) Then
-     sqlQuery = sqlQuery & " And a.STATUS = '" & status & "'"
+   If (CommonHelper.hasValidValue(status)) Then
+     If (status = "Archive") Then
+       sqlQuery = sqlQuery & " And a.STATUS in ('Loss', 'Damaged') "
+     Else
+       sqlQuery = sqlQuery & " And a.STATUS = '" & status & "'"
+     End If
    End If
    
    sqlQuery = sqlQuery & " Order by a.LAST_MOD_DATE Desc "

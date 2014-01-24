@@ -20,7 +20,7 @@ Begin VB.Form frmInventory
          Height          =   315
          ItemData        =   "frmInventory.frx":0000
          Left            =   7440
-         List            =   "frmInventory.frx":0013
+         List            =   "frmInventory.frx":0016
          Style           =   2  'Dropdown List
          TabIndex        =   51
          Top             =   720
@@ -263,9 +263,9 @@ Begin VB.Form frmInventory
       Width           =   6975
       Begin VB.ComboBox cmStatus 
          Height          =   315
-         ItemData        =   "frmInventory.frx":003D
+         ItemData        =   "frmInventory.frx":0049
          Left            =   1560
-         List            =   "frmInventory.frx":004D
+         List            =   "frmInventory.frx":0059
          Locked          =   -1  'True
          Style           =   1  'Simple Combo
          TabIndex        =   8
@@ -305,7 +305,7 @@ Begin VB.Form frmInventory
       Begin VB.PictureBox imgLoc 
          Height          =   3735
          Left            =   360
-         Picture         =   "frmInventory.frx":0075
+         Picture         =   "frmInventory.frx":0081
          ScaleHeight     =   3675
          ScaleWidth      =   6195
          TabIndex        =   30
