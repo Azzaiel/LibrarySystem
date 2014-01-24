@@ -11,11 +11,21 @@ Begin VB.Form frmInventory
    ScaleWidth      =   18765
    Begin VB.Frame Frame2 
       Caption         =   "Search Form"
-      Height          =   1215
+      Height          =   1695
       Left            =   7200
       TabIndex        =   44
       Top             =   0
-      Width           =   11415
+      Width           =   11295
+      Begin VB.ComboBox cmbSearchStatus 
+         Height          =   315
+         ItemData        =   "frmInventory.frx":0000
+         Left            =   7440
+         List            =   "frmInventory.frx":0013
+         Style           =   2  'Dropdown List
+         TabIndex        =   51
+         Top             =   720
+         Width           =   1935
+      End
       Begin VB.CommandButton cmbExport 
          Caption         =   "Export"
          BeginProperty Font 
@@ -28,9 +38,9 @@ Begin VB.Form frmInventory
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   9480
+         Left            =   7440
          TabIndex        =   21
-         Top             =   720
+         Top             =   1200
          Width           =   1335
       End
       Begin VB.CommandButton cmdClearSearch 
@@ -45,9 +55,9 @@ Begin VB.Form frmInventory
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   7920
+         Left            =   5040
          TabIndex        =   20
-         Top             =   720
+         Top             =   1200
          Width           =   1335
       End
       Begin VB.CommandButton cmdSearch 
@@ -62,9 +72,9 @@ Begin VB.Form frmInventory
             Strikethrough   =   0   'False
          EndProperty
          Height          =   315
-         Left            =   6360
+         Left            =   2760
          TabIndex        =   19
-         Top             =   720
+         Top             =   1200
          Width           =   1335
       End
       Begin VB.TextBox txtSearchAuthor 
@@ -103,6 +113,15 @@ Begin VB.Form frmInventory
          TabIndex        =   14
          Top             =   240
          Width           =   1935
+      End
+      Begin VB.Label Label18 
+         BackColor       =   &H0080FF80&
+         Caption         =   "Status"
+         Height          =   255
+         Left            =   6840
+         TabIndex        =   50
+         Top             =   720
+         Width           =   495
       End
       Begin VB.Label Label17 
          BackColor       =   &H0080FF80&
@@ -244,9 +263,9 @@ Begin VB.Form frmInventory
       Width           =   6975
       Begin VB.ComboBox cmStatus 
          Height          =   315
-         ItemData        =   "frmInventory.frx":0000
+         ItemData        =   "frmInventory.frx":003D
          Left            =   1560
-         List            =   "frmInventory.frx":0010
+         List            =   "frmInventory.frx":004D
          Locked          =   -1  'True
          Style           =   1  'Simple Combo
          TabIndex        =   8
@@ -286,7 +305,7 @@ Begin VB.Form frmInventory
       Begin VB.PictureBox imgLoc 
          Height          =   3735
          Left            =   360
-         Picture         =   "frmInventory.frx":0038
+         Picture         =   "frmInventory.frx":0075
          ScaleHeight     =   3675
          ScaleWidth      =   6195
          TabIndex        =   30
@@ -499,7 +518,7 @@ Begin VB.Form frmInventory
       Height          =   8775
       Left            =   7200
       TabIndex        =   22
-      Top             =   1320
+      Top             =   1800
       Width           =   11415
       _ExtentX        =   20135
       _ExtentY        =   15478
@@ -667,7 +686,7 @@ Private Sub cmbEdit_Click()
       tempRs!Description = txtDescription.Text
       tempRs!DONATED_BY = txtDonatedBy.Text
       tempRs!author = txtAuthor.Text
-      tempRs!Status = cmStatus.Text
+      tempRs!status = cmStatus.Text
       tempRs!LOCATION_ID = getLocationID
       tempRs!ITEM_TYPE_ID = getItemTypeID
       tempRs!CATEGORY_ID = getCategoryID
@@ -720,7 +739,7 @@ Private Sub cmbExport_Click()
   rs.MoveFirst
   Dim itemStatus As String
   While Not rs.EOF
-    itemStatus = CommonHelper.extractStringValue(rs!Status)
+    itemStatus = CommonHelper.extractStringValue(rs!status)
     If (itemStatus = "Available") Then
       availableCount = availableCount + 1
     ElseIf (itemStatus = "Borrowed") Then
@@ -781,7 +800,7 @@ Private Sub cmbNewRec_Click()
       tempRs!Description = txtDescription.Text
       tempRs!DONATED_BY = txtDonatedBy.Text
       tempRs!author = txtAuthor.Text
-      tempRs!Status = cmStatus.Text
+      tempRs!status = cmStatus.Text
       tempRs!LOCATION_ID = getLocationID
       tempRs!ITEM_TYPE_ID = getItemTypeID
       tempRs!CATEGORY_ID = getCategoryID
@@ -851,18 +870,30 @@ Private Sub toogelInsertMode(isInisilization As Boolean)
     cmbDelete.Enabled = True
   End If
 End Sub
+
+Private Sub cmbSearchStatus_Click()
+  Call cmdSearch_Click
+End Sub
+
+Private Sub cmbSearchStatus_KeyPress(KeyAscii As Integer)
+  If (KeyAscii = 13) Then
+    Call cmdSearch_Click
+  End If
+End Sub
+
 Private Sub cmdClearSearch_Click()
   txtSearchItemCode.Text = ""
   cmSearchType.ListIndex = -1
   txtSearchName.Text = ""
   cmSearchCategory.ListIndex = -1
   txtSearchAuthor = ""
+  cmbSearchStatus.ListIndex = -1
 End Sub
 
 Private Sub cmdSearch_Click()
   Set dgItems.DataSource = Nothing
   Call DbInstance.closeRecordSet(rs)
-  Set rs = InventoryDao.search(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID)
+  Set rs = InventoryDao.search(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID, cmbSearchStatus.Text)
   Set dgItems.DataSource = rs
   dgItems.Refresh
   Call clearForm
@@ -977,7 +1008,7 @@ Private Sub showSelectedData()
     
     
     If (cmbNewRec.Caption = "New") Then
-      cmStatus.Text = CommonHelper.extractStringValue(rs!Status)
+      cmStatus.Text = CommonHelper.extractStringValue(rs!status)
     Else
       cmStatus.Text = "Available"
     End If

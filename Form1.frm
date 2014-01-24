@@ -16,7 +16,7 @@ Begin VB.Form frmMain
       Top             =   0
       Width           =   20295
       Begin VB.Frame Frame6 
-         Caption         =   "Stats"
+         Caption         =   "Stats (Double click to view full list of items status)"
          Height          =   2295
          Left            =   13920
          TabIndex        =   50
@@ -120,6 +120,16 @@ Begin VB.Form frmMain
          TabIndex        =   1
          Top             =   120
          Width           =   6495
+         Begin VB.ComboBox cmbSearchStatus 
+            Height          =   315
+            ItemData        =   "Form1.frx":0000
+            Left            =   4200
+            List            =   "Form1.frx":0013
+            Style           =   2  'Dropdown List
+            TabIndex        =   58
+            Top             =   960
+            Width           =   1935
+         End
          Begin VB.ComboBox cmSearchType 
             Height          =   315
             Left            =   1200
@@ -172,6 +182,15 @@ Begin VB.Form frmMain
             TabIndex        =   7
             Top             =   1440
             Width           =   2895
+         End
+         Begin VB.Label Label18 
+            BackColor       =   &H0080FF80&
+            Caption         =   "Status"
+            Height          =   255
+            Left            =   3240
+            TabIndex        =   59
+            Top             =   960
+            Width           =   495
          End
          Begin VB.Label Label15 
             BackColor       =   &H0080FF80&
@@ -502,9 +521,9 @@ Begin VB.Form frmMain
                Strikethrough   =   0   'False
             EndProperty
             Height          =   315
-            ItemData        =   "Form1.frx":0000
+            ItemData        =   "Form1.frx":003D
             Left            =   1440
-            List            =   "Form1.frx":0010
+            List            =   "Form1.frx":004D
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
             TabIndex        =   28
@@ -691,7 +710,7 @@ Begin VB.Form frmMain
          Begin VB.PictureBox imgLoc 
             Height          =   3690
             Left            =   120
-            Picture         =   "Form1.frx":0038
+            Picture         =   "Form1.frx":0075
             ScaleHeight     =   3630
             ScaleWidth      =   6195
             TabIndex        =   6
@@ -956,12 +975,13 @@ Private Sub cmdClearSearch_Click()
   cmSearchType.ListIndex = -1
   txtSearchName.Text = ""
   cmSearchCategory.ListIndex = -1
+  cmbSearchStatus.ListIndex = -1
   txtSearchAuthor = ""
 End Sub
 Private Sub cmItemsQuickSearch_Click()
   Set dgItems.DataSource = Nothing
   Call DbInstance.closeRecordSet(itemsRs)
-  Set itemsRs = InventoryDao.dashboardSearch(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID)
+  Set itemsRs = InventoryDao.dashboardSearch(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID, cmbSearchStatus.Text)
   Set dgItems.DataSource = itemsRs
   If (itemsRs.RecordCount = 0) Then
     MsgBox "No record found", vbInformation
@@ -1030,7 +1050,7 @@ Private Sub showSelectedItem()
     txtDescription.Text = CommonHelper.extractStringValue(itemsRs!Description)
     txtDonatedBy.Text = CommonHelper.extractStringValue(itemsRs!DONATED_BY)
     txtAuthor.Text = CommonHelper.extractStringValue(itemsRs!author)
-    cmStatus.Text = CommonHelper.extractStringValue(itemsRs!Status)
+    cmStatus.Text = CommonHelper.extractStringValue(itemsRs!status)
     
     cmItemType.ListIndex = -1
     cmLocation.ListIndex = -1
@@ -1119,6 +1139,15 @@ Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
     txtSection.ForeColor = vbWhite
     txtLRN.ForeColor = vbWhite
     
+  End If
+End Sub
+
+Private Sub dgStat_DblClick()
+  If (statRS.State <> adStateClosed) Then
+    If (statRS.RecordCount <> 0) Then
+      frmInventory.cmbSearchStatus.Text = statRS!Books
+      frmInventory.Show vbModal
+    End If
   End If
 End Sub
 
@@ -1296,7 +1325,7 @@ Private Sub lblChekOut_Click()
       tempRs.Update
       Call DbInstance.closeRecordSet(tempRs)
       Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-      tempRs!Status = "Borrowed"
+      tempRs!status = "Borrowed"
       tempRs!LAST_MOD_BY = UserSession.getLoginUser
       tempRs!LAST_MOD_DATE = Now
       tempRs.Update
@@ -1405,7 +1434,7 @@ Private Sub optAvailable_Click()
    If (isStatusChangedEnabled) Then
     Call DbInstance.closeRecordSet(tempRs)
     Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-    tempRs!Status = "Available"
+    tempRs!status = "Available"
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now
     tempRs.Update
@@ -1420,7 +1449,7 @@ Private Sub optDamage_Click()
   If (isStatusChangedEnabled) Then
     Call DbInstance.closeRecordSet(tempRs)
     Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-    tempRs!Status = "Damaged"
+    tempRs!status = "Damaged"
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now
     tempRs.Update
@@ -1436,7 +1465,7 @@ Private Sub optLost_Click()
    If (isStatusChangedEnabled) Then
     Call DbInstance.closeRecordSet(tempRs)
     Set tempRs = InventoryDao.getRsByID(itemsRs!id)
-    tempRs!Status = "Loss"
+    tempRs!status = "Loss"
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now
     tempRs.Update
