@@ -51,7 +51,7 @@ Public Function getDashboardEmptyRs() As ADODB.Recordset
    Set getDashboardEmptyRs = rs
 
 End Function
-Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, author As String, name As String, categoryID As Integer) As ADODB.Recordset
+Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, author As String, name As String, categoryID As Integer, status As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -87,6 +87,10 @@ Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, autho
      sqlQuery = sqlQuery & " And a.name Like '" & name & "%'"
    End If
    
+    If (CommonHelper.hasValidValue(status)) Then
+     sqlQuery = sqlQuery & " And a.STATUS = '" & status & "'"
+   End If
+   
    sqlQuery = sqlQuery & " Order by a.LAST_MOD_DATE Desc "
               
    Dim rs As ADODB.Recordset
@@ -98,7 +102,7 @@ Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, autho
 
 End Function
 
-Public Function search(itemCode As String, itemTypeID As Integer, author As String, name As String, categoryID As Integer) As ADODB.Recordset
+Public Function search(itemCode As String, itemTypeID As Integer, author As String, name As String, categoryID As Integer, status As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -132,6 +136,10 @@ Public Function search(itemCode As String, itemTypeID As Integer, author As Stri
    
    If (CommonHelper.hasValidValue(name)) Then
      sqlQuery = sqlQuery & " And a.name Like '" & name & "%'"
+   End If
+   
+    If (CommonHelper.hasValidValue(status)) Then
+     sqlQuery = sqlQuery & " And a.STATUS = '" & status & "'"
    End If
    
    sqlQuery = sqlQuery & " Order by a.LAST_MOD_DATE Desc "
