@@ -192,6 +192,12 @@ Private rs As ADODB.Recordset
 Private tempRs As ADODB.Recordset
 Private sectionItemList() As Variant
 
+Private Sub cmbClearSearch_Click()
+  txtSearchLrn = ""
+  txtSearchLastName = ""
+  cmSearchSection.ListIndex = -1
+End Sub
+
 Private Sub cmbSearch_Click()
   Set dgStudents.DataSource = Nothing
   Call DbInstance.closeRecordSet(rs)
