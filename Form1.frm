@@ -925,18 +925,6 @@ Begin VB.Form frmMain
          Width           =   6855
       End
    End
-   Begin VB.Menu mnLookups 
-      Caption         =   "Library"
-      Begin VB.Menu mnItemType 
-         Caption         =   "Library Materials"
-      End
-      Begin VB.Menu Categuries 
-         Caption         =   "Categories"
-      End
-      Begin VB.Menu mnLocationMapping 
-         Caption         =   "Location Map"
-      End
-   End
    Begin VB.Menu mnName 
       Caption         =   "School Data"
       Begin VB.Menu sections 
@@ -949,8 +937,23 @@ Begin VB.Form frmMain
    Begin VB.Menu mnInvetory 
       Caption         =   "Inventory"
    End
+   Begin VB.Menu mnLookups 
+      Caption         =   "Library"
+      Begin VB.Menu mnItemType 
+         Caption         =   "Library Materials"
+      End
+      Begin VB.Menu Categuries 
+         Caption         =   "Categories"
+      End
+      Begin VB.Menu mnLocationMapping 
+         Caption         =   "Location Map"
+      End
+   End
    Begin VB.Menu mnTransaction 
       Caption         =   "Transaction Report"
+   End
+   Begin VB.Menu dbBackum 
+      Caption         =   "Db Bacukup"
    End
    Begin VB.Menu Account 
       Caption         =   "Account"
@@ -960,9 +963,6 @@ Begin VB.Form frmMain
       Begin VB.Menu mnChangePassword 
          Caption         =   "Changes Password"
       End
-   End
-   Begin VB.Menu dbBackum 
-      Caption         =   "Db Bacukup"
    End
    Begin VB.Menu mnAppSession 
       Caption         =   "App Session"
