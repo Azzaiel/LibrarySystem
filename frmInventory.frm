@@ -786,6 +786,8 @@ Private Sub cmbExport_Click()
   
   oSheet.Range("C8").value = availableCount + borrowedCount + damageCount + lossCount
   
+  oSheet.Range("L11:Z" & rs.RecordCount + 11).NumberFormat = Constants.DEFAULT_FORMAT
+  
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
   
@@ -1100,6 +1102,10 @@ End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
    Call frmMain.reloadBookStats
+End Sub
+
+Private Sub Frame1_DragDrop(Source As Control, X As Single, Y As Single)
+
 End Sub
 
 Private Sub txtPurchaseCost_KeyPress(KeyAscii As Integer)

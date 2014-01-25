@@ -223,6 +223,9 @@ Private Sub cmdExport_Click()
   
   oSheet.Range("A2").CopyFromRecordset dgReport.DataSource
   oSheet.Columns.AutoFit
+  
+  oSheet.Range("A2:Z" & rs.RecordCount + 2).NumberFormat = Constants.DEFAULT_FORMAT
+  
 
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK

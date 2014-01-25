@@ -173,12 +173,13 @@ Private Sub cmdSubmit_Click()
   End If
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
+MsgBox UserSession.forceChange
   If (UserSession.forceChange = "T") Then
     Dim response As String
     response = MsgBox("Your are not allowed use the system unless you change your password. System will close if you contineu", vbOKCancel, "Question")
     If (response = vbOK) Then
        frmMain.frmControl.Visible = False
-        Me.Hide
+       Me.Hide
        frmlogin.Show vbModal
        Exit Sub
     Else

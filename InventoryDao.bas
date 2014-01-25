@@ -363,7 +363,7 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
    
    sqlQuery = "Select item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
               "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
-              "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_BY as RELEASED_BY " & _
+              "       , sec.ADVISER, CONCAT(sec.name, ' - ', sec.level) as SECTION, tran.LEND_BY as RELEASED_BY " & _
               "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _
               "from transactions tran, STUDENTS stud " & _
               "     , sections sec, items item " & _
@@ -394,7 +394,7 @@ Public Function getFakeTransactionReportRs()
    
    sqlQuery = "Select item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
               "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
-              "       , sec.Adviser, CONCAT(sec.name, ' - ', sec.level) as Section, tran.LEND_BY as RELEASED_BY " & _
+              "       , sec.ADVISER, CONCAT(sec.name, ' - ', sec.level) as SECTION, tran.LEND_BY as RELEASED_BY " & _
               "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _
               "from transactions tran, STUDENTS stud " & _
               "     , sections sec, items item " & _

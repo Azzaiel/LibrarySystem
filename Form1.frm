@@ -1236,7 +1236,7 @@ Private Sub formatTransactionDashDatagrid()
     .Columns(0).Width = 1500
     .Columns(0).Alignment = dbgCenter
     
-    .Columns(1).Caption = "Title"
+    .Columns(1).Caption = "TITLE"
 
      'DUE DATE - 5
     .Columns(5).Width = 1500
@@ -1311,7 +1311,7 @@ Private Sub formatIemsDataGrid()
   
      .Columns(1).Caption = "ISBN"
   
-    .Columns(3).Caption = "Title"
+    .Columns(3).Caption = "TITLE"
     
     .Columns(9).Width = 1500
     .Columns(9).NumberFormat = DEFAULT_CURRENCY_FORMAT

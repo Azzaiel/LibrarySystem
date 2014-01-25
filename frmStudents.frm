@@ -558,7 +558,8 @@ Private Sub cmbExport_Click()
   oSheet.Range("A2").CopyFromRecordset dgStudents.DataSource
   oSheet.Columns.AutoFit
   oSheet.Range("F1:F1").EntireColumn.Hidden = True
-
+  oSheet.Range("A2:Z" & rs.RecordCount + 2).NumberFormat = Constants.DEFAULT_FORMAT
+  
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
   
