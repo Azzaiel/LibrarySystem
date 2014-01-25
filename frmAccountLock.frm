@@ -23,7 +23,7 @@ Begin VB.Form frmAccountLock
       EndProperty
       Height          =   495
       Left            =   2520
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   720
       Width           =   1815
    End
@@ -40,7 +40,7 @@ Begin VB.Form frmAccountLock
       EndProperty
       Height          =   495
       Left            =   480
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   720
       Width           =   1815
    End
@@ -68,7 +68,7 @@ Begin VB.Form frmAccountLock
       EndProperty
       Height          =   255
       Left            =   120
-      TabIndex        =   1
+      TabIndex        =   3
       Top             =   240
       Width           =   1575
    End
