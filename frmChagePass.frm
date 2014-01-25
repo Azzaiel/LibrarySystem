@@ -1,10 +1,11 @@
 VERSION 5.00
 Begin VB.Form frmChagePass 
-   Caption         =   "Forget Pasword"
+   Caption         =   "Chnage Password"
    ClientHeight    =   2730
    ClientLeft      =   4260
    ClientTop       =   2910
    ClientWidth     =   5250
+   ControlBox      =   0   'False
    LinkTopic       =   "Form1"
    ScaleHeight     =   2730
    ScaleWidth      =   5250
@@ -121,7 +122,16 @@ Attribute VB_Exposed = False
 Option Explicit
 Private rs As ADODB.Recordset
 Private Sub cmbClose_Click()
-  Unload Me
+  If (UserSession.forceChange = "T") Then
+    Dim response As String
+    response = MsgBox("Your are not allowed use the system unless you change your password. System will close if you contineu", vbOKCancel, "Question")
+    If (response = vbOK) Then
+      Unload Me
+      Call MainModule.main
+    End If
+  Else
+    Unload Me
+  End If
 End Sub
 Private Function isFormValid() As Boolean
   If (Not CommonHelper.hasValidValue(txtCurrentPass.Text)) Then
@@ -172,21 +182,8 @@ Private Sub cmdSubmit_Click()
     End If
   End If
 End Sub
-Private Sub Form_Unload(Cancel As Integer)
-MsgBox UserSession.forceChange
-  If (UserSession.forceChange = "T") Then
-    Dim response As String
-    response = MsgBox("Your are not allowed use the system unless you change your password. System will close if you contineu", vbOKCancel, "Question")
-    If (response = vbOK) Then
-       frmMain.frmControl.Visible = False
-       Me.Hide
-       frmlogin.Show vbModal
-       Exit Sub
-    Else
-      Cancel = 1
-    End If
-  End If
-End Sub
+
+
 
 Private Sub txtConfirmPass_KeyPress(KeyAscii As Integer)
   If (KeyAscii = 13) Then
