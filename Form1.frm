@@ -19,14 +19,14 @@ Begin VB.Form frmMain
          Caption         =   "Stats (Double click to view full list of items status)"
          Height          =   2295
          Left            =   13920
-         TabIndex        =   50
+         TabIndex        =   48
          Top             =   7440
          Width           =   6135
          Begin MSDataGridLib.DataGrid dgStat 
             Height          =   1335
             Left            =   840
-            TabIndex        =   51
-            Top             =   240
+            TabIndex        =   49
+            Top             =   360
             Width           =   4455
             _ExtentX        =   7858
             _ExtentY        =   2355
@@ -108,7 +108,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   495
             Left            =   720
-            TabIndex        =   52
+            TabIndex        =   50
             Top             =   1680
             Width           =   4815
          End
@@ -126,7 +126,7 @@ Begin VB.Form frmMain
             Left            =   4200
             List            =   "Form1.frx":0016
             Style           =   2  'Dropdown List
-            TabIndex        =   58
+            TabIndex        =   56
             Top             =   960
             Width           =   1935
          End
@@ -188,7 +188,7 @@ Begin VB.Form frmMain
             Caption         =   "Status"
             Height          =   255
             Left            =   3240
-            TabIndex        =   59
+            TabIndex        =   57
             Top             =   960
             Width           =   495
          End
@@ -245,7 +245,7 @@ Begin VB.Form frmMain
          TabIndex        =   5
          Top             =   120
          Width           =   6975
-         Begin VB.TextBox txtPurchaseCost 
+         Begin VB.TextBox txtVolume 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
                Size            =   8.25
@@ -256,19 +256,47 @@ Begin VB.Form frmMain
                Strikethrough   =   0   'False
             EndProperty
             Height          =   285
-            Left            =   4440
+            Left            =   4560
             Locked          =   -1  'True
-            TabIndex        =   60
-            Top             =   3360
-            Width           =   1935
+            TabIndex        =   59
+            Top             =   3120
+            Width           =   2175
          End
          Begin VB.Frame Frame7 
+            Caption         =   "Move Status To:"
             ClipControls    =   0   'False
-            Height          =   1455
-            Left            =   3960
-            TabIndex        =   54
-            Top             =   360
-            Width           =   1935
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   1215
+            Left            =   3480
+            TabIndex        =   52
+            Top             =   240
+            Width           =   3375
+            Begin VB.OptionButton OptObsolete 
+               Caption         =   "Obsolete"
+               Enabled         =   0   'False
+               BeginProperty Font 
+                  Name            =   "MS Sans Serif"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   255
+               Left            =   1800
+               TabIndex        =   60
+               Top             =   720
+               Width           =   1455
+            End
             Begin VB.OptionButton optAvailable 
                Caption         =   "Available"
                Enabled         =   0   'False
@@ -282,13 +310,13 @@ Begin VB.Form frmMain
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   255
-               Left            =   240
-               TabIndex        =   57
-               Top             =   960
+               Left            =   1800
+               TabIndex        =   55
+               Top             =   360
                Width           =   1335
             End
             Begin VB.OptionButton optLost 
-               Caption         =   "Lost"
+               Caption         =   "Loss"
                Enabled         =   0   'False
                BeginProperty Font 
                   Name            =   "MS Sans Serif"
@@ -301,12 +329,12 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   240
-               TabIndex        =   56
-               Top             =   600
+               TabIndex        =   54
+               Top             =   720
                Width           =   1335
             End
             Begin VB.OptionButton optDamage 
-               Caption         =   "Damanged"
+               Caption         =   "Damaged"
                Enabled         =   0   'False
                BeginProperty Font 
                   Name            =   "MS Sans Serif"
@@ -319,8 +347,8 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   240
-               TabIndex        =   55
-               Top             =   240
+               TabIndex        =   53
+               Top             =   360
                Width           =   1575
             End
          End
@@ -328,15 +356,15 @@ Begin VB.Form frmMain
             Caption         =   "Student info"
             Height          =   1335
             Left            =   120
-            TabIndex        =   38
-            Top             =   3720
+            TabIndex        =   36
+            Top             =   3480
             Width           =   6735
             Begin VB.Label Label13 
                BackColor       =   &H0080FF80&
                Caption         =   "LRN"
                Height          =   255
                Left            =   120
-               TabIndex        =   49
+               TabIndex        =   47
                Top             =   240
                Width           =   1095
             End
@@ -354,7 +382,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1320
-               TabIndex        =   48
+               TabIndex        =   46
                Top             =   240
                Width           =   2295
             End
@@ -372,7 +400,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   4440
-               TabIndex        =   45
+               TabIndex        =   43
                Top             =   600
                Width           =   2175
             End
@@ -390,7 +418,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   4440
-               TabIndex        =   44
+               TabIndex        =   42
                Top             =   240
                Width           =   2175
             End
@@ -408,7 +436,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1320
-               TabIndex        =   43
+               TabIndex        =   41
                Top             =   600
                Width           =   2295
             End
@@ -426,8 +454,8 @@ Begin VB.Form frmMain
                ForeColor       =   &H00FF0000&
                Height          =   255
                Left            =   2520
-               TabIndex        =   42
-               Top             =   960
+               TabIndex        =   40
+               Top             =   2880
                Width           =   1455
             End
             Begin VB.Label Label11 
@@ -435,7 +463,7 @@ Begin VB.Form frmMain
                Caption         =   "Adviser"
                Height          =   255
                Left            =   3720
-               TabIndex        =   41
+               TabIndex        =   39
                Top             =   600
                Width           =   615
             End
@@ -444,7 +472,7 @@ Begin VB.Form frmMain
                Caption         =   "Section"
                Height          =   255
                Left            =   3720
-               TabIndex        =   40
+               TabIndex        =   38
                Top             =   240
                Width           =   615
             End
@@ -453,7 +481,7 @@ Begin VB.Form frmMain
                Caption         =   "Student Name"
                Height          =   255
                Left            =   120
-               TabIndex        =   39
+               TabIndex        =   37
                Top             =   600
                Width           =   1095
             End
@@ -472,8 +500,8 @@ Begin VB.Form frmMain
             Left            =   1440
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
-            TabIndex        =   32
-            Top             =   1680
+            TabIndex        =   30
+            Top             =   1320
             Width           =   1935
          End
          Begin VB.TextBox txtDescription 
@@ -489,9 +517,9 @@ Begin VB.Form frmMain
             Height          =   525
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   31
-            Top             =   2040
-            Width           =   5055
+            TabIndex        =   29
+            Top             =   1680
+            Width           =   4815
          End
          Begin VB.TextBox txtAuthor 
             BeginProperty Font 
@@ -506,11 +534,11 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   30
-            Top             =   2640
-            Width           =   5055
+            TabIndex        =   28
+            Top             =   2280
+            Width           =   2775
          End
-         Begin VB.TextBox txtDonatedBy 
+         Begin VB.TextBox txtAqui 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
                Size            =   8.25
@@ -523,9 +551,9 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   29
-            Top             =   3000
-            Width           =   5055
+            TabIndex        =   27
+            Top             =   2760
+            Width           =   2775
          End
          Begin VB.ComboBox cmStatus 
             BeginProperty Font 
@@ -540,12 +568,12 @@ Begin VB.Form frmMain
             Height          =   315
             ItemData        =   "Form1.frx":0049
             Left            =   1440
-            List            =   "Form1.frx":0059
+            List            =   "Form1.frx":005C
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
-            TabIndex        =   28
-            Top             =   3360
-            Width           =   1695
+            TabIndex        =   26
+            Top             =   3120
+            Width           =   1935
          End
          Begin VB.TextBox txtItemCode 
             BeginProperty Font 
@@ -560,7 +588,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   23
+            TabIndex        =   22
             Top             =   240
             Width           =   1935
          End
@@ -578,7 +606,7 @@ Begin VB.Form frmMain
             Left            =   1440
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
-            TabIndex        =   22
+            TabIndex        =   21
             Top             =   600
             Width           =   1935
          End
@@ -595,36 +623,18 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   21
+            TabIndex        =   20
             Top             =   960
             Width           =   1935
          End
-         Begin VB.ComboBox cmLocation 
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   315
-            Left            =   1440
-            Locked          =   -1  'True
-            Style           =   1  'Simple Combo
-            TabIndex        =   20
-            Top             =   1320
-            Width           =   1935
-         End
-         Begin VB.Label Label12 
+         Begin VB.Label lblVolume 
             BackColor       =   &H0080FF80&
-            Caption         =   "Purchase Cost"
+            Caption         =   "Volume"
             Height          =   255
-            Left            =   3240
-            TabIndex        =   61
-            Top             =   3360
-            Width           =   1095
+            Left            =   3840
+            TabIndex        =   58
+            Top             =   3120
+            Width           =   615
          End
          Begin VB.Label lblChekOut 
             Caption         =   "Check out Item"
@@ -640,7 +650,7 @@ Begin VB.Form frmMain
             ForeColor       =   &H00FF0000&
             Height          =   255
             Left            =   2640
-            TabIndex        =   47
+            TabIndex        =   45
             Top             =   5160
             Width           =   1575
          End
@@ -649,8 +659,8 @@ Begin VB.Form frmMain
             Caption         =   "Category"
             Height          =   255
             Left            =   240
-            TabIndex        =   37
-            Top             =   1680
+            TabIndex        =   35
+            Top             =   1320
             Width           =   975
          End
          Begin VB.Label Label4 
@@ -658,8 +668,8 @@ Begin VB.Form frmMain
             Caption         =   "Description"
             Height          =   255
             Left            =   240
-            TabIndex        =   36
-            Top             =   2040
+            TabIndex        =   34
+            Top             =   1800
             Width           =   855
          End
          Begin VB.Label Label6 
@@ -667,26 +677,26 @@ Begin VB.Form frmMain
             Caption         =   "Author"
             Height          =   255
             Left            =   240
-            TabIndex        =   35
-            Top             =   2640
+            TabIndex        =   33
+            Top             =   2280
             Width           =   855
          End
-         Begin VB.Label Label7 
+         Begin VB.Label lblAqui 
             BackColor       =   &H0080FF80&
-            Caption         =   "Donated By"
+            Caption         =   "Purchase Cost"
             Height          =   255
             Left            =   240
-            TabIndex        =   34
-            Top             =   3000
-            Width           =   855
+            TabIndex        =   32
+            Top             =   2760
+            Width           =   1095
          End
          Begin VB.Label Label9 
             BackColor       =   &H0080FF80&
             Caption         =   "Status"
             Height          =   255
             Left            =   240
-            TabIndex        =   33
-            Top             =   3360
+            TabIndex        =   31
+            Top             =   3120
             Width           =   495
          End
          Begin VB.Label lblName 
@@ -694,7 +704,7 @@ Begin VB.Form frmMain
             Caption         =   "ISBN"
             Height          =   255
             Left            =   240
-            TabIndex        =   27
+            TabIndex        =   25
             Top             =   240
             Width           =   855
          End
@@ -703,7 +713,7 @@ Begin VB.Form frmMain
             Caption         =   "Type"
             Height          =   255
             Left            =   240
-            TabIndex        =   26
+            TabIndex        =   24
             Top             =   600
             Width           =   975
          End
@@ -712,18 +722,9 @@ Begin VB.Form frmMain
             Caption         =   "Title"
             Height          =   255
             Left            =   240
-            TabIndex        =   25
+            TabIndex        =   23
             Top             =   960
             Width           =   855
-         End
-         Begin VB.Label lbl 
-            BackColor       =   &H0080FF80&
-            Caption         =   "Location"
-            Height          =   255
-            Left            =   240
-            TabIndex        =   24
-            Top             =   1320
-            Width           =   975
          End
       End
       Begin VB.Frame Frame4 
@@ -736,7 +737,7 @@ Begin VB.Form frmMain
          Begin VB.PictureBox imgLoc 
             Height          =   3690
             Left            =   120
-            Picture         =   "Form1.frx":0081
+            Picture         =   "Form1.frx":008E
             ScaleHeight     =   3630
             ScaleWidth      =   6195
             TabIndex        =   6
@@ -755,7 +756,7 @@ Begin VB.Form frmMain
          Begin MSDataGridLib.DataGrid dgTransactionDash 
             Height          =   6975
             Left            =   120
-            TabIndex        =   46
+            TabIndex        =   44
             Top             =   240
             Width           =   5895
             _ExtentX        =   10398
@@ -920,7 +921,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H00008000&
          Height          =   495
          Left            =   0
-         TabIndex        =   53
+         TabIndex        =   51
          Top             =   9360
          Width           =   6855
       End
@@ -1021,17 +1022,6 @@ Private Sub cmItemsQuickSearch_Click()
   'Call clearForm
   Call formatIemsDataGrid
 End Sub
-
-Private Sub cmLocation_Click()
- Dim FileName As String
-  FileName = LookupDao.getLocationImgName(getLocationID)
-  If (FileName <> vbNullString) Then
-    imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & FileName)
-  Else
-     imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & Constants.MISSING_LOC_IMAGE_NAME)
-  End If
-End Sub
-
 Private Sub cmSearchCategory_KeyPress(KeyAscii As Integer)
   If (KeyAscii = 13) Then
     Call cmItemsQuickSearch_Click
@@ -1048,12 +1038,11 @@ Private Sub clearDetailForm()
    txtName.Text = ""
    txtItemCode.Text = ""
    txtDescription.Text = ""
-   txtDonatedBy.Text = ""
+   txtAqui.Text = ""
    txtAuthor.Text = ""
    cmStatus.Text = ""
     
    cmItemType.ListIndex = -1
-   cmLocation.ListIndex = -1
    cmCategory.ListIndex = -1
    
 End Sub
@@ -1087,13 +1076,18 @@ Private Sub showSelectedItem()
     txtName.Text = CommonHelper.extractStringValue(itemsRs!name)
     txtItemCode.Text = CommonHelper.extractStringValue(itemsRs!ITEM_CODE)
     txtDescription.Text = CommonHelper.extractStringValue(itemsRs!Description)
-    txtDonatedBy.Text = CommonHelper.extractStringValue(itemsRs!DONATED_BY)
     txtAuthor.Text = CommonHelper.extractStringValue(itemsRs!author)
     cmStatus.Text = CommonHelper.extractStringValue(itemsRs!status)
-    txtPurchaseCost = Format(itemsRs!PURCHASE_COST, Constants.DEFAULT_CURRENCY_FORMAT)
+    
+    If (itemsRs!AQUISITION_TYPE <> "Purchased") Then
+      lblAqui = "Donated by"
+      txtAqui.Text = CommonHelper.extractStringValue(itemsRs!DONATED_BY)
+    Else
+      lblAqui = "Purchase Cost"
+      txtAqui = Format(itemsRs!PURCHASE_COST, Constants.DEFAULT_CURRENCY_FORMAT)
+    End If
     
     cmItemType.ListIndex = -1
-    cmLocation.ListIndex = -1
     cmCategory.ListIndex = -1
     
     Dim index As Integer
@@ -1104,13 +1098,26 @@ Private Sub showSelectedItem()
      End If
    Next index
    
-   For index = 0 To UBound(locationItemList)
-     If (itemsRs!LOCATION_ID = Val(locationItemList(index, Constants.ITEM_VALUE_INDEX))) Then
-       cmLocation.ListIndex = index
-     End If
-   Next index
+  lblVolume.Visible = False
+  txtVolume.Visible = False
+  
+  If (itemsRs!ITEM_TYPE = "CD") Then
+  
+    lblVolume.Visible = True
+    txtVolume.Visible = True
+    txtVolume = CommonHelper.extractStringValue(itemsRs!Volume)
+  
+  End If
+
+  Dim FileName As String
+  FileName = LookupDao.getLocationImgName(itemsRs!LOCATION_ID)
+  If (FileName <> vbNullString) Then
+    imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & FileName)
+  Else
+     imgLoc.Picture = LoadPicture(CommonHelper.getImgPath & "\" & Constants.MISSING_LOC_IMAGE_NAME)
+  End If
    
-   For index = 0 To UBound(categoriesItemList)
+  For index = 0 To UBound(categoriesItemList)
      If (itemsRs!CATEGORY_ID = Val(categoriesItemList(index, Constants.ITEM_VALUE_INDEX))) Then
        cmCategory.ListIndex = index
      End If
@@ -1118,9 +1125,6 @@ Private Sub showSelectedItem()
    
    isStatusChangedEnabled = False
    Call toogelItemCheckOutUI(False)
-   optDamage.Enabled = False
-   optLost.Enabled = False
-   optAvailable.Enabled = False
    optDamage.value = False
    optLost.value = False
    optAvailable.value = False
@@ -1128,23 +1132,39 @@ Private Sub showSelectedItem()
    If (cmStatus = "Available") Then
       Call toogelItemCheckOutUI(True)
       optAvailable.value = True
+      optAvailable.Enabled = False
       optDamage.Enabled = True
       optLost.Enabled = True
+      OptObsolete.Enabled = True
    ElseIf (cmStatus = "Borrowed") Then
       Set tempRs = InventoryDao.getStudentBorrower(itemsRs!id)
       txtLRN = tempRs!lrn
       txtStudentName = tempRs!STUDENT_NAME
       txtAdviser = tempRs!Adviser
       txtSection = tempRs!Section
+      optAvailable.Enabled = True
+      optDamage.Enabled = True
+      optLost.Enabled = True
+      OptObsolete.Enabled = True
       Call DbInstance.closeRecordSet(tempRs)
    ElseIf (cmStatus = "Damaged") Then
       optDamage.value = True
-      optLost.Enabled = True
       optAvailable.Enabled = True
+      optDamage.Enabled = False
+      optLost.Enabled = True
+      OptObsolete.Enabled = True
    ElseIf (cmStatus = "Loss") Then
       optLost.value = True
-      optDamage.Enabled = True
       optAvailable.Enabled = True
+      optDamage.Enabled = True
+      optLost.Enabled = False
+      OptObsolete.Enabled = True
+   ElseIf (cmStatus = "Obsolete") Then
+      OptObsolete.value = True
+      optAvailable.Enabled = True
+      optDamage.Enabled = True
+      optLost.Enabled = True
+      OptObsolete.Enabled = False
    End If
    
    isStatusChangedEnabled = True
@@ -1259,12 +1279,6 @@ Private Sub populateDropDown()
     cmItemType.AddItem (itemTypeItemList(index, Constants.ITEM_LABEL_INDEX))
   Next index
   
-  locationItemList = LookupDao.getLocationMappingItemList
-  cmLocation.Clear
-  For index = 0 To UBound(locationItemList)
-     cmLocation.AddItem (locationItemList(index, Constants.ITEM_LABEL_INDEX))
-  Next index
-  
   categoriesItemList = LookupDao.getCategoriesItemList
   cmSearchCategory.Clear
   cmCategory.Clear
@@ -1316,16 +1330,6 @@ Private Sub formatIemsDataGrid()
     .Columns(9).Width = 1500
     .Columns(9).NumberFormat = DEFAULT_CURRENCY_FORMAT
 
-     'CREATED DATE - 11
-    .Columns(11).Width = 1500
-    .Columns(11).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(11).Alignment = dbgCenter
-    
-    'LAST MOD DATE - 13
-    .Columns(13).Width = 1500
-    .Columns(13).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(13).Alignment = dbgCenter
-    
     .Columns(14).Visible = False
     .Columns(15).Visible = False
     .Columns(16).Visible = False
@@ -1481,6 +1485,13 @@ End Sub
 
 Private Sub optAvailable_Click()
    If (isStatusChangedEnabled) Then
+   
+    Dim response As String
+    response = MsgBox("Are you sure you want to move the item's status to Available?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
+   
     Call DbInstance.closeRecordSet(tempRs)
     Set tempRs = InventoryDao.getRsByID(itemsRs!id)
     tempRs!status = "Available"
@@ -1495,7 +1506,15 @@ Private Sub optAvailable_Click()
 End Sub
 
 Private Sub optDamage_Click()
+
   If (isStatusChangedEnabled) Then
+    
+    Dim response As String
+    response = MsgBox("Are you sure you want to move the item's status to Damaged?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
+    
     Call DbInstance.closeRecordSet(tempRs)
     Set tempRs = InventoryDao.getRsByID(itemsRs!id)
     tempRs!status = "Damaged"
@@ -1512,6 +1531,13 @@ End Sub
 
 Private Sub optLost_Click()
    If (isStatusChangedEnabled) Then
+   
+    Dim response As String
+    response = MsgBox("Are you sure you want to move the item's status to Loss?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
+   
     Call DbInstance.closeRecordSet(tempRs)
     Set tempRs = InventoryDao.getRsByID(itemsRs!id)
     tempRs!status = "Loss"
@@ -1524,6 +1550,28 @@ Private Sub optLost_Click()
     Call reloadBookStats
   End If
    
+End Sub
+
+Private Sub OptObsolete_Click()
+   If (isStatusChangedEnabled) Then
+   
+    Dim response As String
+    response = MsgBox("Are you sure you want to move the item's status to Obsolete?", vbYesNo, "Question")
+    If (response = vbNo) Then
+      Exit Sub
+    End If
+   
+    Call DbInstance.closeRecordSet(tempRs)
+    Set tempRs = InventoryDao.getRsByID(itemsRs!id)
+    tempRs!status = "Obsolete"
+    tempRs!LAST_MOD_BY = UserSession.getLoginUser
+    tempRs!LAST_MOD_DATE = Now
+    tempRs.Update
+    Call DbInstance.closeRecordSet(tempRs)
+    MsgBox "Item Status updated", vbInformation
+    Call cmItemsQuickSearch_Click
+    Call reloadBookStats
+  End If
 End Sub
 
 Private Sub sections_Click()

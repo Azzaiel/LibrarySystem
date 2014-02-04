@@ -20,7 +20,7 @@ Begin VB.Form frmInventory
          Height          =   315
          ItemData        =   "frmInventory.frx":0000
          Left            =   7440
-         List            =   "frmInventory.frx":0016
+         List            =   "frmInventory.frx":0019
          Style           =   2  'Dropdown List
          TabIndex        =   18
          Top             =   720
@@ -278,9 +278,9 @@ Begin VB.Form frmInventory
          Width           =   4215
          Begin VB.ComboBox cmAquiType 
             Height          =   315
-            ItemData        =   "frmInventory.frx":0049
+            ItemData        =   "frmInventory.frx":0056
             Left            =   1440
-            List            =   "frmInventory.frx":0053
+            List            =   "frmInventory.frx":0060
             Style           =   2  'Dropdown List
             TabIndex        =   57
             Top             =   360
@@ -329,9 +329,9 @@ Begin VB.Form frmInventory
       End
       Begin VB.ComboBox cmStatus 
          Height          =   315
-         ItemData        =   "frmInventory.frx":006B
+         ItemData        =   "frmInventory.frx":0078
          Left            =   1560
-         List            =   "frmInventory.frx":007B
+         List            =   "frmInventory.frx":008B
          Locked          =   -1  'True
          Style           =   1  'Simple Combo
          TabIndex        =   7
@@ -364,7 +364,7 @@ Begin VB.Form frmInventory
       Begin VB.PictureBox imgLoc 
          Height          =   3735
          Left            =   1080
-         Picture         =   "frmInventory.frx":00A3
+         Picture         =   "frmInventory.frx":00BD
          ScaleHeight     =   3675
          ScaleWidth      =   6195
          TabIndex        =   30
@@ -785,12 +785,12 @@ Private Sub cmbEdit_Click()
       tempRs!COPYRIGHT_YEAR = txtCprYr
       
       If (cmItemType.Text = "CD") Then
-        tempRs!VOLUME = txtVolume
+        tempRs!Volume = txtVolume
       Else
-        tempRs!VOLUME = Null
+        tempRs!Volume = Null
       End If
       tempRs!author = txtAuthor.Text
-      tempRs!PURCHASE_COST = Val(txtPurchaseCost)
+
       tempRs!status = cmStatus.Text
       tempRs!LOCATION_ID = getLocationID
       tempRs!ITEM_TYPE_ID = getItemTypeID
@@ -921,9 +921,9 @@ Private Sub cmbNewRec_Click()
       tempRs!COPYRIGHT_YEAR = txtCprYr
       
       If (cmItemType.Text = "CD") Then
-        tempRs!VOLUME = txtVolume
+        tempRs!Volume = txtVolume
       Else
-        tempRs!VOLUME = Null
+        tempRs!Volume = Null
       End If
       
       tempRs!author = txtAuthor.Text
@@ -1195,11 +1195,11 @@ Private Sub showSelectedData()
    
    
    
-   txtPublisher = rs!PUBLISHER
+   txtPublisher = CommonHelper.extractStringValue(rs!PUBLISHER)
    
-   txtCprYr = rs!COPYRIGHT_YEAR
+   txtCprYr = CommonHelper.extractStringValue(rs!COPYRIGHT_YEAR)
    
-   txtVolume = rs!VOLUME
+   txtVolume = CommonHelper.extractStringValue(rs!Volume)
       
    For index = 0 To UBound(locationItemList)
      If (rs!LOCATION_ID = Val(locationItemList(index, Constants.ITEM_VALUE_INDEX))) Then
