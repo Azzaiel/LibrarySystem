@@ -106,16 +106,17 @@ Public Function dashboardSearch(itemCode As String, itemTypeID As Integer, autho
 
 End Function
 
-Public Function search(itemCode As String, itemTypeID As Integer, author As String, name As String, categoryID As Integer, status As String) As ADODB.Recordset
+Public Function searchItem(Optional itemCode As String, Optional itemTypeID As Integer, Optional author As String, Optional name As String, Optional categoryID As Integer, Optional status As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
    
    Dim sqlQuery As String
    
-   sqlQuery = "Select a.ID, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
-              "       , a.DESCRIPTION, a.AUTHOR, a.DONATED_BY, a.PURCHASE_COST, a.STATUS, a.CREATED_BY, a.CREATED_DATE " & _
-              "       , a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID, a.LOCATION_ID, a.CATEGORY_ID " & _
+   sqlQuery = "Select a.ID, a.STATUS, a.ITEM_CODE, b.name as ITEM_TYPE, a.NAME, c.NAME as LOCATION,  d.name AS CATEGORY " & _
+              "       , a.DESCRIPTION, a.AUTHOR, a.AQUISITION_TYPE, a.DONATED_BY, a.PURCHASE_COST, a.PUBLISHER, a.COPYRIGHT_YEAR " & _
+              "       , a.VOLUME, a.CREATED_BY, a.CREATED_DATE, a.LAST_MOD_BY, a.LAST_MOD_DATE, a.ITEM_TYPE_ID " & _
+              "       , a.LOCATION_ID, a.CATEGORY_ID " & _
               "From ITEMS a, ITEM_TYPES b " & _
               "     , LOCATION_MAPPINGS c, CATEGORIES d " & _
               "Where a.ITEM_TYPE_ID = b.ID " & _
@@ -157,7 +158,7 @@ Public Function search(itemCode As String, itemTypeID As Integer, author As Stri
    
    rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
    
-   Set search = rs
+   Set searchItem = rs
 
 End Function
 Public Function getFakeRs() As ADODB.Recordset

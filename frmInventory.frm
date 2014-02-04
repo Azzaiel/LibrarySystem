@@ -261,7 +261,7 @@ Begin VB.Form frmInventory
       TabIndex        =   23
       Top             =   0
       Width           =   8295
-      Begin VB.TextBox Text3 
+      Begin VB.TextBox txtVolume 
          Height          =   285
          Left            =   5280
          MaxLength       =   9
@@ -286,7 +286,7 @@ Begin VB.Form frmInventory
             Top             =   360
             Width           =   1815
          End
-         Begin VB.TextBox txtPurchaseCost 
+         Begin VB.TextBox txtAqui 
             Height          =   285
             Left            =   1440
             MaxLength       =   9
@@ -303,7 +303,7 @@ Begin VB.Form frmInventory
             Top             =   360
             Width           =   615
          End
-         Begin VB.Label lvlAuiParam 
+         Begin VB.Label lblAqui 
             BackColor       =   &H0080FF80&
             Caption         =   "Purchase Cost"
             Height          =   255
@@ -313,14 +313,14 @@ Begin VB.Form frmInventory
             Width           =   1095
          End
       End
-      Begin VB.TextBox Text2 
+      Begin VB.TextBox txtCprYr 
          Height          =   285
          Left            =   1560
          TabIndex        =   52
          Top             =   7680
          Width           =   3015
       End
-      Begin VB.TextBox Text1 
+      Begin VB.TextBox txtPublisher 
          Height          =   285
          Left            =   1560
          TabIndex        =   50
@@ -401,7 +401,7 @@ Begin VB.Form frmInventory
          Top             =   600
          Width           =   1935
       End
-      Begin VB.Label Label7 
+      Begin VB.Label lblVolumne 
          BackColor       =   &H0080FF80&
          Caption         =   "Volume"
          Height          =   255
@@ -702,6 +702,15 @@ Private Function getCategoryID() As Integer
   End If
 End Function
 
+Private Sub cmAquiType_Click()
+  txtAqui = ""
+  If (cmAquiType.Text = "Purchased") Then
+    lblAqui = "Purchase Cost"
+  Else
+    lblAqui = "Donated By"
+  End If
+End Sub
+
 Private Sub cmbClear_Click()
   Call restoreFormDefaultSkin
   Call clearForm
@@ -736,13 +745,13 @@ Private Sub clearForm()
     txtName.Text = ""
     txtItemCode.Text = ""
     txtDescription.Text = ""
-    txtDonatedBy.Text = ""
+    'txtDonatedBy.Text = ""
     txtAuthor.Text = ""
     lblCreatedBy.Caption = ""
     lblCreatedDate.Caption = ""
     lblLatModBy.Caption = ""
     lblLastModDate.Caption = ""
-    txtPurchaseCost = ""
+    'txtPurchaseCost = ""
     cmStatus.ListIndex = -1
     
     cmItemType.ListIndex = -1
@@ -762,7 +771,24 @@ Private Sub cmbEdit_Click()
       tempRs!name = txtName.Text
       tempRs!ITEM_CODE = txtItemCode.Text
       tempRs!Description = txtDescription.Text
-      tempRs!DONATED_BY = txtDonatedBy.Text
+      tempRs!AQUISITION_TYPE = cmAquiType.Text
+      
+      If (cmAquiType.Text = "Purchased") Then
+        tempRs!PURCHASE_COST = Val(txtAqui)
+        tempRs!DONATED_BY = Null
+      Else
+        tempRs!DONATED_BY = txtAqui.Text
+        tempRs!PURCHASE_COST = Null
+      End If
+      
+      tempRs!PUBLISHER = txtPublisher
+      tempRs!COPYRIGHT_YEAR = txtCprYr
+      
+      If (cmItemType.Text = "CD") Then
+        tempRs!VOLUME = txtVolume
+      Else
+        tempRs!VOLUME = Null
+      End If
       tempRs!author = txtAuthor.Text
       tempRs!PURCHASE_COST = Val(txtPurchaseCost)
       tempRs!status = cmStatus.Text
@@ -880,8 +906,26 @@ Private Sub cmbNewRec_Click()
       tempRs!name = txtName.Text
       tempRs!ITEM_CODE = txtItemCode.Text
       tempRs!Description = txtDescription.Text
-      tempRs!DONATED_BY = txtDonatedBy.Text
-      tempRs!PURCHASE_COST = Val(txtPurchaseCost)
+      
+      tempRs!AQUISITION_TYPE = cmAquiType.Text
+      
+      If (cmAquiType.Text = "Purchased") Then
+        tempRs!PURCHASE_COST = Val(txtAqui)
+        tempRs!DONATED_BY = Null
+      Else
+        tempRs!DONATED_BY = txtAqui.Text
+        tempRs!PURCHASE_COST = Null
+      End If
+      
+      tempRs!PUBLISHER = txtPublisher
+      tempRs!COPYRIGHT_YEAR = txtCprYr
+      
+      If (cmItemType.Text = "CD") Then
+        tempRs!VOLUME = txtVolume
+      Else
+        tempRs!VOLUME = Null
+      End If
+      
       tempRs!author = txtAuthor.Text
       tempRs!status = cmStatus.Text
       tempRs!LOCATION_ID = getLocationID
@@ -976,7 +1020,7 @@ End Sub
 Private Sub cmdSearch_Click()
   Set dgItems.DataSource = Nothing
   Call DbInstance.closeRecordSet(rs)
-  Set rs = InventoryDao.search(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID, cmbSearchStatus.Text)
+  Set rs = InventoryDao.searchItem(txtSearchItemCode, getSearchItemTypeID, txtSearchAuthor, txtSearchName, getSearchCategoryID, cmbSearchStatus.Text)
   Set dgItems.DataSource = rs
   dgItems.Refresh
   Call clearForm
@@ -1001,6 +1045,16 @@ Private Function getSearchItemTypeID() As Integer
     getSearchItemTypeID = 0
   End If
 End Function
+
+Private Sub cmItemType_Click()
+   lblVolumne.Visible = False
+   txtVolume.Visible = False
+   
+   If (cmItemType.Text = "CD") Then
+     lblVolumne.Visible = True
+     txtVolume.Visible = True
+   End If
+End Sub
 
 Private Sub cmLocation_Click()
   Dim FileName As String
@@ -1033,11 +1087,12 @@ Private Sub dgItems_SelChange(Cancel As Integer)
 End Sub
 
 Private Sub Form_Load()
+  cmAquiType.ListIndex = 0
   Call populateDropDown
   Call populateDataGrid
 End Sub
 Private Sub populateDataGrid()
-  Set rs = InventoryDao.getAllRs
+  Set rs = InventoryDao.searchItem
   Set dgItems.DataSource = rs
   dgItems.Refresh
   Call formatDataGrid
@@ -1057,28 +1112,28 @@ Private Sub formatDataGrid()
     .Columns(0).Alignment = dbgCenter
     .Columns(0).Caption = "Accession no."
     
-    .Columns(1).Caption = "ISBN"
+    .Columns(2).Caption = "ISBN"
     
-    .Columns(3).Caption = "Title "
+    .Columns(3).Caption = "TITLE"
     
      'CREATED DATE - 9
-    .Columns(9).Width = 1500
-    .Columns(9).NumberFormat = DEFAULT_CURRENCY_FORMAT
+    .Columns(10).Width = 1500
+    .Columns(10).NumberFormat = DEFAULT_CURRENCY_FORMAT
     
     
      'CREATED DATE - 12
-    .Columns(12).Width = 1500
-    .Columns(12).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(12).Alignment = dbgCenter
+    .Columns(16).Width = 1500
+    .Columns(16).NumberFormat = Constants.DEFAULT_FORMAT
+    .Columns(16).Alignment = dbgCenter
     
     'LAST MOD DATE - 14
-    .Columns(14).Width = 1500
-    .Columns(14).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(14).Alignment = dbgCenter
+    .Columns(18).Width = 1500
+    .Columns(18).NumberFormat = Constants.DEFAULT_FORMAT
+    .Columns(18).Alignment = dbgCenter
     
-    .Columns(15).Visible = False
-    .Columns(16).Visible = False
-    .Columns(17).Visible = False
+    .Columns(19).Visible = False
+    .Columns(20).Visible = False
+    .Columns(21).Visible = False
     
   End With
 End Sub
@@ -1092,15 +1147,13 @@ Private Sub showSelectedData()
     txtName.Text = CommonHelper.extractStringValue(rs!name)
     txtItemCode.Text = CommonHelper.extractStringValue(rs!ITEM_CODE)
     txtDescription.Text = CommonHelper.extractStringValue(rs!Description)
-    txtDonatedBy.Text = CommonHelper.extractStringValue(rs!DONATED_BY)
+    'txtDonatedBy.Text = CommonHelper.extractStringValue(rs!DONATED_BY)
     txtAuthor.Text = CommonHelper.extractStringValue(rs!author)
     lblCreatedBy.Caption = CommonHelper.extractStringValue(rs!CREATED_BY)
     lblCreatedDate.Caption = CommonHelper.extractDateValue(rs!CREATED_DATE)
     lblLatModBy.Caption = CommonHelper.extractStringValue(rs!LAST_MOD_BY)
     lblLastModDate.Caption = CommonHelper.extractDateValue(rs!LAST_MOD_DATE)
-    txtPurchaseCost = CommonHelper.extractStringValue(rs!PURCHASE_COST)
-    
-    
+    'txtPurchaseCost = CommonHelper.extractStringValue(rs!PURCHASE_COST)
     
     If (cmbNewRec.Caption = "New") Then
       cmStatus.Text = CommonHelper.extractStringValue(rs!status)
@@ -1120,6 +1173,34 @@ Private Sub showSelectedData()
      End If
    Next index
    
+   lblVolumne.Visible = False
+   txtVolume.Visible = False
+   
+   If (cmItemType.Text = "CD") Then
+     lblVolumne.Visible = True
+     txtVolume.Visible = True
+   End If
+   
+   If (CommonHelper.extractStringValue(rs!AQUISITION_TYPE) <> vbNullString) Then
+     cmAquiType.Text = CommonHelper.extractStringValue(rs!AQUISITION_TYPE)
+   Else
+     cmAquiType.Text = "Purchased"
+   End If
+      
+   If (cmAquiType.Text = "Purchased") Then
+     txtAqui = Val(CommonHelper.extractStringValue(rs!PURCHASE_COST))
+   Else
+     txtAqui = CommonHelper.extractStringValue(rs!DONATED_BY)
+   End If
+   
+   
+   
+   txtPublisher = rs!PUBLISHER
+   
+   txtCprYr = rs!COPYRIGHT_YEAR
+   
+   txtVolume = rs!VOLUME
+      
    For index = 0 To UBound(locationItemList)
      If (rs!LOCATION_ID = Val(locationItemList(index, Constants.ITEM_VALUE_INDEX))) Then
        cmLocation.ListIndex = index
@@ -1164,6 +1245,15 @@ Private Sub Form_Unload(Cancel As Integer)
    Call frmMain.reloadBookStats
 End Sub
 
+Private Sub txtAqui_KeyPress(KeyAscii As Integer)
+  If (cmAquiType.Text = "Purchased") Then
+    If (Not isFunctionAscii(KeyAscii) And (Not isNumberAscii(KeyAscii) Or Len(txtAqui) > 11)) Then
+      KeyAscii = 0
+      Beep
+    End If
+  End If
+End Sub
+
 Private Sub txtItemCode_KeyPress(KeyAscii As Integer)
    If (Not isFunctionAscii(KeyAscii) And (Not isNumberAscii(KeyAscii)) And (Not isLetterAscii(KeyAscii))) Then
     KeyAscii = 0
@@ -1172,10 +1262,7 @@ Private Sub txtItemCode_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtPurchaseCost_KeyPress(KeyAscii As Integer)
-   If (Not isFunctionAscii(KeyAscii) And (Not isNumberAscii(KeyAscii) Or Len(txtPurchaseCost) > 11)) Then
-    KeyAscii = 0
-    Beep
-  End If
+   
 End Sub
 
 Private Function isFunctionAscii(ascii As Integer) As Boolean
