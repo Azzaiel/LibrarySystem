@@ -1,4 +1,4 @@
-frmMain = 25, 25, 904, 458, C, 25, 25, 904, 458, C
+frmMain = 25, 25, 904, 458, , 25, 25, 904, 458, C
 DbInstance = 50, 50, 929, 483, C
 LookupDao = 0, 0, 895, 451, C
 frmlogin = 123, 194, 985, 548, C, 75, 75, 954, 508, C
@@ -12,7 +12,7 @@ frmStudents = 175, 175, 1054, 610, C, 125, 125, 1004, 558, C
 StudentDao = 100, 100, 995, 551, C
 Constants = 106, 17, 968, 468, C
 frmLocationMapping = 200, 200, 1079, 633, C, 50, 50, 929, 483, C
-frmInventory = -20, 101, 859, 534, C, 2, 1, 1045, 596, C
+frmInventory = 151, 61, 1030, 494, C, 2, 1, 1045, 596, C
 InventoryDao = 75, 75, 955, 510, C
 MainModule = -19, 188, 876, 639, C
 frmStudentSelect = 300, 275, 1179, 708, C, 22, 21, 901, 454, C
