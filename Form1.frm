@@ -1152,6 +1152,14 @@ Private Sub cmdClearSearch_Click()
   cmbSearchStatus.ListIndex = -1
   txtSearchAuthor = ""
 End Sub
+
+Private Sub cmdDashSearch_Click()
+  Set transactionRS = InventoryDao.getTransactionDashboardRs
+  Set dgTransactionDash.DataSource = transactionRS
+  dgTransactionDash.Refresh
+  Call formatTransactionDashDatagrid
+End Sub
+
 Private Sub cmItemsQuickSearch_Click()
   Set dgItems.DataSource = Nothing
   Call DbInstance.closeRecordSet(itemsRs)
@@ -1291,10 +1299,14 @@ Private Sub showSelectedItem()
       txtStudentName = tempRs!STUDENT_NAME
       txtAdviser = tempRs!Adviser
       txtSection = tempRs!Section
-      optAvailable.Enabled = True
-      optDamage.Enabled = True
-      optLost.Enabled = True
-      OptObsolete.Enabled = True
+      optAvailable.Enabled = False
+      optDamage.Enabled = False
+      optLost.Enabled = False
+      OptObsolete.Enabled = False
+      optAvailable.value = False
+      optDamage.value = False
+      optLost.value = False
+      OptObsolete.value = False
       Call DbInstance.closeRecordSet(tempRs)
    ElseIf (cmStatus = "Damaged") Then
       optDamage.value = True
@@ -1403,16 +1415,15 @@ Private Sub formatTransactionDashDatagrid()
      'LRN - 0
     .Columns(0).Width = 1500
     .Columns(0).Alignment = dbgCenter
-    
-    .Columns(1).Caption = "TITLE"
+
 
      'DUE DATE - 5
-    .Columns(5).Width = 1500
-    .Columns(5).NumberFormat = Constants.DEFAULT_FORMAT
-    .Columns(5).Alignment = dbgCenter
+    .Columns(7).Width = 1500
+    .Columns(7).NumberFormat = Constants.DEFAULT_FORMAT
+    .Columns(7).Alignment = dbgCenter
     
     'TRANSACTION_ID
-    .Columns(6).Visible = False
+    .Columns(8).Visible = False
     
   End With
 End Sub
