@@ -12,20 +12,20 @@ Begin VB.Form frmMain
    Begin VB.Frame frmControl 
       Height          =   10095
       Left            =   0
-      TabIndex        =   0
+      TabIndex        =   8
       Top             =   0
       Width           =   20295
       Begin VB.Frame Frame6 
          Caption         =   "Stats (Double click to view full list of items status)"
          Height          =   2295
          Left            =   13920
-         TabIndex        =   48
+         TabIndex        =   60
          Top             =   7440
          Width           =   6135
          Begin MSDataGridLib.DataGrid dgStat 
             Height          =   1335
             Left            =   840
-            TabIndex        =   49
+            TabIndex        =   61
             Top             =   360
             Width           =   4455
             _ExtentX        =   7858
@@ -108,7 +108,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   495
             Left            =   720
-            TabIndex        =   50
+            TabIndex        =   62
             Top             =   1680
             Width           =   4815
          End
@@ -117,7 +117,7 @@ Begin VB.Form frmMain
          Caption         =   "Quick Search"
          Height          =   2055
          Left            =   120
-         TabIndex        =   1
+         TabIndex        =   9
          Top             =   120
          Width           =   6495
          Begin VB.ComboBox cmbSearchStatus 
@@ -126,7 +126,7 @@ Begin VB.Form frmMain
             Left            =   4200
             List            =   "Form1.frx":0016
             Style           =   2  'Dropdown List
-            TabIndex        =   56
+            TabIndex        =   5
             Top             =   960
             Width           =   1935
          End
@@ -134,21 +134,21 @@ Begin VB.Form frmMain
             Height          =   315
             Left            =   1200
             Style           =   2  'Dropdown List
-            TabIndex        =   16
+            TabIndex        =   2
             Top             =   600
             Width           =   1935
          End
          Begin VB.TextBox txtSearchItemCode 
             Height          =   285
             Left            =   1200
-            TabIndex        =   12
+            TabIndex        =   0
             Top             =   240
             Width           =   1935
          End
          Begin VB.TextBox txtSearchName 
             Height          =   285
             Left            =   1200
-            TabIndex        =   11
+            TabIndex        =   4
             Top             =   1080
             Width           =   1935
          End
@@ -156,27 +156,45 @@ Begin VB.Form frmMain
             Height          =   315
             Left            =   4200
             Style           =   2  'Dropdown List
-            TabIndex        =   10
+            TabIndex        =   1
             Top             =   240
             Width           =   1935
          End
          Begin VB.TextBox txtSearchAuthor 
             Height          =   285
             Left            =   4200
-            TabIndex        =   9
+            TabIndex        =   3
             Top             =   600
             Width           =   1935
          End
          Begin VB.CommandButton cmItemsQuickSearch 
             Caption         =   "Search"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   435
             Left            =   240
-            TabIndex        =   8
+            TabIndex        =   6
             Top             =   1440
             Width           =   2895
          End
          Begin VB.CommandButton cmdClearSearch 
             Caption         =   "Clear"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   435
             Left            =   3360
             TabIndex        =   7
@@ -188,7 +206,7 @@ Begin VB.Form frmMain
             Caption         =   "Status"
             Height          =   255
             Left            =   3240
-            TabIndex        =   57
+            TabIndex        =   65
             Top             =   960
             Width           =   495
          End
@@ -197,7 +215,7 @@ Begin VB.Form frmMain
             Caption         =   " Title"
             Height          =   255
             Left            =   240
-            TabIndex        =   18
+            TabIndex        =   19
             Top             =   1080
             Width           =   615
          End
@@ -206,7 +224,7 @@ Begin VB.Form frmMain
             Caption         =   "Type"
             Height          =   255
             Left            =   240
-            TabIndex        =   17
+            TabIndex        =   18
             Top             =   600
             Width           =   495
          End
@@ -215,7 +233,7 @@ Begin VB.Form frmMain
             Caption         =   "ISBN"
             Height          =   255
             Left            =   240
-            TabIndex        =   15
+            TabIndex        =   17
             Top             =   240
             Width           =   855
          End
@@ -224,7 +242,7 @@ Begin VB.Form frmMain
             Caption         =   "Category"
             Height          =   255
             Left            =   3240
-            TabIndex        =   14
+            TabIndex        =   16
             Top             =   240
             Width           =   735
          End
@@ -233,7 +251,7 @@ Begin VB.Form frmMain
             Caption         =   "Author"
             Height          =   255
             Left            =   3240
-            TabIndex        =   13
+            TabIndex        =   15
             Top             =   600
             Width           =   615
          End
@@ -242,7 +260,7 @@ Begin VB.Form frmMain
          Caption         =   "Detail"
          Height          =   5535
          Left            =   6840
-         TabIndex        =   5
+         TabIndex        =   13
          Top             =   120
          Width           =   6975
          Begin VB.TextBox txtVolume 
@@ -258,7 +276,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   4560
             Locked          =   -1  'True
-            TabIndex        =   59
+            TabIndex        =   67
             Top             =   3120
             Width           =   2175
          End
@@ -276,7 +294,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   1215
             Left            =   3480
-            TabIndex        =   52
+            TabIndex        =   64
             Top             =   240
             Width           =   3375
             Begin VB.OptionButton OptObsolete 
@@ -293,7 +311,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1800
-               TabIndex        =   60
+               TabIndex        =   48
                Top             =   720
                Width           =   1455
             End
@@ -311,7 +329,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1800
-               TabIndex        =   55
+               TabIndex        =   46
                Top             =   360
                Width           =   1335
             End
@@ -329,7 +347,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   240
-               TabIndex        =   54
+               TabIndex        =   47
                Top             =   720
                Width           =   1335
             End
@@ -347,7 +365,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   240
-               TabIndex        =   53
+               TabIndex        =   45
                Top             =   360
                Width           =   1575
             End
@@ -356,7 +374,7 @@ Begin VB.Form frmMain
             Caption         =   "Student info"
             Height          =   1335
             Left            =   120
-            TabIndex        =   36
+            TabIndex        =   37
             Top             =   3480
             Width           =   6735
             Begin VB.Label Label13 
@@ -364,7 +382,7 @@ Begin VB.Form frmMain
                Caption         =   "LRN"
                Height          =   255
                Left            =   120
-               TabIndex        =   47
+               TabIndex        =   59
                Top             =   240
                Width           =   1095
             End
@@ -382,7 +400,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1320
-               TabIndex        =   46
+               TabIndex        =   58
                Top             =   240
                Width           =   2295
             End
@@ -400,7 +418,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   4440
-               TabIndex        =   43
+               TabIndex        =   44
                Top             =   600
                Width           =   2175
             End
@@ -418,7 +436,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   4440
-               TabIndex        =   42
+               TabIndex        =   43
                Top             =   240
                Width           =   2175
             End
@@ -436,7 +454,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1320
-               TabIndex        =   41
+               TabIndex        =   42
                Top             =   600
                Width           =   2295
             End
@@ -454,7 +472,7 @@ Begin VB.Form frmMain
                ForeColor       =   &H00FF0000&
                Height          =   255
                Left            =   2520
-               TabIndex        =   40
+               TabIndex        =   41
                Top             =   2880
                Width           =   1455
             End
@@ -463,7 +481,7 @@ Begin VB.Form frmMain
                Caption         =   "Adviser"
                Height          =   255
                Left            =   3720
-               TabIndex        =   39
+               TabIndex        =   40
                Top             =   600
                Width           =   615
             End
@@ -472,7 +490,7 @@ Begin VB.Form frmMain
                Caption         =   "Section"
                Height          =   255
                Left            =   3720
-               TabIndex        =   38
+               TabIndex        =   39
                Top             =   240
                Width           =   615
             End
@@ -481,7 +499,7 @@ Begin VB.Form frmMain
                Caption         =   "Student Name"
                Height          =   255
                Left            =   120
-               TabIndex        =   37
+               TabIndex        =   38
                Top             =   600
                Width           =   1095
             End
@@ -500,7 +518,7 @@ Begin VB.Form frmMain
             Left            =   1440
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
-            TabIndex        =   30
+            TabIndex        =   31
             Top             =   1320
             Width           =   1935
          End
@@ -517,7 +535,7 @@ Begin VB.Form frmMain
             Height          =   525
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   29
+            TabIndex        =   30
             Top             =   1680
             Width           =   4815
          End
@@ -534,7 +552,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   28
+            TabIndex        =   29
             Top             =   2280
             Width           =   2775
          End
@@ -551,7 +569,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   27
+            TabIndex        =   28
             Top             =   2760
             Width           =   2775
          End
@@ -571,7 +589,7 @@ Begin VB.Form frmMain
             List            =   "Form1.frx":005C
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
-            TabIndex        =   26
+            TabIndex        =   27
             Top             =   3120
             Width           =   1935
          End
@@ -588,7 +606,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   22
+            TabIndex        =   23
             Top             =   240
             Width           =   1935
          End
@@ -606,7 +624,7 @@ Begin VB.Form frmMain
             Left            =   1440
             Locked          =   -1  'True
             Style           =   1  'Simple Combo
-            TabIndex        =   21
+            TabIndex        =   22
             Top             =   600
             Width           =   1935
          End
@@ -623,7 +641,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   1440
             Locked          =   -1  'True
-            TabIndex        =   20
+            TabIndex        =   21
             Top             =   960
             Width           =   1935
          End
@@ -632,7 +650,7 @@ Begin VB.Form frmMain
             Caption         =   "Volume"
             Height          =   255
             Left            =   3840
-            TabIndex        =   58
+            TabIndex        =   66
             Top             =   3120
             Width           =   615
          End
@@ -650,7 +668,7 @@ Begin VB.Form frmMain
             ForeColor       =   &H00FF0000&
             Height          =   255
             Left            =   2640
-            TabIndex        =   45
+            TabIndex        =   57
             Top             =   5160
             Width           =   1575
          End
@@ -659,7 +677,7 @@ Begin VB.Form frmMain
             Caption         =   "Category"
             Height          =   255
             Left            =   240
-            TabIndex        =   35
+            TabIndex        =   36
             Top             =   1320
             Width           =   975
          End
@@ -668,7 +686,7 @@ Begin VB.Form frmMain
             Caption         =   "Description"
             Height          =   255
             Left            =   240
-            TabIndex        =   34
+            TabIndex        =   35
             Top             =   1800
             Width           =   855
          End
@@ -677,7 +695,7 @@ Begin VB.Form frmMain
             Caption         =   "Author"
             Height          =   255
             Left            =   240
-            TabIndex        =   33
+            TabIndex        =   34
             Top             =   2280
             Width           =   855
          End
@@ -686,7 +704,7 @@ Begin VB.Form frmMain
             Caption         =   "Purchase Cost"
             Height          =   255
             Left            =   240
-            TabIndex        =   32
+            TabIndex        =   33
             Top             =   2760
             Width           =   1095
          End
@@ -695,7 +713,7 @@ Begin VB.Form frmMain
             Caption         =   "Status"
             Height          =   255
             Left            =   240
-            TabIndex        =   31
+            TabIndex        =   32
             Top             =   3120
             Width           =   495
          End
@@ -704,7 +722,7 @@ Begin VB.Form frmMain
             Caption         =   "ISBN"
             Height          =   255
             Left            =   240
-            TabIndex        =   25
+            TabIndex        =   26
             Top             =   240
             Width           =   855
          End
@@ -713,7 +731,7 @@ Begin VB.Form frmMain
             Caption         =   "Type"
             Height          =   255
             Left            =   240
-            TabIndex        =   24
+            TabIndex        =   25
             Top             =   600
             Width           =   975
          End
@@ -722,7 +740,7 @@ Begin VB.Form frmMain
             Caption         =   "Title"
             Height          =   255
             Left            =   240
-            TabIndex        =   23
+            TabIndex        =   24
             Top             =   960
             Width           =   855
          End
@@ -731,7 +749,7 @@ Begin VB.Form frmMain
          Caption         =   "Location Map"
          Height          =   4095
          Left            =   6960
-         TabIndex        =   4
+         TabIndex        =   12
          Top             =   5640
          Width           =   6495
          Begin VB.PictureBox imgLoc 
@@ -740,7 +758,7 @@ Begin VB.Form frmMain
             Picture         =   "Form1.frx":008E
             ScaleHeight     =   3630
             ScaleWidth      =   6195
-            TabIndex        =   6
+            TabIndex        =   14
             Top             =   240
             Width           =   6255
          End
@@ -750,17 +768,81 @@ Begin VB.Form frmMain
          ClipControls    =   0   'False
          Height          =   7335
          Left            =   13920
-         TabIndex        =   3
+         TabIndex        =   11
          Top             =   120
          Width           =   6135
-         Begin MSDataGridLib.DataGrid dgTransactionDash 
-            Height          =   6975
-            Left            =   120
-            TabIndex        =   44
+         Begin VB.CommandButton Command2 
+            Caption         =   "Clear"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Left            =   4920
+            TabIndex        =   55
+            Top             =   960
+            Width           =   1095
+         End
+         Begin VB.CommandButton cmdDashSearch 
+            Caption         =   "Search"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Left            =   3480
+            TabIndex        =   54
+            Top             =   960
+            Width           =   1095
+         End
+         Begin VB.ComboBox cmbDashCategory 
+            Height          =   315
+            Left            =   4080
+            Style           =   2  'Dropdown List
+            TabIndex        =   50
             Top             =   240
+            Width           =   1935
+         End
+         Begin VB.TextBox txtTitle 
+            Height          =   285
+            Left            =   4080
+            TabIndex        =   52
+            Top             =   600
+            Width           =   1935
+         End
+         Begin VB.TextBox txtDashIsbn 
+            Height          =   285
+            Left            =   1080
+            TabIndex        =   49
+            Top             =   240
+            Width           =   1935
+         End
+         Begin VB.ComboBox cmbDashType 
+            Height          =   315
+            Left            =   1080
+            Style           =   2  'Dropdown List
+            TabIndex        =   51
+            Top             =   600
+            Width           =   1935
+         End
+         Begin MSDataGridLib.DataGrid dgTransactionDash 
+            Height          =   5775
+            Left            =   120
+            TabIndex        =   56
+            Top             =   1440
             Width           =   5895
             _ExtentX        =   10398
-            _ExtentY        =   12303
+            _ExtentY        =   10186
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
@@ -824,18 +906,81 @@ Begin VB.Form frmMain
                EndProperty
             EndProperty
          End
+         Begin VB.Label txtDashLrn 
+            BackColor       =   &H00FFFFFF&
+            BorderStyle     =   1  'Fixed Single
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Left            =   1080
+            TabIndex        =   53
+            Top             =   960
+            Width           =   1935
+         End
+         Begin VB.Label Label21 
+            BackColor       =   &H0080FF80&
+            Caption         =   "LRN"
+            Height          =   255
+            Left            =   120
+            TabIndex        =   72
+            Top             =   960
+            Width           =   495
+         End
+         Begin VB.Label Label20 
+            BackColor       =   &H0080FF80&
+            Caption         =   "Category"
+            Height          =   255
+            Left            =   3120
+            TabIndex        =   71
+            Top             =   240
+            Width           =   735
+         End
+         Begin VB.Label Label19 
+            BackColor       =   &H0080FF80&
+            Caption         =   "ISBN"
+            Height          =   255
+            Left            =   120
+            TabIndex        =   70
+            Top             =   240
+            Width           =   855
+         End
+         Begin VB.Label Label12 
+            BackColor       =   &H0080FF80&
+            Caption         =   "Type"
+            Height          =   255
+            Left            =   120
+            TabIndex        =   69
+            Top             =   600
+            Width           =   495
+         End
+         Begin VB.Label Label7 
+            BackColor       =   &H0080FF80&
+            Caption         =   " Title"
+            Height          =   255
+            Left            =   3120
+            TabIndex        =   68
+            Top             =   600
+            Width           =   615
+         End
       End
       Begin VB.Frame Frame2 
          Caption         =   "Result"
          Height          =   6975
          Left            =   120
-         TabIndex        =   2
+         TabIndex        =   10
          Top             =   2160
          Width           =   6495
          Begin MSDataGridLib.DataGrid dgItems 
             Height          =   6615
             Left            =   120
-            TabIndex        =   19
+            TabIndex        =   20
             Top             =   240
             Width           =   6255
             _ExtentX        =   11033
@@ -921,7 +1066,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H00008000&
          Height          =   495
          Left            =   0
-         TabIndex        =   51
+         TabIndex        =   63
          Top             =   9360
          Width           =   6855
       End
@@ -1045,6 +1190,10 @@ Private Sub clearDetailForm()
    cmItemType.ListIndex = -1
    cmCategory.ListIndex = -1
    
+End Sub
+
+Private Sub Command1_Click()
+
 End Sub
 
 Private Sub dbBackum_Click()
@@ -1240,7 +1389,6 @@ Public Sub reloadBookStats()
    Wend
    
    lblTotalBooks = "Total Books: " & totalBooks
-   
    dgStat.Refresh
 End Sub
 
@@ -1273,18 +1421,22 @@ Private Sub populateDropDown()
 
   itemTypeItemList = LookupDao.getItemTypeItemList
   cmSearchType.Clear
+  cmbDashType.Clear
   cmItemType.Clear
   For index = 0 To UBound(itemTypeItemList)
     cmSearchType.AddItem (itemTypeItemList(index, Constants.ITEM_LABEL_INDEX))
     cmItemType.AddItem (itemTypeItemList(index, Constants.ITEM_LABEL_INDEX))
+    cmbDashType.AddItem (itemTypeItemList(index, Constants.ITEM_LABEL_INDEX))
   Next index
   
   categoriesItemList = LookupDao.getCategoriesItemList
   cmSearchCategory.Clear
   cmCategory.Clear
+  cmbDashCategory.Clear
   For index = 0 To UBound(categoriesItemList)
     cmSearchCategory.AddItem (categoriesItemList(index, Constants.ITEM_LABEL_INDEX))
     cmCategory.AddItem (categoriesItemList(index, Constants.ITEM_LABEL_INDEX))
+    cmbDashCategory.AddItem (categoriesItemList(index, Constants.ITEM_LABEL_INDEX))
   Next index
   
 End Sub
@@ -1578,6 +1730,17 @@ Private Sub sections_Click()
   frmSections.Show vbModal
 End Sub
 
+Private Sub Text1_Change()
+
+End Sub
+
+Private Sub txtDashIsbn_Change()
+  If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii)) And (Not CommonHelper.isLetterAscii(KeyAscii))) Then
+    KeyAscii = 0
+    Beep
+  End If
+End Sub
+
 Private Sub txtSearchAuthor_KeyPress(KeyAscii As Integer)
   If (KeyAscii = 13) Then
     Call cmItemsQuickSearch_Click
@@ -1585,6 +1748,11 @@ Private Sub txtSearchAuthor_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtSearchItemCode_KeyPress(KeyAscii As Integer)
+  If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii)) And (Not CommonHelper.isLetterAscii(KeyAscii))) Then
+    KeyAscii = 0
+    Beep
+  End If
+  
  If (KeyAscii = 13) Then
     Call cmItemsQuickSearch_Click
   End If

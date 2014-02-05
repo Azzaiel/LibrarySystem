@@ -142,4 +142,24 @@ End Function
 Public Function getTempPath() As String
   getTempPath = App.Path & "\" & Constants.TEMP_FOLDER
 End Function
-
+Public Function isFunctionAscii(ascii As Integer) As Boolean
+  If (ascii = 13 Or ascii = 8 Or ascii = 32) Then
+    isFunctionAscii = True
+  Else
+    isFunctionAscii = False
+  End If
+End Function
+Public Function isLetterAscii(ascii As Integer) As Boolean
+  If (ascii >= 65 And ascii <= 122) Then
+    isLetterAscii = True
+  Else
+    isLetterAscii = False
+  End If
+End Function
+Public Function isNumberAscii(ascii As Integer) As Boolean
+  If (ascii >= 48 And ascii <= 57) Then
+    isNumberAscii = True
+  Else
+    isNumberAscii = False
+  End If
+End Function

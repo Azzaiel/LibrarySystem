@@ -1247,7 +1247,7 @@ End Sub
 
 Private Sub txtAqui_KeyPress(KeyAscii As Integer)
   If (cmAquiType.Text = "Purchased") Then
-    If (Not isFunctionAscii(KeyAscii) And (Not isNumberAscii(KeyAscii) Or Len(txtAqui) > 11)) Then
+    If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii) Or Len(txtAqui) > 11)) Then
       KeyAscii = 0
       Beep
     End If
@@ -1255,7 +1255,7 @@ Private Sub txtAqui_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub txtItemCode_KeyPress(KeyAscii As Integer)
-   If (Not isFunctionAscii(KeyAscii) And (Not isNumberAscii(KeyAscii)) And (Not isLetterAscii(KeyAscii))) Then
+   If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii)) And (Not CommonHelper.isLetterAscii(KeyAscii))) Then
     KeyAscii = 0
     Beep
   End If
@@ -1265,27 +1265,7 @@ Private Sub txtPurchaseCost_KeyPress(KeyAscii As Integer)
    
 End Sub
 
-Private Function isFunctionAscii(ascii As Integer) As Boolean
-  If (ascii = 13 Or ascii = 8 Or ascii = 32) Then
-    isFunctionAscii = True
-  Else
-    isFunctionAscii = False
-  End If
-End Function
-Private Function isLetterAscii(ascii As Integer) As Boolean
-  If (ascii >= 65 And ascii <= 122) Then
-    isLetterAscii = True
-  Else
-    isLetterAscii = False
-  End If
-End Function
-Private Function isNumberAscii(ascii As Integer) As Boolean
-  If (ascii >= 48 And ascii <= 57) Then
-    isNumberAscii = True
-  Else
-    isNumberAscii = False
-  End If
-End Function
+
 
 Private Sub txtSearchAuthor_KeyPress(KeyAscii As Integer)
   If (KeyAscii = 13) Then
