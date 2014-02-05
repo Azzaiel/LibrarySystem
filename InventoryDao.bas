@@ -256,7 +256,7 @@ Public Function getFakeTransactionRS() As ADODB.Recordset
    Set getFakeTransactionRS = rs
 
 End Function
-Public Function getTransactionDashboardRs(Optional lrn As String, Optional itemCode As String) As ADODB.Recordset
+Public Function getTransactionDashboardRs(Optional lrn As String, Optional itemCode As String, Optional title As String, Optional itemType As String, Optional category As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
@@ -278,8 +278,29 @@ Public Function getTransactionDashboardRs(Optional lrn As String, Optional itemC
               "      And itype.ID = item.ITEM_TYPE_ID " & _
               "      And categ.ID = item.CATEGORY_ID " & _
               "      And tran.STUDENT_ID = stud.ID " & _
-              "      And tran.RETURN_DATE is null " & _
-              "ORDER BY REMAINING_DAYS "
+              "      And tran.RETURN_DATE is null "
+              
+    If (CommonHelper.hasValidValue(lrn)) Then
+       sqlQuery = sqlQuery & " And stud.LRN like '" & lrn & "%' "
+    End If
+    
+    If (CommonHelper.hasValidValue(itemCode)) Then
+       sqlQuery = sqlQuery & " And item.ITEM_CODE like '" & itemCode & "%' "
+    End If
+    
+    If (CommonHelper.hasValidValue(title)) Then
+       sqlQuery = sqlQuery & " And item.Name like '%" & title & "%' "
+    End If
+    
+    If (CommonHelper.hasValidValue(itemType)) Then
+       sqlQuery = sqlQuery & " And itype.NAME = '" & itemType & "' "
+    End If
+    
+    If (CommonHelper.hasValidValue(category)) Then
+       sqlQuery = sqlQuery & " And categ.name = '" & category & "' "
+    End If
+              
+    sqlQuery = sqlQuery & "ORDER BY REMAINING_DAYS "
               
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset

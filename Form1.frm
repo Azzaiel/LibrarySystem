@@ -19,13 +19,13 @@ Begin VB.Form frmMain
          Caption         =   "Stats (Double click to view full list of items status)"
          Height          =   2295
          Left            =   13920
-         TabIndex        =   60
+         TabIndex        =   61
          Top             =   7440
          Width           =   6135
          Begin MSDataGridLib.DataGrid dgStat 
             Height          =   1335
             Left            =   840
-            TabIndex        =   61
+            TabIndex        =   62
             Top             =   360
             Width           =   4455
             _ExtentX        =   7858
@@ -108,7 +108,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   495
             Left            =   720
-            TabIndex        =   62
+            TabIndex        =   63
             Top             =   1680
             Width           =   4815
          End
@@ -206,7 +206,7 @@ Begin VB.Form frmMain
             Caption         =   "Status"
             Height          =   255
             Left            =   3240
-            TabIndex        =   65
+            TabIndex        =   66
             Top             =   960
             Width           =   495
          End
@@ -276,7 +276,7 @@ Begin VB.Form frmMain
             Height          =   285
             Left            =   4560
             Locked          =   -1  'True
-            TabIndex        =   67
+            TabIndex        =   72
             Top             =   3120
             Width           =   2175
          End
@@ -294,7 +294,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   1215
             Left            =   3480
-            TabIndex        =   64
+            TabIndex        =   65
             Top             =   240
             Width           =   3375
             Begin VB.OptionButton OptObsolete 
@@ -382,7 +382,7 @@ Begin VB.Form frmMain
                Caption         =   "LRN"
                Height          =   255
                Left            =   120
-               TabIndex        =   59
+               TabIndex        =   60
                Top             =   240
                Width           =   1095
             End
@@ -400,7 +400,7 @@ Begin VB.Form frmMain
                EndProperty
                Height          =   255
                Left            =   1320
-               TabIndex        =   58
+               TabIndex        =   59
                Top             =   240
                Width           =   2295
             End
@@ -471,9 +471,9 @@ Begin VB.Form frmMain
                EndProperty
                ForeColor       =   &H00FF0000&
                Height          =   255
-               Left            =   2520
+               Left            =   2640
                TabIndex        =   41
-               Top             =   2880
+               Top             =   960
                Width           =   1455
             End
             Begin VB.Label Label11 
@@ -650,7 +650,7 @@ Begin VB.Form frmMain
             Caption         =   "Volume"
             Height          =   255
             Left            =   3840
-            TabIndex        =   66
+            TabIndex        =   67
             Top             =   3120
             Width           =   615
          End
@@ -668,7 +668,7 @@ Begin VB.Form frmMain
             ForeColor       =   &H00FF0000&
             Height          =   255
             Left            =   2640
-            TabIndex        =   57
+            TabIndex        =   58
             Top             =   5160
             Width           =   1575
          End
@@ -771,6 +771,21 @@ Begin VB.Form frmMain
          TabIndex        =   11
          Top             =   120
          Width           =   6135
+         Begin VB.TextBox txtDashLrn 
+            Height          =   285
+            Left            =   1080
+            TabIndex        =   49
+            Top             =   240
+            Width           =   1935
+         End
+         Begin VB.ComboBox cmbDashType 
+            Height          =   315
+            Left            =   4080
+            Style           =   2  'Dropdown List
+            TabIndex        =   53
+            Top             =   240
+            Width           =   1935
+         End
          Begin VB.CommandButton Command2 
             Caption         =   "Clear"
             BeginProperty Font 
@@ -784,7 +799,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   315
             Left            =   4920
-            TabIndex        =   55
+            TabIndex        =   56
             Top             =   960
             Width           =   1095
          End
@@ -801,7 +816,7 @@ Begin VB.Form frmMain
             EndProperty
             Height          =   315
             Left            =   3480
-            TabIndex        =   54
+            TabIndex        =   55
             Top             =   960
             Width           =   1095
          End
@@ -809,28 +824,21 @@ Begin VB.Form frmMain
             Height          =   315
             Left            =   4080
             Style           =   2  'Dropdown List
-            TabIndex        =   50
-            Top             =   240
+            TabIndex        =   54
+            Top             =   600
             Width           =   1935
          End
-         Begin VB.TextBox txtTitle 
+         Begin VB.TextBox txtDashTitle 
             Height          =   285
-            Left            =   4080
+            Left            =   1080
             TabIndex        =   52
-            Top             =   600
+            Top             =   960
             Width           =   1935
          End
          Begin VB.TextBox txtDashIsbn 
             Height          =   285
             Left            =   1080
-            TabIndex        =   49
-            Top             =   240
-            Width           =   1935
-         End
-         Begin VB.ComboBox cmbDashType 
-            Height          =   315
-            Left            =   1080
-            Style           =   2  'Dropdown List
+            ScrollBars      =   1  'Horizontal
             TabIndex        =   51
             Top             =   600
             Width           =   1935
@@ -838,7 +846,7 @@ Begin VB.Form frmMain
          Begin MSDataGridLib.DataGrid dgTransactionDash 
             Height          =   5775
             Left            =   120
-            TabIndex        =   56
+            TabIndex        =   57
             Top             =   1440
             Width           =   5895
             _ExtentX        =   10398
@@ -906,31 +914,22 @@ Begin VB.Form frmMain
                EndProperty
             EndProperty
          End
-         Begin VB.Label txtDashLrn 
-            BackColor       =   &H00FFFFFF&
-            BorderStyle     =   1  'Fixed Single
-            BeginProperty Font 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
+         Begin VB.Label Label12 
+            BackColor       =   &H0080FF80&
+            Caption         =   "Type"
             Height          =   255
-            Left            =   1080
-            TabIndex        =   53
-            Top             =   960
-            Width           =   1935
+            Left            =   3120
+            TabIndex        =   71
+            Top             =   240
+            Width           =   495
          End
          Begin VB.Label Label21 
             BackColor       =   &H0080FF80&
             Caption         =   "LRN"
             Height          =   255
             Left            =   120
-            TabIndex        =   72
-            Top             =   960
+            TabIndex        =   50
+            Top             =   240
             Width           =   495
          End
          Begin VB.Label Label20 
@@ -938,8 +937,8 @@ Begin VB.Form frmMain
             Caption         =   "Category"
             Height          =   255
             Left            =   3120
-            TabIndex        =   71
-            Top             =   240
+            TabIndex        =   70
+            Top             =   600
             Width           =   735
          End
          Begin VB.Label Label19 
@@ -947,26 +946,17 @@ Begin VB.Form frmMain
             Caption         =   "ISBN"
             Height          =   255
             Left            =   120
-            TabIndex        =   70
-            Top             =   240
-            Width           =   855
-         End
-         Begin VB.Label Label12 
-            BackColor       =   &H0080FF80&
-            Caption         =   "Type"
-            Height          =   255
-            Left            =   120
             TabIndex        =   69
             Top             =   600
-            Width           =   495
+            Width           =   855
          End
          Begin VB.Label Label7 
             BackColor       =   &H0080FF80&
             Caption         =   " Title"
             Height          =   255
-            Left            =   3120
+            Left            =   120
             TabIndex        =   68
-            Top             =   600
+            Top             =   960
             Width           =   615
          End
       End
@@ -1066,7 +1056,7 @@ Begin VB.Form frmMain
          ForeColor       =   &H00008000&
          Height          =   495
          Left            =   0
-         TabIndex        =   63
+         TabIndex        =   64
          Top             =   9360
          Width           =   6855
       End
@@ -1154,7 +1144,7 @@ Private Sub cmdClearSearch_Click()
 End Sub
 
 Private Sub cmdDashSearch_Click()
-  Set transactionRS = InventoryDao.getTransactionDashboardRs
+  Set transactionRS = InventoryDao.getTransactionDashboardRs(txtDashLrn, txtDashIsbn, txtDashTitle, cmbDashType.Text, cmbDashCategory.Text)
   Set dgTransactionDash.DataSource = transactionRS
   dgTransactionDash.Refresh
   Call formatTransactionDashDatagrid
@@ -1522,6 +1512,10 @@ End Sub
 
 
 
+Private Sub Label22_Click()
+
+End Sub
+
 Private Sub lblChekOut_Click()
   If (Not CommonHelper.hasValidValue(txtItemCode.Text)) Then
     MsgBox "Please select an Item", vbCritical
@@ -1745,8 +1739,8 @@ Private Sub Text1_Change()
 
 End Sub
 
-Private Sub txtDashIsbn_Change()
-  If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii)) And (Not CommonHelper.isLetterAscii(KeyAscii))) Then
+Private Sub txtDashIsbn_KeyPress(KeyAscii As Integer)
+   If (Not CommonHelper.isFunctionAscii(KeyAscii) And (Not CommonHelper.isNumberAscii(KeyAscii)) And (Not CommonHelper.isLetterAscii(KeyAscii))) Then
     KeyAscii = 0
     Beep
   End If
