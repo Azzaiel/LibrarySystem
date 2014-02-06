@@ -2,12 +2,12 @@ VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmStudents 
    Caption         =   "Student Information"
-   ClientHeight    =   5895
+   ClientHeight    =   5865
    ClientLeft      =   525
    ClientTop       =   660
    ClientWidth     =   18855
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5895
+   ScaleHeight     =   5865
    ScaleWidth      =   18855
    Begin VB.Frame Frame2 
       Caption         =   "Search Panel"
@@ -204,24 +204,34 @@ Begin VB.Form frmStudents
    End
    Begin VB.Frame Frame1 
       Caption         =   "Detail Form"
-      Height          =   4335
+      Height          =   4215
       Left            =   240
       TabIndex        =   17
-      Top             =   0
+      Top             =   120
       Width           =   4815
+      Begin VB.ComboBox cmbStatus 
+         Height          =   315
+         ItemData        =   "frmStudents.frx":0000
+         Left            =   1440
+         List            =   "frmStudents.frx":000A
+         Style           =   2  'Dropdown List
+         TabIndex        =   37
+         Top             =   2400
+         Width           =   1935
+      End
       Begin VB.ComboBox cmSections 
          Height          =   315
          Left            =   1440
          Style           =   2  'Dropdown List
          TabIndex        =   4
-         Top             =   2160
+         Top             =   2040
          Width           =   1935
       End
       Begin VB.TextBox TxtLAST_NAME 
          Height          =   285
          Left            =   1440
          TabIndex        =   3
-         Top             =   1800
+         Top             =   1680
          Width           =   1935
       End
       Begin VB.TextBox txtLrn 
@@ -245,13 +255,22 @@ Begin VB.Form frmStudents
          Top             =   1320
          Width           =   1935
       End
+      Begin VB.Label Label3 
+         BackColor       =   &H0080FF80&
+         Caption         =   "STATUS"
+         Height          =   255
+         Left            =   120
+         TabIndex        =   38
+         Top             =   2400
+         Width           =   975
+      End
       Begin VB.Label Label5 
          BackColor       =   &H0080FF80&
          Caption         =   "*SECTION"
          Height          =   255
          Left            =   120
          TabIndex        =   32
-         Top             =   2160
+         Top             =   2040
          Width           =   975
       End
       Begin VB.Label Label2 
@@ -260,7 +279,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   31
-         Top             =   1800
+         Top             =   1680
          Width           =   1095
       End
       Begin VB.Label lblLastModBy 
@@ -269,7 +288,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   30
-         Top             =   3240
+         Top             =   3480
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
@@ -278,7 +297,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   29
-         Top             =   2880
+         Top             =   3120
          Width           =   1935
       End
       Begin VB.Label lblCreatedBy 
@@ -287,7 +306,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   28
-         Top             =   2520
+         Top             =   2760
          Width           =   1935
       End
       Begin VB.Label Label7 
@@ -296,7 +315,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   27
-         Top             =   3240
+         Top             =   3480
          Width           =   1095
       End
       Begin VB.Label Label6 
@@ -305,7 +324,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   26
-         Top             =   2880
+         Top             =   3120
          Width           =   975
       End
       Begin VB.Label LA 
@@ -314,7 +333,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   25
-         Top             =   2520
+         Top             =   2760
          Width           =   975
       End
       Begin VB.Label Label4 
@@ -368,7 +387,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   19
-         Top             =   3600
+         Top             =   3840
          Width           =   1935
       End
       Begin VB.Label Label8 
@@ -377,7 +396,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   18
-         Top             =   3600
+         Top             =   3840
          Width           =   1095
       End
    End
@@ -474,7 +493,7 @@ Private Sub cmbClear_Click()
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLRN.Text = ""
+   txtLrn.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -486,6 +505,7 @@ Public Sub clearForm()
      dgStudents.SelBookmarks.Remove (0)
    End If
    cmSections.ListIndex = -1
+   cmbStatus.ListIndex = 0
 End Sub
 
 Private Sub cmbClearSearch_Click()
@@ -530,14 +550,16 @@ Private Sub cmbEdit_Click()
     End If
       
     Set tempRs = StudentDao.getRsByID(rs!id)
-    tempRs!lrn = Val(txtLRN.Text)
+    tempRs!lrn = Val(txtLrn.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
     tempRs!SECTION_ID = getSectionID
+    tempRs!status = cmbStatus.Text
     tempRs!LAST_MOD_BY = UserSession.getLoginUser
     tempRs!LAST_MOD_DATE = Now
     tempRs.Update
+    
     Call DbInstance.closeRecordSet(tempRs)
     MsgBox "Record Updated!!", vbInformation
     Call clearForm
@@ -579,7 +601,7 @@ Private Sub cmbNewRec_Click()
   Call resetFromSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
-    txtLRN.SetFocus
+    txtLrn.SetFocus
   Else
     If (isFormValid) Then
      
@@ -590,11 +612,12 @@ Private Sub cmbNewRec_Click()
     
       Set tempRs = StudentDao.getFakeRs
       tempRs.AddNew
-      tempRs!lrn = Val(txtLRN.Text)
+      tempRs!lrn = Val(txtLrn.Text)
       tempRs!FIRST_NAME = txtFirstName.Text
       tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
       tempRs!LAST_NAME = TxtLAST_NAME.Text
       tempRs!SECTION_ID = getSectionID
+      tempRs!status = cmbStatus.Text
       tempRs!CREATED_BY = UserSession.getLoginUser
       tempRs!CREATED_DATE = Now
       tempRs!LAST_MOD_BY = UserSession.getLoginUser
@@ -609,7 +632,7 @@ Private Sub cmbNewRec_Click()
   End If
 End Sub
 Private Function isLrnAlreadyInUse(Optional studentID As Integer = -1) As Boolean
-   Set tempRs = StudentDao.getRsByLrn(txtLRN)
+   Set tempRs = StudentDao.getRsByLrn(txtLrn)
    If (tempRs.RecordCount > 0) Then
      If (tempRs!id = studentID) Then
        isLrnAlreadyInUse = False
@@ -678,7 +701,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!id
-   txtLRN.Text = rs!lrn
+   txtLrn.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -686,6 +709,7 @@ Private Sub showSelectedData()
    lblCreatedDate = CommonHelper.extractDateValue(rs!CREATED_DATE)
    lblLastModBy = CommonHelper.extractStringValue(rs!LAST_MOD_BY)
    lblLastModDate = CommonHelper.extractStringValue(rs!LAST_MOD_DATE)
+   cmbStatus.Text = CommonHelper.extractStringValue(rs!status)
 
    Dim index As Integer
    cmSections.ListIndex = -1
@@ -746,8 +770,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
-     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
+     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
      isFormValid = False
      Exit Function
   End If
@@ -770,7 +794,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLRN)
+ Call CommonHelper.toDefaultSkin(txtLrn)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)
  Call CommonHelper.toComboBoxDefaultSkin(cmSections)

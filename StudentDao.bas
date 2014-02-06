@@ -8,7 +8,7 @@ Public Function getAllRs() As ADODB.Recordset
    Dim sqlQuery As String
    
    sqlQuery = "Select a.ID, a.LRN, a.FIRST_NAME, a.MIDDLE_NAME, a.LAST_NAME, a.SECTION_ID   " & _
-              "       , CONCAT(b.name, ' - ', b.level) as Section  " & _
+              "       , CONCAT(b.name, ' - ', b.level) as SECTION, a.STATUS  " & _
               "       , a.CREATED_BY, a.CREATED_DATE, a.LAST_MOD_BY, a.LAST_MOD_DATE " & _
               "from STUDENTS a, sections b " & _
               "Where a.SECTION_ID = b.ID " & _
@@ -33,7 +33,8 @@ Public Function qucikSearchRs(lrn As String, sectionID As Integer, lastName As S
    sqlQuery = "Select a.LRN,CONCAT (a.LAST_NAME, ', ', a.FIRST_NAME, ' ', a.MIDDLE_NAME) as Full_Name   " & _
               "       , b.Adviser, CONCAT(b.name, ' - ', b.level) as Section, a.ID  " & _
               "from STUDENTS a, sections b " & _
-              "Where a.SECTION_ID = b.ID "
+              "Where a.SECTION_ID = b.ID " & _
+              "      and a.status = 'Enrolled' "
               
    If (CommonHelper.hasValidValue(lrn)) Then
      sqlQuery = sqlQuery & " and a.LRN Like '" & lrn & "%' "
@@ -64,7 +65,7 @@ Public Function searchRs(lrn As String, sectionID As Integer, lastName As String
    Dim sqlQuery As String
    
    sqlQuery = "Select a.ID, a.LRN, a.FIRST_NAME, a.MIDDLE_NAME, a.LAST_NAME, a.SECTION_ID   " & _
-              "       , CONCAT(b.name, ' - ', b.level) as Section  " & _
+              "       , CONCAT(b.name, ' - ', b.level) as SECTION, a.STATUS  " & _
               "       , a.CREATED_BY, a.CREATED_DATE, a.LAST_MOD_BY, a.LAST_MOD_DATE " & _
               "from STUDENTS a, sections b " & _
               "Where a.SECTION_ID = b.ID "

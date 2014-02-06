@@ -757,6 +757,7 @@ Private Sub clearForm()
     cmItemType.ListIndex = -1
     cmLocation.ListIndex = -1
     cmCategory.ListIndex = -1
+    cmStatus.ListIndex = 0
 
 End Sub
 
