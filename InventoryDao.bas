@@ -382,10 +382,15 @@ End Function
 Public Function getTransactionReport(startDate As Date, endDate As Date)
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
-   
    Dim sqlQuery As String
    
-   sqlQuery = "Select item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
+   sqlQuery = "Select " & _
+              "        CASE   " & _
+              "        When tran.RETURN_DATE is not null then 'Retured' " & _
+              "        When WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0 Then 'Over Due' " & _
+              "        Else WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') " & _
+              "        END as REMAINING_DAYS " & _
+              "       , item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
               "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
               "       , sec.ADVISER, CONCAT(sec.name, ' - ', sec.level) as SECTION, tran.LEND_BY as RELEASED_BY " & _
               "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _
@@ -400,7 +405,6 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
               "      and cat.ID = item.CATEGORY_ID " & _
               "      and tran.LEND_DATE between STR_TO_DATE('" & Format(startDate, "mm/dd/yyyy") & "','%m/%d/%Y') and STR_TO_DATE('" & Format(endDate, "mm/dd/yyyy") & "','%m/%d/%Y') " & _
               "Order By  BORROWED_DATE "
-       
            
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
