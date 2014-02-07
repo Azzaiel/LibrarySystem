@@ -34,7 +34,7 @@ CREATE TABLE `sections` (
   `Last_Mod_By` varchar(255) DEFAULT NULL,
   `Last_Mod_Date` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `sections` (
 
 LOCK TABLES `sections` WRITE;
 /*!40000 ALTER TABLE `sections` DISABLE KEYS */;
-INSERT INTO `sections` VALUES (10,'IT','4B','Jotan','System','2013-12-26 17:56:28','System','2013-12-28 12:20:53'),(15,'IT','3A','Duarte','System','2013-12-26 18:01:32','System','2013-12-28 12:21:09'),(16,'CS','4B','Honey','System','2013-12-26 18:01:36','System','2013-12-28 12:21:24'),(17,'2312','yuwsdszdf','SDSGDSGHSDG dfddd','System','2013-12-28 11:11:43',NULL,NULL),(18,'Nanu','1B','EWAN','System','2014-01-14 09:13:57',NULL,NULL);
+INSERT INTO `sections` VALUES (10,'IT','4B','Jotan','System','2013-12-26 17:56:28','admin','2014-02-01 19:03:02'),(15,'IT','3A','Duarte','System','2013-12-26 18:01:32','System','2013-12-28 12:21:09'),(16,'CS','4B','Honey','System','2013-12-26 18:01:36','System','2013-12-28 12:21:24'),(17,'2312','yuwsdszdf','SDSGDSGHSDG dfddd','System','2013-12-28 11:11:43','admin','2014-01-17 07:42:19'),(18,'Nanu','1B','EWAN','System','2014-01-14 09:13:57','admin','2014-01-17 07:42:15'),(20,'CS','4B','Honey','admin','2014-01-17 07:29:20','admin','2014-01-17 07:29:20'),(21,'CS','4B','Honey','admin','2014-01-17 07:29:31','admin','2014-01-17 07:29:31'),(25,'test123','test123','visi','admin','2014-01-17 07:43:43','admin','2014-01-17 07:43:43'),(26,'Camia','2','Mark','admin','2014-01-17 14:53:07','admin','2014-01-17 14:53:28'),(27,'Systems','S','Dido','admin','2014-01-17 14:56:44','admin','2014-01-17 14:56:44');
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-15 10:53:50
+-- Dump completed on 2014-02-08  7:40:08

@@ -506,5 +506,23 @@ Public Function getItemNewID() As Long
    Call closeRecordSet(rs)
    
 End Function
-
-    
+Public Function getQuantityReport() As ADODB.Recordset
+  Dim con As ADODB.Connection
+  Set con = DbInstance.getDBConnetion
+  Dim sqlQuery As String
+  sqlQuery = "Select a.ITEM_CODE as ISBN, b.name as ITEM_TYPE , a.NAME as Title, d.name AS CATEGORY, count(*) as QUANTITY " & _
+             "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Available') as AVAILABLE " & _
+             "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Borrowed') as BORROWED " & _
+             "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Damaged') as DAMAGED " & _
+             "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Loss') as LOSS " & _
+             "From items a, ITEM_TYPES b, CATEGORIES d " & _
+             "Where a.ITEM_TYPE_ID = b.ID  " & _
+             "      AND a.CATEGORY_ID = d.ID " & _
+             "Group by a.ITEM_CODE, a.name " & _
+             "         , b.name, d.name "
+             
+  Dim rs As ADODB.Recordset
+  Set rs = New ADODB.Recordset
+  rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+  Set getQuantityReport = rs
+End Function

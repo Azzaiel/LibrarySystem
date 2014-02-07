@@ -34,7 +34,7 @@ CREATE TABLE `item_types` (
   `LAST_MOD_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `item_types` (
 
 LOCK TABLES `item_types` WRITE;
 /*!40000 ALTER TABLE `item_types` DISABLE KEYS */;
-INSERT INTO `item_types` VALUES (1,'Book','Liblart book','Icha','2013-12-22 09:29:28','System','2013-12-22 21:03:14'),(2,'CD','CDCDCDCDCDCDCDCDCCDDCD','Icha','2013-12-22 09:30:07','System','2013-12-22 21:23:34'),(3,'Visual Novel','ddrtrtrt','Icha','2013-12-22 09:30:21','System','2013-12-26 14:21:54'),(5,'sdasdas','dsdsd','System','2013-12-22 16:12:54',NULL,NULL),(6,'test123','dssd','System','2014-01-14 08:57:32',NULL,NULL);
+INSERT INTO `item_types` VALUES (1,'Book','Liblart book','Icha','2013-12-22 09:29:28','admin','2014-01-17 14:06:53'),(8,'CD','CDCDCDCDCDCDCDCDCCDDCD','admin','2014-01-16 11:13:04','admin','2014-01-16 11:19:27');
 /*!40000 ALTER TABLE `item_types` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-15 10:53:50
+-- Dump completed on 2014-02-08  7:40:08

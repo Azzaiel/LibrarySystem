@@ -34,7 +34,7 @@ CREATE TABLE `location_mappings` (
   `LAST_MOD_DATE` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `location_mappings` (
 
 LOCK TABLES `location_mappings` WRITE;
 /*!40000 ALTER TABLE `location_mappings` DISABLE KEYS */;
-INSERT INTO `location_mappings` VALUES (1,'loc1','loc1.jpg','System','2014-01-04 19:27:39','System','2014-01-04 21:57:21'),(3,'loc2','loc2.jpg','System','2014-01-04 19:38:05','System','2014-01-05 13:22:46'),(5,'loc12','loc12.jpg','System','2014-01-04 19:43:57','System','2014-01-04 19:46:56'),(6,'loc10','loc10.jpg','System','2014-01-04 19:45:45','System','2014-01-05 13:22:58'),(7,'loc14','loc14.jpg','System','2014-01-04 19:45:31','System','2014-01-04 19:47:37'),(9,'loc3','loc3.jpg','System','2014-01-04 19:50:08','System','2014-01-04 19:50:49'),(10,'loc5','loc5.jpg','System','2014-01-04 19:50:54','System','2014-01-04 19:54:22'),(14,'loc4','loc4.jpg','System','2014-01-04 19:54:06','System','2014-01-05 13:24:18'),(15,'Missing','','System','2014-01-04 20:04:00','System','2014-01-05 13:24:13'),(16,'loc6','loc6.jpg','System','2014-01-05 14:54:26',NULL,NULL);
+INSERT INTO `location_mappings` VALUES (7,'loc14','loc14.jpg','System','2014-01-04 19:45:31','System','2014-01-04 19:47:37'),(9,'loc3','loc3.jpg','System','2014-01-04 19:50:08','System','2014-01-04 19:50:49'),(10,'loc5','Desert.jpg','System','2014-01-04 19:50:54','admin','2014-01-21 20:58:48'),(15,'Missing','Chrysanthemum.jpg','System','2014-01-04 20:04:00','admin','2014-01-21 21:50:50'),(16,'loc6','loc6.jpg','System','2014-01-05 14:54:26',NULL,NULL),(18,'loc123','loc10.jpg','admin','2014-01-16 21:09:48',NULL,NULL),(19,'loc14-1','images.jpg','admin','2014-01-17 14:22:27',NULL,NULL),(20,'Location 4','loc4.jpg','admin','2014-01-17 14:51:40',NULL,NULL),(21,'loc7','Jellyfish.jpg','admin','2014-01-17 14:52:24',NULL,NULL);
 /*!40000 ALTER TABLE `location_mappings` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-15 10:53:50
+-- Dump completed on 2014-02-08  7:40:08

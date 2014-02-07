@@ -1085,8 +1085,14 @@ Begin VB.Form frmMain
          Caption         =   "Location Map"
       End
    End
-   Begin VB.Menu mnTransaction 
-      Caption         =   "Transaction Report"
+   Begin VB.Menu mnReports 
+      Caption         =   "Reports"
+      Begin VB.Menu mnQuantityReport 
+         Caption         =   "Quantity Report"
+      End
+      Begin VB.Menu mnTransaction 
+         Caption         =   "Transaction Report"
+      End
    End
    Begin VB.Menu dbBackum 
       Caption         =   "Db Bacukup"
@@ -1159,7 +1165,7 @@ Private Sub cmItemsQuickSearch_Click()
     MsgBox "No record found", vbInformation
   Else
     itemsRs.MoveFirst
-    Call showSelectedItem
+
   End If
   dgItems.Refresh
   'Call clearForm
@@ -1275,6 +1281,7 @@ Private Sub showSelectedItem()
    optDamage.value = False
    optLost.value = False
    optAvailable.value = False
+   OptObsolete.value = False
    
    If (cmStatus = "Available") Then
       Call toogelItemCheckOutUI(True)
@@ -1285,7 +1292,7 @@ Private Sub showSelectedItem()
       OptObsolete.Enabled = True
    ElseIf (cmStatus = "Borrowed") Then
       Set tempRs = InventoryDao.getStudentBorrower(itemsRs!id)
-      txtLRN = tempRs!lrn
+      txtLrn = tempRs!lrn
       txtStudentName = tempRs!STUDENT_NAME
       txtAdviser = tempRs!Adviser
       txtSection = tempRs!Section
@@ -1331,24 +1338,24 @@ Private Sub toogelItemCheckOutUI(isAvailable As Boolean)
     txtStudentName.BackColor = vbWhite
     txtAdviser.BackColor = vbWhite
     txtSection.BackColor = vbWhite
-    txtLRN.BackColor = vbWhite
+    txtLrn.BackColor = vbWhite
     
     txtStudentName.ForeColor = vbBlack
     txtAdviser.ForeColor = vbBlack
     txtSection.ForeColor = vbBlack
-    txtLRN.ForeColor = vbBlack
+    txtLrn.ForeColor = vbBlack
     
   Else
   
     txtStudentName.BackColor = vbGrayText
     txtAdviser.BackColor = vbGrayText
     txtSection.BackColor = vbGrayText
-    txtLRN.BackColor = vbGrayText
+    txtLrn.BackColor = vbGrayText
     
     txtStudentName.ForeColor = vbWhite
     txtAdviser.ForeColor = vbWhite
     txtSection.ForeColor = vbWhite
-    txtLRN.ForeColor = vbWhite
+    txtLrn.ForeColor = vbWhite
     
   End If
 End Sub
@@ -1507,7 +1514,7 @@ Private Sub clearStudentInfo()
     txtSection = ""
     txtAdviser = ""
     selectedStudentID = 0
-    txtLRN = ""
+    txtLrn = ""
 End Sub
 
 
@@ -1626,6 +1633,10 @@ Private Sub mnLogout_Click()
       frmControl.Visible = False
       frmlogin.Show vbModal
     End If
+End Sub
+
+Private Sub mnQuantityReport_Click()
+  frmQuantityReport.Show vbModal
 End Sub
 
 Private Sub mnStudents_Click()
