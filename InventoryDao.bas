@@ -506,10 +506,11 @@ Public Function getItemNewID() As Long
    Call closeRecordSet(rs)
    
 End Function
-Public Function getQuantityReport() As ADODB.Recordset
+Public Function getQuantityReport(Optional isbn As String, Optional title As String, Optional itemType As String, Optional category As String) As ADODB.Recordset
   Dim con As ADODB.Connection
   Set con = DbInstance.getDBConnetion
   Dim sqlQuery As String
+  
   sqlQuery = "Select a.ITEM_CODE as ISBN, b.name as ITEM_TYPE , a.NAME as Title, d.name AS CATEGORY, count(*) as QUANTITY " & _
              "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Available') as AVAILABLE " & _
              "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Borrowed') as BORROWED " & _
@@ -517,8 +518,26 @@ Public Function getQuantityReport() As ADODB.Recordset
              "       , (select count(*) from items  where item_code = a.item_code and name = a.name and status = 'Loss') as LOSS " & _
              "From items a, ITEM_TYPES b, CATEGORIES d " & _
              "Where a.ITEM_TYPE_ID = b.ID  " & _
-             "      AND a.CATEGORY_ID = d.ID " & _
-             "Group by a.ITEM_CODE, a.name " & _
+             "      AND a.CATEGORY_ID = d.ID "
+             
+             
+  If (CommonHelper.hasValidValue(isbn)) Then
+    sqlQuery = sqlQuery & " And a.ITEM_CODE like '" & isbn & "%' "
+  End If
+  
+  If (CommonHelper.hasValidValue(title)) Then
+    sqlQuery = sqlQuery & " And a.NAME like '%" & title & "%' "
+  End If
+  
+  If (CommonHelper.hasValidValue(itemType)) Then
+    sqlQuery = sqlQuery & " And b.NAME = '" & itemType & "' "
+  End If
+  
+  If (CommonHelper.hasValidValue(category)) Then
+    sqlQuery = sqlQuery & " And d.name = '" & category & "' "
+  End If
+  
+  sqlQuery = sqlQuery & " Group by a.ITEM_CODE, a.name " & _
              "         , b.name, d.name "
              
   Dim rs As ADODB.Recordset

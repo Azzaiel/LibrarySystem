@@ -212,7 +212,53 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Option Explicit
+Private rs As ADODB.Recordset
+Private itemTypeItemList() As Variant
+Private categoriesItemList() As Variant
+
+Private Sub cmbExport_Click()
+  Dim excelApp As New Excel.Application
+  Dim oBook As New Excel.Workbook
+  Dim oSheet As New Excel.Worksheet
+  
+  Set excelApp = CreateObject("Excel.Application")
+  Set oBook = excelApp.Workbooks.Open(CommonHelper.getTemplatesPath & "\" & Constants.QUANTITY_REPORT_TEMPLATE)
+  Set oSheet = excelApp.Worksheets(1)
+  
+  oSheet.Range("A2").CopyFromRecordset dgQuantityReport.DataSource
+  oSheet.Columns.AutoFit
+  
+  excelApp.DisplayAlerts = False
+  oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
+  
+  'If (UserSession.role = "Admin") Then
+  ' excelApp.Visible = True
+  'Else
+    Dim pdfFilePat As String
+    pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
+    Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
+    oBook.Close
+    Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
+  'End If
+End Sub
+
+Private Sub cmdClearSearch_Click()
+  txtSearchItemCode = ""
+  txtSearchName = ""
+  cmSearchType.ListIndex = -1
+  cmSearchCategory.ListIndex = -1
+End Sub
+
+Private Sub cmdSearch_Click()
+  Set rs = InventoryDao.getQuantityReport(txtSearchItemCode, txtSearchName, cmSearchType.Text, cmSearchCategory.Text)
+  Set dgQuantityReport.DataSource = rs
+  dgQuantityReport.Refresh
+  Call formatDataGrid
+End Sub
+
 Private Sub Form_Load()
+  Call populateDropDown
   Call populateDataGrid
 End Sub
 Public Sub populateDataGrid()
@@ -235,4 +281,19 @@ Private Sub formatDataGrid()
     .Columns(8).Width = 1100
   End With
 End Sub
+Private Sub populateDropDown()
+  Dim index As Integer
 
+  itemTypeItemList = LookupDao.getItemTypeItemList
+  cmSearchType.Clear
+  For index = 0 To UBound(itemTypeItemList)
+    cmSearchType.AddItem (itemTypeItemList(index, Constants.ITEM_LABEL_INDEX))
+  Next index
+  
+  categoriesItemList = LookupDao.getCategoriesItemList
+  cmSearchCategory.Clear
+  For index = 0 To UBound(categoriesItemList)
+    cmSearchCategory.AddItem (categoriesItemList(index, Constants.ITEM_LABEL_INDEX))
+  Next index
+  
+End Sub

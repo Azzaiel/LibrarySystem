@@ -16,6 +16,7 @@ Public Const TEMP_FOLDER  As String = "tmp"
 
 Public Const TRANSACTION_REPORT_TEMPLATE  As String = "TransactionReport.xlsx"
 Public Const STUDENT_TEMPLATE  As String = "Student.xlsx"
+Public Const QUANTITY_REPORT_TEMPLATE  As String = "QuantityReport.xlsx"
 Public Const INVENTORY_TEMPLATE  As String = "Inventory.xlsx"
 Public Const TEMP_WORK_BOOK As String = "temp.xlsx"
 Public Const TEMP_PDF As String = "temp.pdf"
