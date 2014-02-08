@@ -745,7 +745,7 @@ Private Sub clearForm()
     txtName.Text = ""
     txtItemCode.Text = ""
     txtDescription.Text = ""
-    'txtDonatedBy.Text = ""
+    txtAqui.Text = ""
     txtAuthor.Text = ""
     lblCreatedBy.Caption = ""
     lblCreatedDate.Caption = ""
@@ -757,6 +757,7 @@ Private Sub clearForm()
     cmItemType.ListIndex = -1
     cmLocation.ListIndex = -1
     cmCategory.ListIndex = -1
+    cmAquiType.ListIndex = 0
     cmStatus.ListIndex = 0
 
 End Sub
