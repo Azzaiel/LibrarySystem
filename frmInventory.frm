@@ -830,7 +830,7 @@ Private Sub cmbExport_Click()
   
   oSheet.name = "Transaction Report"
   
-  oSheet.Range("A11").CopyFromRecordset dgItems.DataSource
+  oSheet.Range("A12").CopyFromRecordset dgItems.DataSource
   oSheet.Columns.AutoFit
   oSheet.Range("P1:AA1").EntireColumn.Hidden = True
   
@@ -838,11 +838,14 @@ Private Sub cmbExport_Click()
   Dim borrowedCount As Long
   Dim damageCount As Long
   Dim lossCount As Long
+  Dim obsoleteCount As Long
     
   availableCount = 0
   borrowedCount = 0
   damageCount = 0
   lossCount = 0
+  obsoleteCount = 0
+  
   rs.MoveFirst
   Dim itemStatus As String
   While Not rs.EOF
@@ -855,6 +858,8 @@ Private Sub cmbExport_Click()
       damageCount = damageCount + 1
     ElseIf (itemStatus = "Loss") Then
       lossCount = lossCount + 1
+    ElseIf (itemStatus = "Obsolete") Then
+      obsoleteCount = obsoleteCount + 1
     End If
     rs.MoveNext
   Wend
@@ -872,9 +877,12 @@ Private Sub cmbExport_Click()
   oSheet.Range("A7").value = "Loss"
   oSheet.Range("C7").value = lossCount
   
-  oSheet.Range("C8").value = availableCount + borrowedCount + damageCount + lossCount
+  oSheet.Range("A7").value = "Obsolete"
+  oSheet.Range("C7").value = obsoleteCount
   
-  oSheet.Range("L11:Z" & rs.RecordCount + 11).NumberFormat = Constants.DEFAULT_FORMAT
+  oSheet.Range("C9").value = availableCount + borrowedCount + damageCount + lossCount + obsoleteCount
+  
+  oSheet.Range("L11:Z" & rs.RecordCount + 11).NumberFormat = Constants.DEFAULT_CURRENCY_FORMAT
   
   excelApp.DisplayAlerts = False
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
