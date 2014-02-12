@@ -489,5 +489,8 @@ Public Sub populateDataGrid()
     Call showSelectedData
   End If
   dgLocationMapping.Refresh
+  With dgLocationMapping
+    .Columns(0).Visible = False
+  End With
 End Sub
 

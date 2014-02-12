@@ -483,6 +483,7 @@ Public Sub populateDataGrid()
 End Sub
 Private Sub formatDataGrid()
   With dbSections
+    .Columns(0).Visible = False
     .Columns(0).Width = 400
     .Columns(0).Alignment = dbgCenter
     .Columns(1).Width = 2500

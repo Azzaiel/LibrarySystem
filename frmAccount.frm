@@ -363,6 +363,7 @@ Private Sub dgUsers_SelChange(Cancel As Integer)
 End Sub
 Private Sub formatDataGrid()
   With dgUsers
+    .Columns(0).Visible = False
     .Columns(3).Visible = False
     .Columns(4).Visible = False
   End With

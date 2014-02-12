@@ -753,6 +753,7 @@ Private Sub formatDataGrid()
   End If
   
   With dgStudents
+    .Columns(0).Visible = False
     .Columns(0).Width = 400
     .Columns(0).Alignment = dbgCenter
     .Columns(5).Visible = False
