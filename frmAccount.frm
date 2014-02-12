@@ -109,7 +109,7 @@ Begin VB.Form frmAccount
          List            =   "frmAccount.frx":000A
          Style           =   2  'Dropdown List
          TabIndex        =   1
-         Top             =   1080
+         Top             =   960
          Width           =   1935
       End
       Begin VB.TextBox txtUserName 
@@ -117,7 +117,7 @@ Begin VB.Form frmAccount
          Left            =   1560
          MaxLength       =   16
          TabIndex        =   0
-         Top             =   720
+         Top             =   600
          Width           =   2895
       End
       Begin VB.Label Label2 
@@ -126,25 +126,27 @@ Begin VB.Form frmAccount
          Height          =   255
          Left            =   360
          TabIndex        =   11
-         Top             =   1080
+         Top             =   960
          Width           =   615
       End
       Begin VB.Label Label1 
          BackColor       =   &H0080FF80&
          Caption         =   "ID"
          Height          =   255
-         Left            =   360
+         Left            =   480
          TabIndex        =   10
-         Top             =   360
+         Top             =   120
+         Visible         =   0   'False
          Width           =   255
       End
       Begin VB.Label lblID 
          BackColor       =   &H8000000A&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
-         Left            =   1560
+         Left            =   1680
          TabIndex        =   9
-         Top             =   360
+         Top             =   120
+         Visible         =   0   'False
          Width           =   375
       End
       Begin VB.Label lblName 
@@ -153,7 +155,7 @@ Begin VB.Form frmAccount
          Height          =   255
          Left            =   360
          TabIndex        =   8
-         Top             =   720
+         Top             =   600
          Width           =   855
       End
    End

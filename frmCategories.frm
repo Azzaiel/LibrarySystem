@@ -11,7 +11,7 @@ Begin VB.Form frmCategories
    ScaleWidth      =   18930
    Begin VB.Frame Frame1 
       Caption         =   "Created By"
-      Height          =   3015
+      Height          =   2895
       Left            =   240
       TabIndex        =   8
       Top             =   120
@@ -20,14 +20,14 @@ Begin VB.Form frmCategories
          Height          =   285
          Left            =   1680
          TabIndex        =   1
-         Top             =   960
+         Top             =   840
          Width           =   3735
       End
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1680
          TabIndex        =   0
-         Top             =   600
+         Top             =   480
          Width           =   3735
       End
       Begin VB.Label Label1 
@@ -36,7 +36,8 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   20
-         Top             =   240
+         Top             =   0
+         Visible         =   0   'False
          Width           =   255
       End
       Begin VB.Label lblID 
@@ -45,7 +46,8 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   1680
          TabIndex        =   19
-         Top             =   240
+         Top             =   0
+         Visible         =   0   'False
          Width           =   375
       End
       Begin VB.Label lblName 
@@ -54,7 +56,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   18
-         Top             =   600
+         Top             =   480
          Width           =   615
       End
       Begin VB.Label Label3 
@@ -63,7 +65,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   17
-         Top             =   960
+         Top             =   840
          Width           =   855
       End
       Begin VB.Label Label4 
@@ -72,7 +74,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   16
-         Top             =   1320
+         Top             =   1200
          Width           =   855
       End
       Begin VB.Label Label5 
@@ -81,7 +83,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   15
-         Top             =   1680
+         Top             =   1560
          Width           =   975
       End
       Begin VB.Label Label6 
@@ -90,7 +92,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   14
-         Top             =   2040
+         Top             =   1920
          Width           =   975
       End
       Begin VB.Label Label7 
@@ -99,7 +101,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   480
          TabIndex        =   13
-         Top             =   2400
+         Top             =   2280
          Width           =   1095
       End
       Begin VB.Label lblCreatedBy 
@@ -108,7 +110,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   1680
          TabIndex        =   12
-         Top             =   1320
+         Top             =   1200
          Width           =   2535
       End
       Begin VB.Label lblCreatedDate 
@@ -117,7 +119,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   1680
          TabIndex        =   11
-         Top             =   1680
+         Top             =   1560
          Width           =   2535
       End
       Begin VB.Label lblLatModBy 
@@ -126,7 +128,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   1680
          TabIndex        =   10
-         Top             =   2040
+         Top             =   1920
          Width           =   2535
       End
       Begin VB.Label lblLastModDate 
@@ -135,7 +137,7 @@ Begin VB.Form frmCategories
          Height          =   255
          Left            =   1680
          TabIndex        =   9
-         Top             =   2400
+         Top             =   2280
          Width           =   2535
       End
    End

@@ -204,7 +204,7 @@ Begin VB.Form frmStudents
    End
    Begin VB.Frame Frame1 
       Caption         =   "Detail Form"
-      Height          =   4215
+      Height          =   4095
       Left            =   240
       TabIndex        =   17
       Top             =   120
@@ -216,7 +216,7 @@ Begin VB.Form frmStudents
          List            =   "frmStudents.frx":000A
          Style           =   2  'Dropdown List
          TabIndex        =   37
-         Top             =   2400
+         Top             =   2160
          Width           =   1935
       End
       Begin VB.ComboBox cmSections 
@@ -224,35 +224,35 @@ Begin VB.Form frmStudents
          Left            =   1440
          Style           =   2  'Dropdown List
          TabIndex        =   4
-         Top             =   2040
+         Top             =   1800
          Width           =   1935
       End
       Begin VB.TextBox TxtLAST_NAME 
          Height          =   285
          Left            =   1440
          TabIndex        =   3
-         Top             =   1680
+         Top             =   1440
          Width           =   1935
       End
       Begin VB.TextBox txtLrn 
          Height          =   285
          Left            =   1440
          TabIndex        =   0
-         Top             =   600
+         Top             =   360
          Width           =   1935
       End
       Begin VB.TextBox txtFirstName 
          Height          =   285
          Left            =   1440
          TabIndex        =   1
-         Top             =   960
+         Top             =   720
          Width           =   1935
       End
       Begin VB.TextBox txtMIDDLE_NAME 
          Height          =   285
          Left            =   1440
          TabIndex        =   2
-         Top             =   1320
+         Top             =   1080
          Width           =   1935
       End
       Begin VB.Label Label3 
@@ -261,7 +261,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   38
-         Top             =   2400
+         Top             =   2160
          Width           =   975
       End
       Begin VB.Label Label5 
@@ -270,7 +270,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   32
-         Top             =   2040
+         Top             =   1800
          Width           =   975
       End
       Begin VB.Label Label2 
@@ -279,7 +279,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   31
-         Top             =   1680
+         Top             =   1440
          Width           =   1095
       End
       Begin VB.Label lblLastModBy 
@@ -288,7 +288,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   30
-         Top             =   3480
+         Top             =   3240
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
@@ -297,7 +297,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   29
-         Top             =   3120
+         Top             =   2880
          Width           =   1935
       End
       Begin VB.Label lblCreatedBy 
@@ -306,7 +306,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   28
-         Top             =   2760
+         Top             =   2520
          Width           =   1935
       End
       Begin VB.Label Label7 
@@ -315,7 +315,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   27
-         Top             =   3480
+         Top             =   3240
          Width           =   1095
       End
       Begin VB.Label Label6 
@@ -324,7 +324,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   26
-         Top             =   3120
+         Top             =   2880
          Width           =   975
       End
       Begin VB.Label LA 
@@ -333,7 +333,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   25
-         Top             =   2760
+         Top             =   2520
          Width           =   975
       End
       Begin VB.Label Label4 
@@ -342,7 +342,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   24
-         Top             =   1320
+         Top             =   1080
          Width           =   1215
       End
       Begin VB.Label LBFIRST_NAME 
@@ -351,7 +351,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   23
-         Top             =   960
+         Top             =   720
          Width           =   1095
       End
       Begin VB.Label lblName 
@@ -360,7 +360,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   22
-         Top             =   600
+         Top             =   360
          Width           =   615
       End
       Begin VB.Label lblID 
@@ -369,7 +369,8 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   21
-         Top             =   240
+         Top             =   0
+         Visible         =   0   'False
          Width           =   375
       End
       Begin VB.Label Label1 
@@ -378,7 +379,8 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   20
-         Top             =   240
+         Top             =   0
+         Visible         =   0   'False
          Width           =   255
       End
       Begin VB.Label lblLastModDate 
@@ -387,7 +389,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   1440
          TabIndex        =   19
-         Top             =   3840
+         Top             =   3600
          Width           =   1935
       End
       Begin VB.Label Label8 
@@ -396,7 +398,7 @@ Begin VB.Form frmStudents
          Height          =   255
          Left            =   120
          TabIndex        =   18
-         Top             =   3840
+         Top             =   3600
          Width           =   1095
       End
    End
@@ -493,7 +495,7 @@ Private Sub cmbClear_Click()
 End Sub
 Public Sub clearForm()
    lblID.Caption = ""
-   txtLrn.Text = ""
+   txtLRN.Text = ""
    txtFirstName.Text = ""
    txtMIDDLE_NAME.Text = ""
    TxtLAST_NAME.Text = ""
@@ -550,7 +552,7 @@ Private Sub cmbEdit_Click()
     End If
       
     Set tempRs = StudentDao.getRsByID(rs!id)
-    tempRs!lrn = Val(txtLrn.Text)
+    tempRs!lrn = Val(txtLRN.Text)
     tempRs!FIRST_NAME = txtFirstName.Text
     tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
     tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -601,7 +603,7 @@ Private Sub cmbNewRec_Click()
   Call resetFromSkin
   If (cmbNewRec.Caption = "New") Then
     Call toogelInsertMode(True)
-    txtLrn.SetFocus
+    txtLRN.SetFocus
   Else
     If (isFormValid) Then
      
@@ -612,7 +614,7 @@ Private Sub cmbNewRec_Click()
     
       Set tempRs = StudentDao.getFakeRs
       tempRs.AddNew
-      tempRs!lrn = Val(txtLrn.Text)
+      tempRs!lrn = Val(txtLRN.Text)
       tempRs!FIRST_NAME = txtFirstName.Text
       tempRs!MIDDLE_NAME = txtMIDDLE_NAME.Text
       tempRs!LAST_NAME = TxtLAST_NAME.Text
@@ -632,7 +634,7 @@ Private Sub cmbNewRec_Click()
   End If
 End Sub
 Private Function isLrnAlreadyInUse(Optional studentID As Integer = -1) As Boolean
-   Set tempRs = StudentDao.getRsByLrn(txtLrn)
+   Set tempRs = StudentDao.getRsByLrn(txtLRN)
    If (tempRs.RecordCount > 0) Then
      If (tempRs!id = studentID) Then
        isLrnAlreadyInUse = False
@@ -701,7 +703,7 @@ Private Sub dgStudents_SelChange(Cancel As Integer)
 End Sub
 Private Sub showSelectedData()
    lblID.Caption = rs!id
-   txtLrn.Text = rs!lrn
+   txtLRN.Text = rs!lrn
    txtFirstName.Text = rs!FIRST_NAME
    txtMIDDLE_NAME.Text = rs!MIDDLE_NAME
    TxtLAST_NAME.Text = rs!LAST_NAME
@@ -770,8 +772,8 @@ End Sub
 Private Function isFormValid() As Boolean
   Dim isValid As Boolean
   isValid = True
-  If (Not CommonHelper.hasValidValue(txtLrn.Text)) Then
-     Call CommonHelper.sendWarning(txtLrn, "LRN is required field")
+  If (Not CommonHelper.hasValidValue(txtLRN.Text)) Then
+     Call CommonHelper.sendWarning(txtLRN, "LRN is required field")
      isFormValid = False
      Exit Function
   End If
@@ -794,7 +796,7 @@ Private Function isFormValid() As Boolean
 End Function
 Private Sub resetFromSkin()
 
- Call CommonHelper.toDefaultSkin(txtLrn)
+ Call CommonHelper.toDefaultSkin(txtLRN)
  Call CommonHelper.toDefaultSkin(txtFirstName)
  Call CommonHelper.toDefaultSkin(TxtLAST_NAME)
  Call CommonHelper.toComboBoxDefaultSkin(cmSections)

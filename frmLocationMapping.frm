@@ -106,7 +106,7 @@ Begin VB.Form frmLocationMapping
          Height          =   285
          Left            =   1320
          TabIndex        =   0
-         Top             =   840
+         Top             =   600
          Width           =   1935
       End
       Begin VB.CommandButton cmdLoadImg 
@@ -114,12 +114,12 @@ Begin VB.Form frmLocationMapping
          Height          =   255
          Left            =   3240
          TabIndex        =   1
-         Top             =   1440
+         Top             =   1200
          Width           =   1335
       End
       Begin MSComDlg.CommonDialog cdJpegBrowser 
          Left            =   4680
-         Top             =   1320
+         Top             =   1080
          _ExtentX        =   847
          _ExtentY        =   847
          _Version        =   393216
@@ -131,7 +131,7 @@ Begin VB.Form frmLocationMapping
          ScaleHeight     =   3675
          ScaleWidth      =   6195
          TabIndex        =   8
-         Top             =   1920
+         Top             =   1800
          Width           =   6255
       End
       Begin VB.Label txtFileName 
@@ -140,7 +140,7 @@ Begin VB.Form frmLocationMapping
          Height          =   255
          Left            =   1320
          TabIndex        =   22
-         Top             =   1440
+         Top             =   1200
          Width           =   1815
       End
       Begin VB.Label Label2 
@@ -149,7 +149,7 @@ Begin VB.Form frmLocationMapping
          Height          =   255
          Left            =   240
          TabIndex        =   21
-         Top             =   1440
+         Top             =   1200
          Width           =   735
       End
       Begin VB.Label lblLastModDate 
@@ -230,7 +230,8 @@ Begin VB.Form frmLocationMapping
          Height          =   255
          Left            =   240
          TabIndex        =   11
-         Top             =   360
+         Top             =   0
+         Visible         =   0   'False
          Width           =   255
       End
       Begin VB.Label lblID 
@@ -239,7 +240,8 @@ Begin VB.Form frmLocationMapping
          Height          =   255
          Left            =   840
          TabIndex        =   10
-         Top             =   360
+         Top             =   0
+         Visible         =   0   'False
          Width           =   375
       End
       Begin VB.Label lblName 
@@ -248,7 +250,7 @@ Begin VB.Form frmLocationMapping
          Height          =   255
          Left            =   240
          TabIndex        =   9
-         Top             =   840
+         Top             =   600
          Width           =   615
       End
    End
@@ -488,3 +490,4 @@ Public Sub populateDataGrid()
   End If
   dgLocationMapping.Refresh
 End Sub
+

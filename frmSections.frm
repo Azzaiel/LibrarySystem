@@ -11,7 +11,7 @@ Begin VB.Form frmSections
    ScaleWidth      =   19605
    Begin VB.Frame Frame1 
       Caption         =   "Created By"
-      Height          =   3735
+      Height          =   3615
       Left            =   240
       TabIndex        =   9
       Top             =   120
@@ -20,21 +20,21 @@ Begin VB.Form frmSections
          Height          =   285
          Left            =   1560
          TabIndex        =   2
-         Top             =   1680
+         Top             =   1440
          Width           =   1935
       End
       Begin VB.TextBox txtLevel 
          Height          =   285
          Left            =   1560
          TabIndex        =   1
-         Top             =   1320
+         Top             =   1080
          Width           =   1935
       End
       Begin VB.TextBox txtName 
          Height          =   285
          Left            =   1560
          TabIndex        =   0
-         Top             =   960
+         Top             =   720
          Width           =   1935
       End
       Begin VB.Label Label8 
@@ -43,7 +43,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   22
-         Top             =   3120
+         Top             =   2880
          Width           =   1095
       End
       Begin VB.Label lblLastModDate 
@@ -52,7 +52,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   1560
          TabIndex        =   21
-         Top             =   3120
+         Top             =   2880
          Width           =   1935
       End
       Begin VB.Label Label1 
@@ -61,7 +61,8 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   20
-         Top             =   600
+         Top             =   120
+         Visible         =   0   'False
          Width           =   255
       End
       Begin VB.Label lblID 
@@ -70,7 +71,8 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   1560
          TabIndex        =   19
-         Top             =   600
+         Top             =   120
+         Visible         =   0   'False
          Width           =   375
       End
       Begin VB.Label lblName 
@@ -79,7 +81,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   18
-         Top             =   960
+         Top             =   720
          Width           =   615
       End
       Begin VB.Label Label3 
@@ -88,7 +90,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   17
-         Top             =   1320
+         Top             =   1080
          Width           =   855
       End
       Begin VB.Label Label4 
@@ -97,7 +99,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   16
-         Top             =   1680
+         Top             =   1440
          Width           =   855
       End
       Begin VB.Label Label5 
@@ -106,7 +108,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   15
-         Top             =   2040
+         Top             =   1800
          Width           =   975
       End
       Begin VB.Label Label6 
@@ -115,7 +117,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   14
-         Top             =   2400
+         Top             =   2160
          Width           =   975
       End
       Begin VB.Label Label7 
@@ -124,7 +126,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   360
          TabIndex        =   13
-         Top             =   2760
+         Top             =   2520
          Width           =   1095
       End
       Begin VB.Label lblCreatedBy 
@@ -133,7 +135,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   1560
          TabIndex        =   12
-         Top             =   2040
+         Top             =   1800
          Width           =   1935
       End
       Begin VB.Label lblCreatedDate 
@@ -142,7 +144,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   1560
          TabIndex        =   11
-         Top             =   2400
+         Top             =   2160
          Width           =   1935
       End
       Begin VB.Label lblLastModBy 
@@ -151,7 +153,7 @@ Begin VB.Form frmSections
          Height          =   255
          Left            =   1560
          TabIndex        =   10
-         Top             =   2760
+         Top             =   2520
          Width           =   1935
       End
    End
