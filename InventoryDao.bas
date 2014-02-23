@@ -256,6 +256,37 @@ Public Function getFakeTransactionRS() As ADODB.Recordset
    Set getFakeTransactionRS = rs
 
 End Function
+Public Function getOverdueTransactions()
+   Dim con As ADODB.Connection
+   Set con = DbInstance.getDBConnetion
+   
+   Dim sqlQuery As String
+   
+   sqlQuery = "Select  " & _
+              "        CASE   " & _
+              "        When WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0 Then 'Over Due' " & _
+              "        Else WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') " & _
+              "        END as REMAINING_DAYS " & _
+              "       , item.ITEM_CODE as ISBN, item.Name as TITLE, itype.NAME as TYPE, categ.name as CATEGORY, stud.LRN " & _
+              "       , CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
+              "       , REQUESTED_RETURN_DATE as DUE_DATE, tran.ID as TRANSACTION_ID " & _
+              "From transactions tran, items item " & _
+              "     , item_types as itype, STUDENTS stud " & _
+              "     , categories categ " & _
+              "Where tran.ITEM_ID = item.ID " & _
+              "      And itype.ID = item.ITEM_TYPE_ID " & _
+              "      And categ.ID = item.CATEGORY_ID " & _
+              "      And tran.STUDENT_ID = stud.ID " & _
+              "      And tran.RETURN_DATE is null " & _
+              "      AND WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0"
+              
+   Dim rs As ADODB.Recordset
+   Set rs = New ADODB.Recordset
+      
+   rs.Open sqlQuery, con, adOpenDynamic, adLockPessimistic
+   Set getOverdueTransactions = rs
+End Function
+
 Public Function getTransactionDashboardRs(Optional lrn As String, Optional itemCode As String, Optional title As String, Optional itemType As String, Optional category As String) As ADODB.Recordset
 
    Dim con As ADODB.Connection

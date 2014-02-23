@@ -131,6 +131,7 @@ Private Sub cmdSubmit_Click()
         txtPassword = ""
         txtUserName.SetFocus
         frmMain.lblIUser.Caption = "You are currently login as: " & UserSession.getLoginUser
+        frmOverdueItems.Show vbModal
         attempCount = 3
         Unload Me
         If (UserSession.forceChange = "T") Then
