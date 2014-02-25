@@ -421,7 +421,7 @@ Public Function getTransactionReport(startDate As Date, endDate As Date, remFilt
               "        When WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0 Then 'Over Due' " & _
               "        Else WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') " & _
               "        END as REMAINING_DAYS " & _
-              "       , item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.Name as TITLE, item.AUTHOR " & _
+              "       , item.ITEM_CODE as ISBN, itype.NAME as ITEM_TYPE, cat.name as CATEGORY, item.id as Accession_No, item.Name as TITLE, item.AUTHOR " & _
               "       , stud.LRN, CONCAT (stud.LAST_NAME, ', ', stud.FIRST_NAME, ' ', stud.MIDDLE_NAME) as STUDENT_NAME " & _
               "       , sec.ADVISER, CONCAT(sec.name, ' - ', sec.level) as SECTION, tran.LEND_BY as RELEASED_BY " & _
               "       , tran.LEND_DATE as BORROWED_DATE, REQUESTED_RETURN_DATE as DUE_DATE, tran.RETURN_DATE, tran.RECEIVED_BY  " & _

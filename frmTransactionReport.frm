@@ -252,13 +252,13 @@ Private Sub cmdExport_Click()
   oSheet.Columns.AutoFit
   
   
-  oSheet.Range("A2:Z" & rs.RecordCount + 2).NumberFormat = Constants.DEFAULT_FORMAT
+  oSheet.Range("M2:Z" & rs.RecordCount + 2).NumberFormat = Constants.DEFAULT_FORMAT
   
   oSheet.Range("C1").EntireColumn.Hidden = True
   oSheet.Range("D1").EntireColumn.Hidden = True
-  oSheet.Range("F1").EntireColumn.Hidden = True
   oSheet.Range("G1").EntireColumn.Hidden = True
-  oSheet.Range("J1").EntireColumn.Hidden = True
+  oSheet.Range("H1").EntireColumn.Hidden = True
+  oSheet.Range("K1").EntireColumn.Hidden = True
   
 
   excelApp.DisplayAlerts = False
