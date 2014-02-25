@@ -417,7 +417,7 @@ Public Function getTransactionReport(startDate As Date, endDate As Date, remFilt
    
    sqlQuery = "Select " & _
               "        CASE   " & _
-              "        When tran.RETURN_DATE is not null then 'Retured' " & _
+              "        When tran.RETURN_DATE is not null then 'Returned' " & _
               "        When WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0 Then 'Over Due' " & _
               "        Else WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') " & _
               "        END as REMAINING_DAYS " & _
@@ -438,7 +438,7 @@ Public Function getTransactionReport(startDate As Date, endDate As Date, remFilt
 
    If (CommonHelper.hasValidValue(remFilter)) Then
               sqlQuery = sqlQuery & "      and  (CASE   " & _
-              "        When tran.RETURN_DATE is not null then 'Retured' " & _
+              "        When tran.RETURN_DATE is not null then 'Returned' " & _
               "        When WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0 Then 'Over Due' " & _
               "        Else WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') " & _
               "        END)  = '" & remFilter & "' "
