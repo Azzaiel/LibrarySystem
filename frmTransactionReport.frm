@@ -13,10 +13,19 @@ Begin VB.Form frmTransactionReport
    Begin VB.Frame Frame1 
       Caption         =   "Select Date Range by Borrow Date"
       Height          =   975
-      Left            =   3960
+      Left            =   1800
       TabIndex        =   4
       Top             =   0
-      Width           =   10455
+      Width           =   14535
+      Begin VB.ComboBox cmbRemFilter 
+         Height          =   315
+         ItemData        =   "frmTransactionReport.frx":0000
+         Left            =   2280
+         List            =   "frmTransactionReport.frx":000A
+         TabIndex        =   9
+         Top             =   360
+         Width           =   1695
+      End
       Begin VB.CommandButton cmdExport 
          Caption         =   "Export"
          BeginProperty Font 
@@ -29,7 +38,7 @@ Begin VB.Form frmTransactionReport
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   8520
+         Left            =   12600
          TabIndex        =   3
          Top             =   360
          Width           =   1695
@@ -46,14 +55,14 @@ Begin VB.Form frmTransactionReport
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   6480
+         Left            =   10560
          TabIndex        =   2
          Top             =   360
          Width           =   1695
       End
       Begin MSComCtl2.DTPicker dpStartDate 
          Height          =   375
-         Left            =   1440
+         Left            =   5520
          TabIndex        =   0
          Top             =   360
          Width           =   1695
@@ -69,12 +78,12 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   110690305
+         Format          =   107544577
          CurrentDate     =   41650
       End
       Begin MSComCtl2.DTPicker dpEndDate 
          Height          =   375
-         Left            =   4560
+         Left            =   8640
          TabIndex        =   1
          Top             =   360
          Width           =   1695
@@ -90,8 +99,26 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   110690305
+         Format          =   107544577
          CurrentDate     =   41650
+      End
+      Begin VB.Label Label2 
+         BackColor       =   &H0080FF80&
+         Caption         =   "Remaining Days"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   360
+         TabIndex        =   8
+         Top             =   360
+         Width           =   1815
       End
       Begin VB.Label Label1 
          BackColor       =   &H0080FF80&
@@ -106,7 +133,7 @@ Begin VB.Form frmTransactionReport
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   3360
+         Left            =   7440
          TabIndex        =   6
          Top             =   360
          Width           =   1095
@@ -124,7 +151,7 @@ Begin VB.Form frmTransactionReport
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   240
+         Left            =   4320
          TabIndex        =   5
          Top             =   360
          Width           =   1095
@@ -242,7 +269,7 @@ End Sub
 Private Sub cmdSearch_Click()
   Set dgReport.DataSource = Nothing
   Call DbInstance.closeRecordSet(rs)
-  Set rs = InventoryDao.getTransactionReport(dpStartDate.value, DateAdd("d", 1, dpEndDate.value))
+  Set rs = InventoryDao.getTransactionReport(dpStartDate.value, DateAdd("d", 1, dpEndDate.value), cmbRemFilter.Text)
   Set dgReport.DataSource = rs
   dgReport.Refresh
   Call formatDataGrid
@@ -283,3 +310,4 @@ Private Sub Form_Load()
   dgReport.Refresh
   Call formatDataGrid
   End Sub
+

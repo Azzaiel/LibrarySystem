@@ -410,7 +410,7 @@ Public Function getTransactionInfo(transactionID As Integer)
    
    Set getTransactionInfo = rs
 End Function
-Public Function getTransactionReport(startDate As Date, endDate As Date)
+Public Function getTransactionReport(startDate As Date, endDate As Date, remFilter As String)
    Dim con As ADODB.Connection
    Set con = DbInstance.getDBConnetion
    Dim sqlQuery As String
@@ -434,8 +434,17 @@ Public Function getTransactionReport(startDate As Date, endDate As Date)
               "      and stud.SECTION_ID = sec.ID " & _
               "      and itype.ID = item.ITEM_TYPE_ID " & _
               "      and cat.ID = item.CATEGORY_ID " & _
-              "      and tran.LEND_DATE between STR_TO_DATE('" & Format(startDate, "mm/dd/yyyy") & "','%m/%d/%Y') and STR_TO_DATE('" & Format(endDate, "mm/dd/yyyy") & "','%m/%d/%Y') " & _
-              "Order By  BORROWED_DATE "
+              "      and tran.LEND_DATE between STR_TO_DATE('" & Format(startDate, "mm/dd/yyyy") & "','%m/%d/%Y') and STR_TO_DATE('" & Format(endDate, "mm/dd/yyyy") & "','%m/%d/%Y') "
+
+   If (CommonHelper.hasValidValue(remFilter)) Then
+              sqlQuery = sqlQuery & "      and  (CASE   " & _
+              "        When tran.RETURN_DATE is not null then 'Retured' " & _
+              "        When WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') <= 0 Then 'Over Due' " & _
+              "        Else WORKDAYS_LEFT(REQUESTED_RETURN_DATE, '') " & _
+              "        END)  = '" & remFilter & "' "
+   End If
+              
+   sqlQuery = sqlQuery & " Order By  BORROWED_DATE "
            
    Dim rs As ADODB.Recordset
    Set rs = New ADODB.Recordset
