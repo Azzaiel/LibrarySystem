@@ -78,7 +78,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   107347969
+         Format          =   105644033
          CurrentDate     =   41650
       End
       Begin MSComCtl2.DTPicker dpEndDate 
@@ -99,7 +99,7 @@ Begin VB.Form frmTransactionReport
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   107347969
+         Format          =   105644033
          CurrentDate     =   41650
       End
       Begin VB.Label Label2 
@@ -248,7 +248,7 @@ Private Sub cmdExport_Click()
   
   oSheet.name = "Transaction Report"
   
-  oSheet.Range("A2").CopyFromRecordset dgReport.DataSource
+  oSheet.Range("A9").CopyFromRecordset dgReport.DataSource
   oSheet.Columns.AutoFit
   
   
@@ -264,13 +264,13 @@ Private Sub cmdExport_Click()
   excelApp.DisplayAlerts = False
   Call oSheet.Protect("password123")
   oBook.SaveAs CommonHelper.getTempPath & "\" & Constants.TEMP_WORK_BOOK
-  excelApp.Visible = True
+  'excelApp.Visible = True
   
-    'Dim pdfFilePat As String
-    'pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
-    'Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
-    'oBook.Close
-    'Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
+    Dim pdfFilePat As String
+    pdfFilePat = CommonHelper.getTempPath & "\temp_" & Format(Now, "mmhhyysssh") & ".pdf"
+    Call oBook.ExportAsFixedFormat(xlTypePDF, pdfFilePat, xlQualityStandard, False, True)
+    oBook.Close
+    Call CommonHelper.openFile(pdfFilePat, Me.hWnd)
 
 End Sub
 
